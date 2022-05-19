@@ -11,4 +11,4 @@ add_executable(
         Classes/Graph.h
         Classes/Graph.cpp
         Classes/FileReader.cpp
-        Classes/FileReader.h)
+        Classes/FileReader.h Classes/application.cpp Classes/application.h Classes/maxHeap.h)

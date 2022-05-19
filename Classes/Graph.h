@@ -27,6 +27,7 @@ class Graph {
         int distance; //distance from source node
         int pred; // previous node
         bool removed = false;
+        int maxCapacity;
     };
 
     int graphSize;              // Graph size (vertices are numbered from 1 to n)
@@ -47,6 +48,10 @@ public:
     int dfs(int v);
 
     void bfs(int v);
+
+    void setMaxCapacity(Graph g, int s);
+
+    void maxCapacityPath(Graph g, int a, int b);
 };
 
 #endif

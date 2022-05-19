@@ -1,11 +1,13 @@
-#include "Graph.h"
 #include "FileReader.h"
-
+#include "Graph.h"
+#include "maxHeap.h"
 int main(){
+
     FileReader file;
-    if(!file.readFile("07")) exit(1);
+    if(!file.readFile("11")) exit(1);
     Graph graph = file.getGraph();
-    graph.bfs(1);
+    graph.maxCapacityPath(graph,1,4);
+
     return 0;
 }
 

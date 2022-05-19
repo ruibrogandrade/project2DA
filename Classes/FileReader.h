@@ -15,5 +15,4 @@ public:
     Graph getGraph();
 };
 
-
 #endif //_FILEREADER_H
