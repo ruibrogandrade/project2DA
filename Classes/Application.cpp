@@ -2,7 +2,7 @@
 // Created by Rui on 19/05/2022.
 //
 
-#include "application.h"
+#include "Application.h"
 #include <string>
 #include <iostream>
 

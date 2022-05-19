@@ -105,8 +105,8 @@ template <class K, class V>
 void MaxHeap<K,V>::increaseKey(const K &key, const V &value) {
     if (!hasKey(key)) return; // key does not exist, do nothing
     int i = pos[key];
-    if (value > a[i].value) return; // value would increase, do nothing
-    a[i].value = -value;
+    if (value > a[i].value) return; // value would decrease, do nothing
+    a[i].value = value;
     upHeap(i);
 }
 

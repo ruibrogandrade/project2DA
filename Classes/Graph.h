@@ -49,6 +49,8 @@ public:
 
     void bfs(int v);
 
+    bool existPath(int a, int b);
+
     void setMaxCapacity(int s);
 
     void maxCapacityPath(int a, int b);
