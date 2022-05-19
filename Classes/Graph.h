@@ -49,9 +49,9 @@ public:
 
     void bfs(int v);
 
-    void setMaxCapacity(Graph g, int s);
+    void setMaxCapacity(int s);
 
-    void maxCapacityPath(Graph g, int a, int b);
+    void maxCapacityPath(int a, int b);
 };
 
 #endif

@@ -76,7 +76,7 @@ int Graph::distance(int a, int b) {
 }
 
 
-void Graph::setMaxCapacity(Graph G, int s) {
+/*void Graph::setMaxCapacity(int s) {
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(graphSize,-1);
     for (int v = 1; v <= graphSize; v++) {
         if(v == s) {
@@ -100,10 +100,10 @@ void Graph::setMaxCapacity(Graph G, int s) {
             }
         }
     }
-}
+}*/
 
-void Graph::maxCapacityPath(Graph g,int a, int b) {
-    setMaxCapacity(g,a);
+void Graph::maxCapacityPath(int a, int b) {
+    setMaxCapacity(a);
     cout << "The Max Capacity Path is: " << nodes[b].maxCapacity << endl;
     cout << "And the Path Taken was:" << endl;
     cout << b << endl;
@@ -139,3 +139,30 @@ void Graph::maxCapacityPath(Graph g,int a, int b) {
     }
 }
 */
+
+
+/*void Graph::setMaxCapacity(int s) {
+    MaxHeap<int, int> maxHeap = MaxHeap<int, int>(graphSize,-1);
+    for (int v = 1; v <= graphSize; v++) {
+        if(v == s) {
+            continue;
+        }
+        nodes[v].maxCapacity = 0;
+        nodes[v].pred = NULL;
+        maxHeap.insert(v,0);
+    }
+    nodes[s].maxCapacity = INT_MIN;
+    maxHeap.insert(s,INT_MIN);
+    int v;
+    while(maxHeap.getSize()) {
+        v = maxHeap.removeMax();
+        for(auto e : nodes[v].adjEdges) {
+            int w = e.dest;
+            if(min(-nodes[v].maxCapacity,e.capacity) > -nodes[w].maxCapacity) {
+                nodes[w].maxCapacity = -min(-nodes[v].maxCapacity,e.capacity);
+                nodes[w].pred = v;
+                maxHeap.increaseKey(w,nodes[w].maxCapacity);
+            }
+        }
+    }
+}
