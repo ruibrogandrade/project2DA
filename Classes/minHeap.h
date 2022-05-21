@@ -1,8 +1,8 @@
 // AED 2021/2022 - Aula Pratica 10
 // Pedro Ribeiro (DCC/FCUP) [09/01/2022]
 
-#ifndef PROJETO2AED_MAXHEAP_H
-#define PROJETO2AED_MAXHEAP_H
+#ifndef PROJETO2AED_MINHEAP_H
+#define PROJETO2AED_MINHEAP_H
 
 #include <vector>
 #include <unordered_map>
@@ -15,7 +15,7 @@ using namespace std;
 
 // Binary min-heap to represent integer keys of type K with values (priorities) of type V
 template <class K, class V>
-class MaxHeap {
+class MinHeap {
     struct Node { // An element of the heap: a pair (key, value)
         K key;
         V value;
@@ -32,19 +32,19 @@ class MaxHeap {
     void swap(int i1, int i2);
 
 public:
-    MaxHeap(int n, const K& notFound); // Create a min-heap for a max of n pairs (K,V) with notFound returned when empty
+    MinHeap(int n, const K& notFound); // Create a min-heap for a max of n pairs (K,V) with notFound returned when empty
     int getSize();              // Return number of elements in the heap
     bool hasKey(const K& key);  // Heap has key?
     void insert(const K& key, const V& value);      // Insert (key, value) on the heap
-    void increaseKey(const K& key, const V& value); // Increase value of key
-    K removeMax(); // remove and return key with smaller value
+    void decreaseKey(const K& key, const V& value); // Decrease value of key
+    K removeMin(); // remove and return key with smaller value
 };
 
 // ----------------------------------------------
 
 // Make a value go "up the tree" until it reaches its position
 template <class K, class V>
-void MaxHeap<K,V>::upHeap(int i) {
+void MinHeap<K,V>::upHeap(int i) {
     while (i>1 && a[i].value < a[PARENT(i)].value) { // while pos smaller than parent, keep swapping to upper position
         swap(i, PARENT(i));
         i = PARENT(i);
@@ -53,7 +53,7 @@ void MaxHeap<K,V>::upHeap(int i) {
 
 // Make a value go "down the tree" until it reaches its position
 template <class K, class V>
-void MaxHeap<K,V>::downHeap(int i) {
+void MinHeap<K,V>::downHeap(int i) {
     while (LEFT(i) <= size) { // while within heap limits
         int j = LEFT(i);
         if (RIGHT(i)<=size && a[RIGHT(i)].value < a[j].value) j = RIGHT(i); // choose smaller child
@@ -65,7 +65,7 @@ void MaxHeap<K,V>::downHeap(int i) {
 
 // Swap two positions of the heap (update their positions)
 template <class K, class V>
-void MaxHeap<K,V>::swap(int i1, int i2) {
+void MinHeap<K,V>::swap(int i1, int i2) {
     Node tmp = a[i1]; a[i1] = a[i2]; a[i2] = tmp;
     pos[a[i1].key] = i1;
     pos[a[i2].key] = i2;
@@ -75,24 +75,24 @@ void MaxHeap<K,V>::swap(int i1, int i2) {
 
 // Create a min-heap for a max of n pairs (K,V) with notFound returned when empty
 template <class K, class V>
-MaxHeap<K,V>::MaxHeap(int n, const K& notFound) : KEY_NOT_FOUND(notFound), size(0), maxSize(n), a(n+1) {
+MinHeap<K,V>::MinHeap(int n, const K& notFound) : KEY_NOT_FOUND(notFound), size(0), maxSize(n), a(n+1) {
 }
 
 // Return number of elements in the heap
 template <class K, class V>
-int MaxHeap<K,V>::getSize() {
+int MinHeap<K,V>::getSize() {
     return size;
 }
 
 // Heap has key?
 template <class K, class V>
-bool MaxHeap<K, V>::hasKey(const K& key) {
+bool MinHeap<K, V>::hasKey(const K& key) {
     return pos.find(key) != pos.end();
 }
 
 // Insert (key, value) on the heap
 template <class K, class V>
-void MaxHeap<K,V>::insert(const K& key, const V& value) {
+void MinHeap<K,V>::insert(const K& key, const V& value) {
     if (size == maxSize) return; // heap is full, do nothing
     if (hasKey(key)) return;     // key already exists, do nothing
     a[++size] = {key, value};
@@ -100,19 +100,19 @@ void MaxHeap<K,V>::insert(const K& key, const V& value) {
     upHeap(size);
 }
 
-// Increase value of key to the indicated value
+// Decrease value of key to the indicated value
 template <class K, class V>
-void MaxHeap<K,V>::increaseKey(const K &key, const V &value) {
+void MinHeap<K,V>::decreaseKey(const K& key, const V& value) {
     if (!hasKey(key)) return; // key does not exist, do nothing
     int i = pos[key];
-    if (value > a[i].value) return; // value would decrease, do nothing
+    if (value > a[i].value) return; // value would increase, do nothing
     a[i].value = value;
     upHeap(i);
 }
 
 // remove and return key with smaller value
 template <class K, class V>
-K MaxHeap<K,V>::removeMax() {
+K MinHeap<K,V>::removeMin() {
     if (size == 0) return KEY_NOT_FOUND;
     K min = a[1].key;
     pos.erase(min);

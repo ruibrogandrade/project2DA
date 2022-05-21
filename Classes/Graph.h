@@ -7,6 +7,7 @@
 #include <map>
 #include <set>
 #include <unordered_set>
+#include "minHeap.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Graph {
         //double weight;
         int capacity;
         int duration;
+        int fluxo;
         bool removed = false;
     };
 
@@ -54,6 +56,11 @@ public:
     void setMaxCapacity(int s);
 
     void maxCapacityPath(int a, int b);
+
+    void setDistance(int s);
+
+    void minDistancePath(int a, int b);
+
 };
 
 #endif

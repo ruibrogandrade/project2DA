@@ -4,6 +4,7 @@
 #include <climits>
 #include "maxHeap.h"
 #include <stack>
+#include "minHeap.h"
 
 using namespace std;
 
@@ -99,7 +100,7 @@ void Graph::maxCapacityPath(int a, int b) {
     }
 
     setMaxCapacity(a);
-    cout << "The max dimension of a group is: " << nodes[b].maxCapacity << endl << endl;
+    cout << "\nThe max dimension of a group is: " << nodes[b].maxCapacity << endl;
     cout << "Alternative way: ";
 
     stack<int> path;
@@ -111,6 +112,56 @@ void Graph::maxCapacityPath(int a, int b) {
 
     while(!path.empty())
     {
+        cout << " -> " << path.top();
+        path.pop();
+    }
+}
+
+void Graph::setDistance(int s) {
+    MinHeap<int, int> minHeap = MinHeap<int, int>(graphSize,-1);
+    for (int v = 1; v <= graphSize; v++) {
+        if(v == s) {
+            continue;
+        }
+        nodes[v].distance = INT_MAX;
+        nodes[v].pred = 0;
+        minHeap.insert(v,INT_MAX);
+    }
+    nodes[s].distance = 0;
+    minHeap.insert(s,nodes[s].distance);
+    int v;
+    while(minHeap.getSize()) {
+        v = minHeap.removeMin();
+        for(auto e : nodes[v].adjEdges) {
+            int w = e.dest;
+            if((nodes[v].distance + 1) < nodes[w].distance) {
+                nodes[w].distance = nodes[v].distance + 1;
+                nodes[w].pred = v;
+                minHeap.decreaseKey(w, nodes[w].distance);
+            }
+        }
+    }
+}
+
+void Graph::minDistancePath(int a, int b) {
+    if(!existPath(a,b))
+    {
+        cerr << "Doesn't exist a path from " << a << " to " << b << endl;
+        return;
+    }
+
+    setDistance(a);
+    cout << "\nThe minimum amount of transbords in this path is: " << nodes[b].distance-1 << endl;
+    cout << "Alternative way: ";
+
+    stack<int> path;
+    path.push(b);
+    while(b != a) {
+        path.push(nodes[b].pred);
+        b = nodes[b].pred;
+    }
+
+    while(!path.empty()) {
         cout << " -> " << path.top();
         path.pop();
     }
