@@ -100,7 +100,7 @@ void Graph::maxCapacityPath(int a, int b) {
     }
 
     setMaxCapacity(a);
-    cout << "\nThe max dimension of a group is: " << nodes[b].maxCapacity << endl;
+    cout << "The max dimension of a group is: " << nodes[b].maxCapacity << endl << endl;
     cout << "Alternative way: ";
 
     stack<int> path;
@@ -151,7 +151,7 @@ void Graph::minDistancePath(int a, int b) {
     }
 
     setDistance(a);
-    cout << "\nThe minimum amount of transbords in this path is: " << nodes[b].distance-1 << endl;
+    cout << "The minimum amount of transbords in this path is: " << nodes[b].distance-1 << endl << endl;
     cout << "Alternative way: ";
 
     stack<int> path;
