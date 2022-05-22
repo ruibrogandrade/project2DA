@@ -13,7 +13,6 @@ using namespace std;
 
 class Graph {
     struct Edge {
-
         int dest;
         //double weight;
         int capacity;
@@ -61,6 +60,7 @@ public:
 
     void minDistancePath(int a, int b);
 
+    int FordFulkersen(int source, int sink);
 };
 
 #endif

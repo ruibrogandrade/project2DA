@@ -9,9 +9,11 @@ int main(){
     FileReader file;
     if(!file.readFile("12")) exit(1);
     Graph graph = file.getGraph();
-    graph.maxCapacityPath(1,5);
+    //graph.maxCapacityPath(1,4);
     cout << endl << endl;
-    graph.minDistancePath(1,5);
+    //graph.minDistancePath(1,4);
+
+    cout << endl << "The Max Flow of this path is:" << graph.FordFulkersen(1,4) << endl;
 
     return 0;
 }

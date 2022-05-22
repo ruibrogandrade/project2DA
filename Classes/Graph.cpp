@@ -40,19 +40,21 @@ void Graph::bfs(int v) {
     for (int v = 1; v <= graphSize; v++) nodes[v].visited = false;
     queue<int> q; // queue of unvisited nodes
     q.push(v);
-    nodes[v]. visited = true;
-    nodes[v].distance = 0;
+    nodes[v].visited = true;
+    //nodes[v].distance = 0;
+    nodes[v].pred = - 1;
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
         //cout << u << " "; // show node order
-        for (auto e : nodes[u].adjEdges)
+        for (auto &e : nodes[u].adjEdges)
         {
             int w = e.dest;
 
-            if (!nodes[w].visited)
+            if (!nodes[w].visited && e.capacity > 0)
             {
                 q.push(w);
                 nodes[w].visited = true;
+                nodes[w].pred = u;
             }
         }
     }
@@ -167,7 +169,62 @@ void Graph::minDistancePath(int a, int b) {
     }
 }
 
+int Graph::FordFulkersen(int source, int sink) {
+    // Para cada (u, v) ∈ G.A fazer f (u, v) ← 0; f (v, u) ← 0;
+    for (int i = 0; i < graphSize; i++) {
+        for (auto &e: nodes[i].adjEdges) {
+            e.fluxo = 0;
+        }
+    }
+
+    Graph residualGraph = *this;
+    int maxFlow = 0;
+
+    //Enquanto existir um caminho γ de s para t em Gf fazer:
+    while (residualGraph.existPath(source, sink))
+    {
+        int pathFlow = INT_MAX;
+        int v = sink, u;
+        while (v != source) {
+            //cout << endl << v << endl;
+            u = residualGraph.nodes[v].pred;
+            for (auto &e: residualGraph.nodes[u].adjEdges) {
+                if (e.dest == v)
+                    pathFlow = min(pathFlow, e.capacity);
+            }
+            v = residualGraph.nodes[v].pred;
+        }
+
+        v = sink;
+        while (v != source)
+        {
+            u = residualGraph.nodes[v].pred;
+            for (auto &e: residualGraph.nodes[u].adjEdges)
+            {
+                if (e.dest == v)
+                    e.capacity -= pathFlow;
+            }
+
+            for (auto edge = residualGraph.nodes[v].adjEdges.begin();
+                 edge != residualGraph.nodes[v].adjEdges.end(); edge++)
+            {
+                if (edge->dest == u)
+                {
+                    edge->capacity += pathFlow;
+                } else if (edge == --residualGraph.nodes[v].adjEdges.end())
+                    residualGraph.addEdge(v, u, pathFlow, edge->duration);
+            }
+            v = residualGraph.nodes[v].pred;
+        }
+
+        maxFlow += pathFlow;
+    }
+    return maxFlow;
+}
+
+
 bool Graph::existPath(int a, int b) {
     bfs(a);
     return nodes[b].visited;
 }
+
