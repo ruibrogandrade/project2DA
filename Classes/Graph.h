@@ -31,10 +31,9 @@ class Graph {
         int maxCapacity;
     };
 
-    int graphSize;              // Graph size (vertices are numbered from 1 to n)
+    int graphSize;      // Graph size (vertices are numbered from 1 to n)
     bool hasDir;        // false: undirected; true: directed
     vector<Node> nodes; // The list of nodes being represented
-    //int dest, src;
 
 public:
 
@@ -60,7 +59,7 @@ public:
 
     void minDistancePath(int a, int b);
 
-    int FordFulkersen(int source, int sink);
+    map<list<int>,int> FordFulkersen(int source, int sink);
 };
 
 #endif
