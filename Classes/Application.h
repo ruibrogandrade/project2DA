@@ -9,6 +9,7 @@ using namespace std;
 class Application {
 private:
     FileReader reader;
+    Graph graph;
 
 private:
     static unsigned showMenu();
@@ -16,4 +17,8 @@ private:
 public:
     Application();
     void run();
+
+    unsigned int firstScenario();
+
+    unsigned int secondScenario();
 };

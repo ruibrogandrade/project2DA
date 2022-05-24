@@ -13,7 +13,7 @@ Graph::Graph(int numNodes, bool dir) : graphSize(numNodes), hasDir(dir), nodes(n
 
 void Graph::addEdge(int src, int dest, int capacity, int duration) {
     if (src < 0 || src > graphSize || dest < 0 || dest > graphSize){
-        cout << "Can't add edge. Invalid bound." << endl;
+        cout << "\nCan't add edge. Invalid bound.\n" << endl;
         return;
     }
     nodes[src].adjEdges.push_back({dest, capacity, duration});
@@ -42,11 +42,9 @@ void Graph::bfs(int v) {
     queue<int> q; // queue of unvisited nodes
     q.push(v);
     nodes[v].visited = true;
-    //nodes[v].distance = 0;
     nodes[v].pred = - 1;
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
-        //cout << u << " "; // show node order
         for (auto &e : nodes[u].adjEdges)
         {
             int w = e.dest;
@@ -63,17 +61,13 @@ void Graph::bfs(int v) {
 
 int Graph::distance(int a, int b) {
     bfs(a);
-    if(nodes[b].visited)
-        return nodes[b].distance;
-    return -1;
+    return nodes[b].visited ? nodes[b].distance : -1;
 }
 
 void Graph::setMaxCapacity(int s) {
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(graphSize,-1);
     for (int v = 1; v <= graphSize; v++) {
-        if(v == s) {
-            continue;
-        }
+        if (v == s) continue;
         nodes[v].maxCapacity = 0;
         nodes[v].pred = 0;
         maxHeap.insert(v,0);
@@ -98,13 +92,13 @@ void Graph::setMaxCapacity(int s) {
 void Graph::maxCapacityPath(int a, int b) {
     if(!existPath(a,b))
     {
-        cerr << "Doesn't exist a path from " << a << " to " << b << endl;
+        cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
         return;
     }
 
     setMaxCapacity(a);
-    cout << "The max dimension of a group is: " << nodes[b].maxCapacity << endl << endl;
-    cout << "Alternative way: ";
+    cout << "\nThe max dimension of a group is: " << nodes[b].maxCapacity;
+    cout << "\nAlternative way: ";
 
     stack<int> path;
     path.push(b);
@@ -149,13 +143,13 @@ void Graph::setDistance(int s) {
 void Graph::minDistancePath(int a, int b) {
     if(!existPath(a,b))
     {
-        cerr << "Doesn't exist a path from " << a << " to " << b << endl;
+        cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
         return;
     }
 
     setDistance(a);
-    cout << "The minimum amount of transbords in this path is: " << nodes[b].distance-1 << endl << endl;
-    cout << "Alternative way: ";
+    cout << "\n\nThe minimum amount of transbords in this path is: " << nodes[b].distance-1;
+    cout << "\nAlternative way: ";
 
     stack<int> path;
     path.push(b);
@@ -188,7 +182,6 @@ map<list<int>,int> Graph::FordFulkersen(int source, int sink) {
         int v = sink, u;
         path.push_front(v);
         while (v != source) {
-            //cout << endl << v << endl;
             u = residualGraph.nodes[v].pred;
             for (auto &e: residualGraph.nodes[u].adjEdges) {
                 if (e.dest == v)
