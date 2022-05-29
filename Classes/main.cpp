@@ -19,8 +19,7 @@ int main(){
     //graph.maxCapacityPath(1,4);
     //graph.minDistancePath(1,4);
 
-
-    map<list<int>,int> paths = graph.FordFulkersen(1,4);
+    map<list<int>,pair<int, int>> paths = graph.FordFulkersen(1,4);
 
     /* 2.3
     int maxFlow = 0;
@@ -60,6 +59,9 @@ int main(){
     }
     */
 
+    for(auto & path : paths) {
+        paths.second.
+    }
 
 
     //cout << endl << "The Max Flow of this path is:" << graph.FordFulkersen(1,4) << endl;

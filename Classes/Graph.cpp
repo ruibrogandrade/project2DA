@@ -6,6 +6,7 @@
 #include <stack>
 #include "minHeap.h"
 #include <map>
+#include <utility>
 
 using namespace std;
 
@@ -170,19 +171,19 @@ void Graph::minDistancePath(int a, int b) {
     }
 }
 
-map<list<int>,int> Graph::FordFulkersen(int source, int sink) {
+map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
     // Para cada (u, v) ∈ G.A fazer f (u, v) ← 0; f (v, u) ← 0;
     for (int i = 0; i < graphSize; i++) {
         for (auto &e: nodes[i].adjEdges) {
             e.fluxo = 0;
         }
     }
-    map<list<int>,int> paths;
+    map<list<int>,pair<int,int>> paths;
     Graph residualGraph = *this;
-
     //Enquanto existir um caminho γ de s para t em Gf fazer:
     while (residualGraph.existPath(source, sink))
     {
+        int duration = 0;
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
@@ -190,14 +191,20 @@ map<list<int>,int> Graph::FordFulkersen(int source, int sink) {
         while (v != source) {
             //cout << endl << v << endl;
             u = residualGraph.nodes[v].pred;
-            for (auto &e: residualGraph.nodes[u].adjEdges) {
+            for (auto &e: residualGraph.nodes[u].adjEdges)
+            {
                 if (e.dest == v)
+                {
                     pathFlow = min(pathFlow, e.capacity);
+                    duration += e.duration;
+                }
             }
             v = residualGraph.nodes[v].pred;
             path.push_front(v);
         }
-        paths.insert({path,pathFlow});
+
+        if(duration > du)
+        paths.insert({path,{pathFlow,duration}});
         v = sink;
         while (v != source)
         {

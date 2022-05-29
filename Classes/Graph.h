@@ -59,7 +59,7 @@ public:
 
     void minDistancePath(int a, int b);
 
-    map<list<int>,int> FordFulkersen(int source, int sink);
+    map<list<int>,pair<int,int>> FordFulkersen(int source, int sink);
 };
 
 #endif
