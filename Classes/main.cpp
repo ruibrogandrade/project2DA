@@ -1,9 +1,7 @@
-#include "FileReader.h"
-#include "Graph.h"
-#include "maxHeap.h"
 #include "Application.h"
 
 int main(){
+<<<<<<< HEAD
     //Application app;
     //app.run();
     FileReader file;
@@ -66,6 +64,9 @@ int main(){
 
     //cout << endl << "The Max Flow of this path is:" << graph.FordFulkersen(1,4) << endl;
 
+
+    Application app;
+    app.run();
     return 0;
 }
 
