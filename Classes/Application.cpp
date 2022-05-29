@@ -5,6 +5,7 @@
 #include "Application.h"
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include <climits>
 
 using namespace std;
@@ -43,7 +44,7 @@ unsigned Application::showMenu() {
 }
 
 // 2.1
-void fixedFlow(const map<list<int>, int>& paths) {
+void fixedFlow(const map<list<int>, pair<int, int>> &paths) {
     int groupDim;
 
     while (true) {
@@ -55,18 +56,18 @@ void fixedFlow(const map<list<int>, int>& paths) {
     }
 
     for (auto &path: paths)
-        if (groupDim - path.second > 0) {
-            groupDim -= path.second;
+        if (groupDim - path.second.first > 0) {
+            groupDim -= path.second.first;
             cout << '\n';
             for (int et: path.first)
                 cout << " -> " << et;
-            cout << "\nPath Flow: " << path.second << '\n';
+            cout << "\nPath Flow: " << path.second.first << '\n';
         } else {
             cout << '\n';
             for (int et: path.first)
                 cout << " -> " << et;
             cout << "\nPath Flow: " << groupDim << '\n';
-            groupDim -= path.second;
+            groupDim -= path.second.first;
             break;
         }
 
@@ -77,17 +78,55 @@ void fixedFlow(const map<list<int>, int>& paths) {
 }
 
 // 2.3
-void maxFlow(const p<list<int>, pair<int, int>> &paths) {
+void maxFlow(const map<list<int>, pair<int, int>> &paths) {
     int maxFlow = 0;
     for(auto & path : paths) {
-        maxFlow += path.second;
+        maxFlow += path.second.first;
         cout << '\n';
         for (int et: path.first)
             cout << " -> " << et;
-        cout << "\nPath Flow: " << path.second << '\n';
+        cout << "\nPath Flow: " << path.second.first << '\n';
     }
     cout << "\nMax Flow is: " << maxFlow;
 }
+
+bool compareDuration(pair<int, int> i,pair<int, int> j) {
+    return i.second < j.second;
+}
+
+void minDuration(const map<list<int>, pair<int, int>> &paths) {
+    int groupDim;
+    int duration = 0;
+
+    while (true) {
+        cout << "\n Write the group's dimension: ";
+        cin >> groupDim;
+
+        if (!isBadCin() && groupDim >= 0) break;
+        cout << "\nINVALID NUMBER!\n";
+    }
+
+    vector<pair<int, int>> flowDurs;
+    for (auto &path : paths) {
+        flowDurs.push_back(path.second);
+    }
+
+    sort(flowDurs.begin(), flowDurs.end(), compareDuration);
+
+    for (auto &flowDur: flowDurs) {
+        groupDim -= flowDur.first;
+        duration = max(duration,flowDur.second);
+        if (groupDim <= 0) break;
+    }
+
+    cout << "\nThe Minimum Duration is: " << duration;
+
+    if (groupDim > 0)
+        cout << "\nUnable to pass the entirety of the group."
+                "\nThe remaining capacity is: " << groupDim;
+    else cout << "\nSUCCESS!\n";
+}
+
 
 void Application::run() {
 
@@ -134,8 +173,7 @@ void Application::run() {
                         maxFlow(paths);
                         break;
                     case 4:
-                        //TODO 2.4
-                        cout << "\n2.4 isn't implemented yet.\n";
+                        minDuration(paths);
                         break;
                     case 5:
                         //TODO 2.5

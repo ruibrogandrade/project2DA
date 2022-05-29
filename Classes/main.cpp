@@ -1,7 +1,6 @@
 #include "Application.h"
 
 int main(){
-<<<<<<< HEAD
     //Application app;
     //app.run();
     FileReader file;
@@ -56,10 +55,6 @@ int main(){
         }
     }
     */
-
-    for(auto & path : paths) {
-        paths.second.
-    }
 
 
     //cout << endl << "The Max Flow of this path is:" << graph.FordFulkersen(1,4) << endl;
