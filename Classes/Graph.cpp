@@ -167,11 +167,13 @@ void Graph::minDistancePath(int a, int b) {
 
 map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
     // Para cada (u, v) ∈ G.A fazer f (u, v) ← 0; f (v, u) ← 0;
+    /*
     for (int i = 0; i < graphSize; i++) {
         for (auto &e: nodes[i].adjEdges) {
             e.fluxo = 0;
         }
     }
+     */
     map<list<int>,pair<int,int>> paths;
     Graph residualGraph = *this;
     //Enquanto existir um caminho γ de s para t em Gf fazer:
@@ -227,4 +229,121 @@ bool Graph::existPath(int a, int b) {
     return nodes[b].visited;
 }
 
+Graph Graph::createTransposed()
+{
+    Graph transposed;
+    for(int v = 1; v <= graphSize; v++) {
+        for(auto e: nodes[v].adjEdges) {
+            transposed.addEdge(e.dest, v, e.capacity, e.duration);
+        }
+    }
+    return transposed;
+}
 
+
+void Graph::latestFinish(int sink) {
+    int minDuration = this->minDuration();
+
+    //Para todos v ∈ G.V fazer LF[v] ← DurMin; GrauS[v] ← 0;
+    for(int i = 1; i <= graphSize; i++)
+    {
+        nodes[i].LF = minDuration;
+        nodes[i].sDegree = 0;
+    }
+
+    for(int v = 1; v <= graphSize; v++) {
+        for(auto e: nodes[v].adjEdges) {
+            nodes[e.dest].sDegree++;
+        }
+    }
+
+    Graph transposed = this->createTransposed();
+
+    stack<int> S;
+    for(int v = 1; v <= graphSize; v++) {
+        if(nodes[v].sDegree == 0) {
+            S.push(v);
+        }
+    }
+
+    while(!S.empty()) {
+        int v = S.top();
+        S.pop();
+        for(auto e: transposed.nodes[v].adjEdges) {
+            int w = e.dest;
+            if(nodes[w].LF > nodes[v].LF - e.duration) {
+                nodes[w].LF = nodes[v].LF - e.duration; //Duvida
+            }
+            nodes[w].sDegree--;
+            if(nodes[w].sDegree == 0) {
+                S.push(w);
+            }
+        }
+    }
+
+    for(int v = 1; v <= graphSize; v++)
+    {
+        for(auto e: nodes[v].adjEdges)
+        {
+            e.LF = nodes[e.dest].LF;
+        }
+    }
+
+    map<int,int> earliestFinishes;
+    for(auto e : transposed.nodes[sink].adjEdges) {
+        int w = e.dest;
+        earliestFinishes.insert({nodes[w].ES + e.duration, w});
+    }
+
+
+}
+
+int Graph::minDuration()
+{
+    for(int v = 1; v <= graphSize; v++)
+    {
+        nodes[v].ES = 0;
+        nodes[v].pred = NULL;
+        nodes[v].eDegree = 0;
+    }
+
+    for(int v = 1; v <= graphSize; v++)
+    {
+       for(auto e : nodes[v].adjEdges)
+       {
+           int w = e.dest;
+           nodes[w].eDegree++;
+       }
+    }
+
+    stack<int> S;
+    for (int v = 1; v <= graphSize; v++)
+        if (nodes[v].eDegree == 0)
+            S.push(v);
+
+    int minDuration = -1;
+    int vf = NULL, v;
+
+    while(!S.empty())
+    {
+        v = S.top(); S.pop();
+        if(minDuration < nodes[v].ES)
+        {
+            minDuration = nodes[v].ES;
+            vf = v;
+        }
+        for (auto e : nodes[v].adjEdges)
+        {
+            int w = e.dest;
+            if (nodes[w].ES < nodes[v].ES + e.duration)
+            {
+                nodes[w].ES += nodes[v].ES + e.duration;
+                nodes[w].pred = v;
+            }
+            nodes[w].eDegree--;
+            if (nodes[w].eDegree == 0)
+                S.push(w);
+        }
+    }
+    return minDuration;
+}

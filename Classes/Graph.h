@@ -14,21 +14,19 @@ using namespace std;
 class Graph {
     struct Edge {
         int dest;
-        //double weight;
         int capacity;
         int duration;
-        int fluxo;
-        bool removed = false;
+        int LF;
     };
 
     struct Node {
-
         list<Edge> adjEdges;
         bool visited;
         int distance; //distance from source node
         int pred; // previous node
-        bool removed = false;
         int maxCapacity;
+        int sDegree, eDegree;
+        int LF, ES;
     };
 
     int graphSize;      // Graph size (vertices are numbered from 1 to n)
@@ -60,6 +58,12 @@ public:
     void minDistancePath(int a, int b);
 
     map<list<int>,pair<int,int>> FordFulkersen(int source, int sink);
+
+    Graph createTransposed();
+
+    int minDuration();
+
+    void latestFinish(int sink);
 };
 
 #endif

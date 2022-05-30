@@ -16,6 +16,7 @@ private:
 
 public:
     Application();
+
     void run();
 
     static unsigned int firstScenario();

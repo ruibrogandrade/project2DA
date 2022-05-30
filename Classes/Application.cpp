@@ -90,43 +90,6 @@ void maxFlow(const map<list<int>, pair<int, int>> &paths) {
     cout << "\nMax Flow is: " << maxFlow;
 }
 
-bool compareDuration(pair<int, int> i,pair<int, int> j) {
-    return i.second < j.second;
-}
-
-void minDuration(const map<list<int>, pair<int, int>> &paths) {
-    int groupDim;
-    int duration = 0;
-
-    while (true) {
-        cout << "\n Write the group's dimension: ";
-        cin >> groupDim;
-
-        if (!isBadCin() && groupDim >= 0) break;
-        cout << "\nINVALID NUMBER!\n";
-    }
-
-    vector<pair<int, int>> flowDurs;
-    for (auto &path : paths) {
-        flowDurs.push_back(path.second);
-    }
-
-    sort(flowDurs.begin(), flowDurs.end(), compareDuration);
-
-    for (auto &flowDur: flowDurs) {
-        groupDim -= flowDur.first;
-        duration = max(duration,flowDur.second);
-        if (groupDim <= 0) break;
-    }
-
-    cout << "\nThe Minimum Duration is: " << duration;
-
-    if (groupDim > 0)
-        cout << "\nUnable to pass the entirety of the group."
-                "\nThe remaining capacity is: " << groupDim;
-    else cout << "\nSUCCESS!\n";
-}
-
 
 void Application::run() {
 
@@ -173,7 +136,7 @@ void Application::run() {
                         maxFlow(paths);
                         break;
                     case 4:
-                        minDuration(paths);
+                        //minDuration(paths);
                         break;
                     case 5:
                         //TODO 2.5
@@ -207,7 +170,6 @@ unsigned Application::firstScenario() {
 
 unsigned Application::secondScenario() {
     unsigned int choice;
-
     while (true) {
         cout << "\n 2.1   [1]"
                 "\n 2.2   [2]"
