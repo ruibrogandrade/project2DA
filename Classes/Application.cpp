@@ -12,7 +12,7 @@ using namespace std;
 
 Application::Application() = default;
 
-bool isBadCin() {
+bool Application::isBadCin() {
     //verify if the menu chose is a possible choice made by the user
 
     if (cin.fail() || cin.peek() != '\n') {
@@ -44,9 +44,9 @@ unsigned Application::showMenu() {
 }
 
 // 2.1
-void fixedFlow(const map<list<int>, pair<int, int>> &paths) {
+list<list<int>> Application::fixedFlow(const map<list<int>, pair<int, int>> &paths) {
     int groupDim;
-
+    list<list<int>> pathsUsed;
     while (true) {
         cout << "\n Write the group's dimension: ";
         cin >> groupDim;
@@ -55,7 +55,8 @@ void fixedFlow(const map<list<int>, pair<int, int>> &paths) {
         cout << "\nINVALID NUMBER!\n";
     }
 
-    for (auto &path: paths)
+    for (auto &path: paths) {
+        pathsUsed.push_back(path.first);
         if (groupDim - path.second.first > 0) {
             groupDim -= path.second.first;
             cout << '\n';
@@ -70,15 +71,18 @@ void fixedFlow(const map<list<int>, pair<int, int>> &paths) {
             groupDim -= path.second.first;
             break;
         }
+    }
 
     if (groupDim > 0)
         cout << "\nUnable to pass the entirety of the group."
                 "\nThe remaining capacity is: " << groupDim;
     else cout << "\nSUCCESS!\n";
+
+    return pathsUsed;
 }
 
 // 2.3
-void maxFlow(const map<list<int>, pair<int, int>> &paths) {
+void Application::maxFlow(const map<list<int>, pair<int, int>> &paths){
     int maxFlow = 0;
     for(auto & path : paths) {
         maxFlow += path.second.first;
@@ -90,11 +94,28 @@ void maxFlow(const map<list<int>, pair<int, int>> &paths) {
     cout << "\nMax Flow is: " << maxFlow;
 }
 
+// 2.4
+void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
+    list<list<int>> usedPaths = fixedFlow(paths);
+    auto reducedGraph = graph.createGraphByPath(usedPaths);
+    int result = reducedGraph.minDuration();
+    cout << "\nThe minimum duration of travel for the given "
+            "group is: " << result << '\n';
+}
 
-void Application::run() {
+// 2.5
+void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
+    list<list<int>> usedPaths = fixedFlow(paths);
+    auto reducedGraph = graph.createGraphByPath(usedPaths);
+    reducedGraph.minDuration();
+    reducedGraph.latestFinish(1);
+    cout << "\nThe minimum duration of travel for the given "
+            "group is: " << '\n';
+}
 
+void Application::run(){
     FileReader file;
-    if(!file.readFile("12")) exit(1);
+    if(!file.readFile("11")) exit(1);
     graph = file.getGraph();
     map<list<int>, pair<int, int>> paths;
 
@@ -136,11 +157,10 @@ void Application::run() {
                         maxFlow(paths);
                         break;
                     case 4:
-                        //minDuration(paths);
+                        minDuration(paths);
                         break;
                     case 5:
-                        //TODO 2.5
-                        cout << "\n2.5 isn't implemented yet.\n";
+                        maxWaiting(paths);
                         break;
                     default:
                         break;

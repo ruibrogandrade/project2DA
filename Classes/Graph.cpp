@@ -229,8 +229,7 @@ bool Graph::existPath(int a, int b) {
     return nodes[b].visited;
 }
 
-Graph Graph::createTransposed()
-{
+Graph Graph::createTransposed(){
     Graph transposed;
     for(int v = 1; v <= graphSize; v++) {
         for(auto e: nodes[v].adjEdges) {
@@ -239,7 +238,6 @@ Graph Graph::createTransposed()
     }
     return transposed;
 }
-
 
 void Graph::latestFinish(int sink) {
     int minDuration = this->minDuration();
@@ -295,11 +293,9 @@ void Graph::latestFinish(int sink) {
         earliestFinishes.insert({nodes[w].ES + e.duration, w});
     }
 
-
 }
 
-int Graph::minDuration()
-{
+int Graph::minDuration(){
     for(int v = 1; v <= graphSize; v++)
     {
         nodes[v].ES = 0;
@@ -337,13 +333,36 @@ int Graph::minDuration()
             int w = e.dest;
             if (nodes[w].ES < nodes[v].ES + e.duration)
             {
-                nodes[w].ES += nodes[v].ES + e.duration;
+                nodes[w].ES = nodes[v].ES + e.duration;
                 nodes[w].pred = v;
             }
             nodes[w].eDegree--;
-            if (nodes[w].eDegree == 0)
-                S.push(w);
+            if (nodes[w].eDegree == 0) { S.push(w);}
         }
     }
     return minDuration;
+}
+
+Graph Graph::createGraphByPath(const list<list<int>>& paths){
+    int v;
+    int w;
+    Graph semiGraph(graphSize, true);
+    for(auto path: paths)
+    {
+        while(path.size() != 1)
+        {
+            v = path.back();
+            path.pop_back();
+            w = path.back();
+            for(auto e : nodes[w].adjEdges)
+            {
+                if(e.dest == v)
+                {
+                    semiGraph.addEdge(w,v,e.capacity,e.duration);
+                    break;
+                }
+            }
+        }
+    }
+    return semiGraph;
 }

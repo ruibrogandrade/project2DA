@@ -14,12 +14,27 @@ private:
 private:
     static unsigned showMenu();
 
+    static bool isBadCin();
+
+    // 2.1
+    list<list<int>> fixedFlow(const map<list<int>, pair<int, int>> &paths);
+
+    // 2.3
+    static void maxFlow(const map<list<int>, pair<int, int>> &paths);
+
+    // 2.4
+    void minDuration(const map<list<int>, pair<int, int>> &paths);
+
+    // 2.5
+    void maxWaiting(const map<list<int>, pair<int, int>> &paths);
+
+    static unsigned int firstScenario();
+
+    static unsigned int secondScenario();
+
 public:
     Application();
 
     void run();
 
-    static unsigned int firstScenario();
-
-    static unsigned int secondScenario();
 };

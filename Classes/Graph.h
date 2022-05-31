@@ -64,6 +64,9 @@ public:
     int minDuration();
 
     void latestFinish(int sink);
+
+    Graph createGraphByPath(const list<list<int>>& paths);
+
 };
 
 #endif
