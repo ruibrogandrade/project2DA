@@ -16,7 +16,6 @@ class Graph {
         int dest;
         int capacity;
         int duration;
-        int LF;
     };
 
     struct Node {
@@ -67,6 +66,7 @@ public:
 
     Graph createGraphByPath(const list<list<int>>& paths);
 
+    map<int, int> totalSpare();
 };
 
 #endif

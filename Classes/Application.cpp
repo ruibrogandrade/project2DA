@@ -107,10 +107,15 @@ void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
 void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
     list<list<int>> usedPaths = fixedFlow(paths);
     auto reducedGraph = graph.createGraphByPath(usedPaths);
+
     reducedGraph.minDuration();
     reducedGraph.latestFinish(1);
-    cout << "\nThe minimum duration of travel for the given "
-            "group is: " << '\n';
+
+    map<int, int> spares = reducedGraph.totalSpare();
+    for (auto s: spares) {
+        cout << "\nNode: " << s.first << " - Total spare time: " << s.second;
+    }
+    cout << '\n';
 }
 
 void Application::run(){

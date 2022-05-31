@@ -24,9 +24,9 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
 }
 
 int Graph::dfs(int v) {
-    if (nodes[v].adjEdges.empty())
+    if (nodes[v].adjEdges.empty()){
         return 1;
-    //cout << v << " "; // show node order
+    }
     nodes[v].visited = true;
     int result = 1;
     for (auto e : nodes[v].adjEdges) {
@@ -46,12 +46,10 @@ void Graph::bfs(int v) {
     nodes[v].pred = - 1;
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
-        for (auto &e : nodes[u].adjEdges)
-        {
+        for (auto &e : nodes[u].adjEdges){
             int w = e.dest;
 
-            if (!nodes[w].visited && e.capacity > 0)
-            {
+            if (!nodes[w].visited && e.capacity > 0){
                 q.push(w);
                 nodes[w].visited = true;
                 nodes[w].pred = u;
@@ -91,8 +89,7 @@ void Graph::setMaxCapacity(int s) {
 }
 
 void Graph::maxCapacityPath(int a, int b) {
-    if(!existPath(a,b))
-    {
+    if(!existPath(a,b)){
         cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
         return;
     }
@@ -108,8 +105,7 @@ void Graph::maxCapacityPath(int a, int b) {
         b = nodes[b].pred;
     }
 
-    while(!path.empty())
-    {
+    while(!path.empty()){
         cout << " -> " << path.top();
         path.pop();
     }
@@ -142,8 +138,7 @@ void Graph::setDistance(int s) {
 }
 
 void Graph::minDistancePath(int a, int b) {
-    if(!existPath(a,b))
-    {
+    if(!existPath(a,b)){
         cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
         return;
     }
@@ -166,19 +161,10 @@ void Graph::minDistancePath(int a, int b) {
 }
 
 map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
-    // Para cada (u, v) ∈ G.A fazer f (u, v) ← 0; f (v, u) ← 0;
-    /*
-    for (int i = 0; i < graphSize; i++) {
-        for (auto &e: nodes[i].adjEdges) {
-            e.fluxo = 0;
-        }
-    }
-     */
     map<list<int>,pair<int,int>> paths;
     Graph residualGraph = *this;
-    //Enquanto existir um caminho γ de s para t em Gf fazer:
-    while (residualGraph.existPath(source, sink))
-    {
+
+    while (residualGraph.existPath(source, sink)){
         int duration = 0;
         list<int> path;
         int pathFlow = INT_MAX;
@@ -186,10 +172,8 @@ map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
         path.push_front(v);
         while (v != source) {
             u = residualGraph.nodes[v].pred;
-            for (auto &e: residualGraph.nodes[u].adjEdges)
-            {
-                if (e.dest == v)
-                {
+            for (auto &e: residualGraph.nodes[u].adjEdges){
+                if (e.dest == v){
                     pathFlow = min(pathFlow, e.capacity);
                     duration += e.duration;
                 }
@@ -200,23 +184,22 @@ map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
 
         paths.insert({path,{pathFlow,duration}});
         v = sink;
-        while (v != source)
-        {
+        while (v != source){
             u = residualGraph.nodes[v].pred;
-            for (auto &e: residualGraph.nodes[u].adjEdges)
-            {
-                if (e.dest == v)
+            for (auto &e: residualGraph.nodes[u].adjEdges){
+                if (e.dest == v) {
                     e.capacity -= pathFlow;
+                }
             }
 
             for (auto edge = residualGraph.nodes[v].adjEdges.begin();
                  edge != residualGraph.nodes[v].adjEdges.end(); edge++)
             {
-                if (edge->dest == u)
-                {
+                if (edge->dest == u){
                     edge->capacity += pathFlow;
-                } else if (edge == --residualGraph.nodes[v].adjEdges.end())
+                } else if (edge == --residualGraph.nodes[v].adjEdges.end()) {
                     residualGraph.addEdge(v, u, pathFlow, edge->duration);
+                }
             }
             v = residualGraph.nodes[v].pred;
         }
@@ -230,7 +213,7 @@ bool Graph::existPath(int a, int b) {
 }
 
 Graph Graph::createTransposed(){
-    Graph transposed;
+    Graph transposed(graphSize, true);
     for(int v = 1; v <= graphSize; v++) {
         for(auto e: nodes[v].adjEdges) {
             transposed.addEdge(e.dest, v, e.capacity, e.duration);
@@ -242,9 +225,7 @@ Graph Graph::createTransposed(){
 void Graph::latestFinish(int sink) {
     int minDuration = this->minDuration();
 
-    //Para todos v ∈ G.V fazer LF[v] ← DurMin; GrauS[v] ← 0;
-    for(int i = 1; i <= graphSize; i++)
-    {
+    for(int i = 1; i <= graphSize; i++){
         nodes[i].LF = minDuration;
         nodes[i].sDegree = 0;
     }
@@ -254,16 +235,13 @@ void Graph::latestFinish(int sink) {
             nodes[e.dest].sDegree++;
         }
     }
-
-    Graph transposed = this->createTransposed();
-
+    Graph transposed = createTransposed();
     stack<int> S;
     for(int v = 1; v <= graphSize; v++) {
         if(nodes[v].sDegree == 0) {
             S.push(v);
         }
     }
-
     while(!S.empty()) {
         int v = S.top();
         S.pop();
@@ -279,32 +257,23 @@ void Graph::latestFinish(int sink) {
         }
     }
 
-    for(int v = 1; v <= graphSize; v++)
-    {
-        for(auto e: nodes[v].adjEdges)
-        {
-            e.LF = nodes[e.dest].LF;
-        }
-    }
-
+    /* É impressão minha ou isto n serve para nada?
     map<int,int> earliestFinishes;
     for(auto e : transposed.nodes[sink].adjEdges) {
         int w = e.dest;
         earliestFinishes.insert({nodes[w].ES + e.duration, w});
     }
-
+    */
 }
 
 int Graph::minDuration(){
-    for(int v = 1; v <= graphSize; v++)
-    {
+    for(int v = 1; v <= graphSize; v++){
         nodes[v].ES = 0;
-        nodes[v].pred = NULL;
+        nodes[v].pred = 0;
         nodes[v].eDegree = 0;
     }
 
-    for(int v = 1; v <= graphSize; v++)
-    {
+    for(int v = 1; v <= graphSize; v++){
        for(auto e : nodes[v].adjEdges)
        {
            int w = e.dest;
@@ -318,26 +287,23 @@ int Graph::minDuration(){
             S.push(v);
 
     int minDuration = -1;
-    int vf = NULL, v;
+    int v;
 
-    while(!S.empty())
-    {
+    while(!S.empty()){
         v = S.top(); S.pop();
-        if(minDuration < nodes[v].ES)
-        {
+        if(minDuration < nodes[v].ES){
             minDuration = nodes[v].ES;
-            vf = v;
         }
-        for (auto e : nodes[v].adjEdges)
-        {
+        for (auto e : nodes[v].adjEdges){
             int w = e.dest;
-            if (nodes[w].ES < nodes[v].ES + e.duration)
-            {
+            if (nodes[w].ES < nodes[v].ES + e.duration){
                 nodes[w].ES = nodes[v].ES + e.duration;
                 nodes[w].pred = v;
             }
             nodes[w].eDegree--;
-            if (nodes[w].eDegree == 0) { S.push(w);}
+            if (nodes[w].eDegree == 0) {
+                S.push(w);
+            }
         }
     }
     return minDuration;
@@ -347,17 +313,13 @@ Graph Graph::createGraphByPath(const list<list<int>>& paths){
     int v;
     int w;
     Graph semiGraph(graphSize, true);
-    for(auto path: paths)
-    {
-        while(path.size() != 1)
-        {
+    for(auto path: paths){
+        while(path.size() != 1){
             v = path.back();
             path.pop_back();
             w = path.back();
-            for(auto e : nodes[w].adjEdges)
-            {
-                if(e.dest == v)
-                {
+            for(auto e : nodes[w].adjEdges){
+                if(e.dest == v){
                     semiGraph.addEdge(w,v,e.capacity,e.duration);
                     break;
                 }
@@ -365,4 +327,15 @@ Graph Graph::createGraphByPath(const list<list<int>>& paths){
         }
     }
     return semiGraph;
+}
+
+map<int, int> Graph::totalSpare() {
+    map<int, int> totalSpares;
+    for(int v = 1; v <= graphSize; v++){
+        for (auto e : nodes[v].adjEdges) {
+            int spare = nodes[e.dest].LF - e.duration - nodes[v].ES;
+            totalSpares.insert(pair<int, int> (e.dest, spare));
+        }
+    }
+    return totalSpares;
 }
