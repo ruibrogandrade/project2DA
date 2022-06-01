@@ -17,7 +17,7 @@ private:
     static bool isBadCin();
 
     // 2.1
-    list<list<int>> fixedFlow(const map<list<int>, pair<int, int>> &paths);
+    pair<list<list<int>>,int> fixedFlow(const map<list<int>, pair<int, int>> &paths);
 
     // 2.3
     static void maxFlow(const map<list<int>, pair<int, int>> &paths);
@@ -37,4 +37,6 @@ public:
 
     void run();
 
+    list<list<int>>
+    changedFlow(const map<list<int>, pair<int, int>> &paths);
 };

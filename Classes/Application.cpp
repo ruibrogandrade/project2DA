@@ -44,9 +44,10 @@ unsigned Application::showMenu() {
 }
 
 // 2.1
-list<list<int>> Application::fixedFlow(const map<list<int>, pair<int, int>> &paths) {
+pair<list<list<int>>,int> Application::fixedFlow(const map<list<int>, pair<int, int>> &paths) {
     int groupDim;
     list<list<int>> pathsUsed;
+    int remainingDim;
     while (true) {
         cout << "\n Write the group's dimension: ";
         cin >> groupDim;
@@ -64,11 +65,66 @@ list<list<int>> Application::fixedFlow(const map<list<int>, pair<int, int>> &pat
                 cout << " -> " << et;
             cout << "\nPath Flow: " << path.second.first << '\n';
         } else {
+            remainingDim = abs(groupDim - path.second.first);
             cout << '\n';
             for (int et: path.first)
                 cout << " -> " << et;
             cout << "\nPath Flow: " << groupDim << '\n';
             groupDim -= path.second.first;
+            break;
+        }
+    }
+
+    if (groupDim > 0)
+        cout << "\nUnable to pass the entirety of the group."
+                "\nThe remaining capacity is: " << groupDim;
+    else cout << "\nSUCCESS!\n";
+
+    return {pathsUsed,remainingDim};
+}
+
+//2.2
+list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &paths) {
+    int addedDimension;
+
+    pair<list<list<int>>,int> fixedFl = fixedFlow(paths);
+    list<list<int>> pathsUsed = fixedFl.first;
+    int remainingDim = fixedFl.second;
+
+    while (true) {
+        cout << "\n Write the group's added dimension: ";
+        cin >> addedDimension;
+
+        if (!isBadCin() && addedDimension >= 0) break;
+        cout << "\nINVALID NUMBER!\n";
+    }
+
+
+    int groupDim = addedDimension;
+    int n;
+    if(remainingDim > 0) {
+        n = 1;
+    } else {
+        n = 0;
+    }
+
+    cout << "Added path:" << endl;
+
+    for (auto path = next(paths.begin(),pathsUsed.size() - n); path != paths.end(); path++) {
+        //pathsUsed.push_back(path->first);
+        if (groupDim - path->second.first > 0) {
+            groupDim -= path->second.first;
+            cout << '\n';
+            for (int et: path->first)
+                cout << " -> " << et;
+            cout << "\nPath Flow: " << path->second.first << '\n';
+        } else {
+            remainingDim = abs(groupDim - path->second.first);
+            cout << '\n';
+            for (int et: path->first)
+                cout << " -> " << et;
+            cout << "\nPath Flow: " << groupDim << '\n';
+            groupDim -= path->second.first;
             break;
         }
     }
@@ -96,7 +152,7 @@ void Application::maxFlow(const map<list<int>, pair<int, int>> &paths){
 
 // 2.4
 void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
-    list<list<int>> usedPaths = fixedFlow(paths);
+    list<list<int>> usedPaths = fixedFlow(paths).first;
     auto reducedGraph = graph.createGraphByPath(usedPaths);
     int result = reducedGraph.minDuration();
     cout << "\nThe minimum duration of travel for the given "
@@ -105,7 +161,7 @@ void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
 
 // 2.5
 void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
-    list<list<int>> usedPaths = fixedFlow(paths);
+    list<list<int>> usedPaths = fixedFlow(paths).first;
     auto reducedGraph = graph.createGraphByPath(usedPaths);
 
     reducedGraph.minDuration();
@@ -155,8 +211,7 @@ void Application::run(){
                         fixedFlow(paths);
                         break;
                     case 2:
-                        //TODO 2.2
-                        cout << "\n2.2 isn't implemented yet.\n";
+                        changedFlow(paths);
                         break;
                     case 3:
                         maxFlow(paths);
