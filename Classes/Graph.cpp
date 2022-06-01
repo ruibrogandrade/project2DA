@@ -88,6 +88,52 @@ void Graph::setMaxCapacity(int s) {
     }
 }
 
+list<int> Graph::MaxCapacityList(int a, int b) {
+    setMaxCapacity(a);
+    int v = b;
+    list<int> path;
+    while(v != a) {
+        path.push_front(v);
+        v = nodes[v].pred;
+    }
+    path.push_front(a);
+    return path;
+}
+
+list<list<int>> Graph::optimalSolutions(int a, int b) {
+    Graph paretoGraph = *this;
+    list<list<int>> maxCapacityPaths;
+    list<list<int>> minDistancePaths;
+    list<int> path;
+
+    list<int> maxCapacitySolution = paretoGraph.MaxCapacityList(a,b);
+    maxCapacityPaths.push_back(maxCapacitySolution);
+    list<int> minDistanceSolution = paretoGraph.MinDistanceList(a,b);
+    ///minDistancepaths.push_back(minDistanceSolution);
+    list<list<int>> Solutions;
+    Solutions.push_back(maxCapacitySolution);
+    Solutions.push_back(minDistanceSolution);
+    int aux;
+    int v = b;
+    while(v != a) {
+        int w = paretoGraph.nodes[v].pred;
+        for(auto &e: paretoGraph.nodes[w].adjEdges) {
+            if(e.dest == v) {
+                aux = e.capacity;
+                e.capacity = INT_MIN;
+                if(paretoGraph.MaxCapacityList(a,b).size() < maxCapacitySolution.size() &&
+                    nodes[paretoGraph.MaxCapacityList(a,b).back()].maxCapacity > nodes[minDistanceSolution.back()].maxCapacity){
+                    Solutions.push_back(paretoGraph.MaxCapacityList(a,b));
+                }
+                e.capacity = aux;
+                break;
+            }
+        }
+        v = w;
+    }
+    return Solutions;
+}
+
 void Graph::maxCapacityPath(int a, int b) {
     if(!existPath(a,b)){
         cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
@@ -135,6 +181,18 @@ void Graph::setDistance(int s) {
             }
         }
     }
+}
+
+list<int> Graph::MinDistanceList(int a, int b) {
+    setDistance(a);
+    int v = b;
+    list<int> path;
+    while(v != a) {
+        path.push_front(v);
+        v = nodes[v].pred;
+    }
+    path.push_front(a);
+    return path;
 }
 
 void Graph::minDistancePath(int a, int b) {
@@ -339,3 +397,5 @@ map<int, int> Graph::totalSpare() {
     }
     return totalSpares;
 }
+
+

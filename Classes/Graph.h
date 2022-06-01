@@ -31,6 +31,8 @@ class Graph {
     int graphSize;      // Graph size (vertices are numbered from 1 to n)
     bool hasDir;        // false: undirected; true: directed
     vector<Node> nodes; // The list of nodes being represented
+    list<list<int>> paths;
+    list<int> path;
 
 public:
 
@@ -67,6 +69,12 @@ public:
     Graph createGraphByPath(const list<list<int>>& paths);
 
     map<int, int> totalSpare();
+
+    list<list<int>> optimalSolutions(int a, int b);
+
+    list<int> MaxCapacityList(int a, int b);
+
+    list<int> MinDistanceList(int a, int b);
 };
 
 #endif

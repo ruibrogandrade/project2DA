@@ -110,21 +110,30 @@ list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &p
 
     cout << "Added path:" << endl;
 
+    bool firstIter = true;
+    int edgeDim;
+
     for (auto path = next(paths.begin(),pathsUsed.size() - n); path != paths.end(); path++) {
         //pathsUsed.push_back(path->first);
-        if (groupDim - path->second.first > 0) {
-            groupDim -= path->second.first;
+        if(firstIter) {
+            edgeDim = remainingDim;
+            firstIter = false;
+        } else{
+            edgeDim = path->second.first;
+        }
+        if (groupDim - edgeDim > 0) {
+            groupDim -= edgeDim;
             cout << '\n';
             for (int et: path->first)
                 cout << " -> " << et;
-            cout << "\nPath Flow: " << path->second.first << '\n';
+            cout << "\nPath Flow: " << edgeDim << '\n';
         } else {
             remainingDim = abs(groupDim - path->second.first);
             cout << '\n';
             for (int et: path->first)
                 cout << " -> " << et;
             cout << "\nPath Flow: " << groupDim << '\n';
-            groupDim -= path->second.first;
+            groupDim -= edgeDim;
             break;
         }
     }
@@ -176,10 +185,10 @@ void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("11")) exit(1);
+    if(!file.readFile("01")) exit(1);
     graph = file.getGraph();
     map<list<int>, pair<int, int>> paths;
-
+    list<list<int>> paretoSolutions;
     while (true) {
         auto scenario = showMenu();
         unsigned subProblem;
@@ -196,8 +205,10 @@ void Application::run(){
                         break;
                     case 2:
                         // 1.2
-                        graph.maxCapacityPath(1,4);
-                        graph.minDistancePath(1,4);
+                        paretoSolutions = graph.optimalSolutions(1,4);
+                        for(auto path : paretoSolutions){
+                            cout << "(" << path.front() << "," << path.back() << "," << path.size() - 1 << ")\n";
+                        }
                         break;
                     default:
                         break;
