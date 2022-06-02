@@ -1,0 +1,48 @@
+\hypertarget{_application_8h_source}{}\doxysection{Application.\+h}
+\label{_application_8h_source}\index{C:/Users/Rui/Documents/DA/travel-\/agency/Classes/Application.h@{C:/Users/Rui/Documents/DA/travel-\/agency/Classes/Application.h}}
+\mbox{\hyperlink{_application_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Rui on 30/03/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_file_reader_8h}{FileReader.h}}"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_application}{Application}} \{}
+\DoxyCodeLine{10 \textcolor{keyword}{private}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_file_reader}{FileReader}} reader;}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_graph}{Graph}} graph;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{private}:}
+\DoxyCodeLine{15     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} showMenu();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} isBadCin();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{comment}{// 2.1}}
+\DoxyCodeLine{20     pair<list<list<int>>,\textcolor{keywordtype}{int}> fixedFlow(\textcolor{keyword}{const} map<list<int>, pair<int, int>> \&paths);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{comment}{// 2.3}}
+\DoxyCodeLine{23     \textcolor{keyword}{static} \textcolor{keywordtype}{void} maxFlow(\textcolor{keyword}{const} map<list<int>, pair<int, int>> \&paths);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{comment}{// 2.4}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} minDuration(\textcolor{keyword}{const} map<list<int>, pair<int, int>> \&paths);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{// 2.5}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} maxWaiting(\textcolor{keyword}{const} map<list<int>, pair<int, int>> \&paths);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} firstScenario();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} secondScenario();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{36     \mbox{\hyperlink{class_application_afa8cc05ce6b6092be5ecdfdae44e05f8}{Application}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a68965449404743bf1add056784d6cf81}{run}}();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     list<list<int>>}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_application_af6e9834bbaab32b30a1ba53d09470b39}{changedFlow}}(\textcolor{keyword}{const} map<list<int>, pair<int, int>> \&paths);}
+\DoxyCodeLine{42 \};}
+
+\end{DoxyCode}

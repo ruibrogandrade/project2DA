@@ -1,0 +1,181 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a90961be426ad80001cbc103b6385df31}{Graph}} ()=default
+\item 
+\mbox{\hyperlink{class_graph_a55cd8defad17c36085005e2dae74399b}{Graph}} (int num\+Nodes, bool dir=false)
+\item 
+void \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{add\+Edge}} (int src, int dest, int capacity, int duration)
+\item 
+int \mbox{\hyperlink{class_graph_a5a816844b989c28c01b97015ab8868e4}{distance}} (int a, int b)
+\item 
+int \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}} (int v)
+\item 
+void \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}} (int v)
+\item 
+bool \mbox{\hyperlink{class_graph_aa53c98c0e0e434acfd87f871f55ad061}{exist\+Path}} (int a, int b)
+\item 
+void \mbox{\hyperlink{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}{set\+Max\+Capacity}} (int s)
+\item 
+void \mbox{\hyperlink{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}{max\+Capacity\+Path}} (int a, int b)
+\item 
+void \mbox{\hyperlink{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}{set\+Distance}} (int s)
+\item 
+void \mbox{\hyperlink{class_graph_a0ac1453221d8e95176a69a7039b415ea}{min\+Distance\+Path}} (int a, int b)
+\item 
+map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \mbox{\hyperlink{class_graph_a03b9e0d4125c3f213e35a3ef92945588}{Ford\+Fulkersen}} (int source, int sink)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a04b536e8c41e4fde8ef291888c7432ea}{create\+Transposed}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}{min\+Duration}} ()
+\item 
+void \mbox{\hyperlink{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}{latest\+Finish}} (int sink)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a6128d097cbc21929a318d75650b9a202}{create\+Graph\+By\+Path}} (const list$<$ list$<$ int $>$ $>$ \&paths)
+\item 
+map$<$ int, int $>$ \mbox{\hyperlink{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}{total\+Spare}} ()
+\item 
+list$<$ list$<$ int $>$ $>$ \mbox{\hyperlink{class_graph_a67f736f9a2ce9d9875061d10a820b950}{optimal\+Solutions}} (int a, int b)
+\item 
+list$<$ int $>$ \mbox{\hyperlink{class_graph_a10e51df30debf8041235e37399c6a413}{Max\+Capacity\+List}} (int a, int b)
+\item 
+list$<$ int $>$ \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{Min\+Distance\+List}} (int a, int b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a90961be426ad80001cbc103b6385df31}\label{class_graph_a90961be426ad80001cbc103b6385df31}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_graph_a55cd8defad17c36085005e2dae74399b}\label{class_graph_a55cd8defad17c36085005e2dae74399b}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{num\+Nodes,  }\item[{bool}]{dir = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_ac3157a04ab5d808f5bc15823827c744e}\label{class_graph_ac3157a04ab5d808f5bc15823827c744e}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{int}]{capacity,  }\item[{int}]{duration }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_ae1e45e27c60711dadec619ca17e830a4}\label{class_graph_ae1e45e27c60711dadec619ca17e830a4}} 
+\index{Graph@{Graph}!bfs@{bfs}}
+\index{bfs@{bfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily void Graph\+::bfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a6128d097cbc21929a318d75650b9a202}\label{class_graph_a6128d097cbc21929a318d75650b9a202}} 
+\index{Graph@{Graph}!createGraphByPath@{createGraphByPath}}
+\index{createGraphByPath@{createGraphByPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createGraphByPath()}{createGraphByPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+::create\+Graph\+By\+Path (\begin{DoxyParamCaption}\item[{const list$<$ list$<$ int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a04b536e8c41e4fde8ef291888c7432ea}\label{class_graph_a04b536e8c41e4fde8ef291888c7432ea}} 
+\index{Graph@{Graph}!createTransposed@{createTransposed}}
+\index{createTransposed@{createTransposed}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createTransposed()}{createTransposed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+::create\+Transposed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}\label{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}} 
+\index{Graph@{Graph}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily int Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a5a816844b989c28c01b97015ab8868e4}\label{class_graph_a5a816844b989c28c01b97015ab8868e4}} 
+\index{Graph@{Graph}!distance@{distance}}
+\index{distance@{distance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily int Graph\+::distance (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_aa53c98c0e0e434acfd87f871f55ad061}\label{class_graph_aa53c98c0e0e434acfd87f871f55ad061}} 
+\index{Graph@{Graph}!existPath@{existPath}}
+\index{existPath@{existPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{existPath()}{existPath()}}
+{\footnotesize\ttfamily bool Graph\+::exist\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a03b9e0d4125c3f213e35a3ef92945588}\label{class_graph_a03b9e0d4125c3f213e35a3ef92945588}} 
+\index{Graph@{Graph}!FordFulkersen@{FordFulkersen}}
+\index{FordFulkersen@{FordFulkersen}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{FordFulkersen()}{FordFulkersen()}}
+{\footnotesize\ttfamily map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ Graph\+::\+Ford\+Fulkersen (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{sink }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}\label{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}} 
+\index{Graph@{Graph}!latestFinish@{latestFinish}}
+\index{latestFinish@{latestFinish}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{latestFinish()}{latestFinish()}}
+{\footnotesize\ttfamily void Graph\+::latest\+Finish (\begin{DoxyParamCaption}\item[{int}]{sink }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a10e51df30debf8041235e37399c6a413}\label{class_graph_a10e51df30debf8041235e37399c6a413}} 
+\index{Graph@{Graph}!MaxCapacityList@{MaxCapacityList}}
+\index{MaxCapacityList@{MaxCapacityList}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{MaxCapacityList()}{MaxCapacityList()}}
+{\footnotesize\ttfamily list$<$ int $>$ Graph\+::\+Max\+Capacity\+List (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}\label{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}} 
+\index{Graph@{Graph}!maxCapacityPath@{maxCapacityPath}}
+\index{maxCapacityPath@{maxCapacityPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{maxCapacityPath()}{maxCapacityPath()}}
+{\footnotesize\ttfamily void Graph\+::max\+Capacity\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_aeddcc8667fe38758d5135220052a60ba}\label{class_graph_aeddcc8667fe38758d5135220052a60ba}} 
+\index{Graph@{Graph}!MinDistanceList@{MinDistanceList}}
+\index{MinDistanceList@{MinDistanceList}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{MinDistanceList()}{MinDistanceList()}}
+{\footnotesize\ttfamily list$<$ int $>$ Graph\+::\+Min\+Distance\+List (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a0ac1453221d8e95176a69a7039b415ea}\label{class_graph_a0ac1453221d8e95176a69a7039b415ea}} 
+\index{Graph@{Graph}!minDistancePath@{minDistancePath}}
+\index{minDistancePath@{minDistancePath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{minDistancePath()}{minDistancePath()}}
+{\footnotesize\ttfamily void Graph\+::min\+Distance\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}\label{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}} 
+\index{Graph@{Graph}!minDuration@{minDuration}}
+\index{minDuration@{minDuration}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{minDuration()}{minDuration()}}
+{\footnotesize\ttfamily int Graph\+::min\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a67f736f9a2ce9d9875061d10a820b950}\label{class_graph_a67f736f9a2ce9d9875061d10a820b950}} 
+\index{Graph@{Graph}!optimalSolutions@{optimalSolutions}}
+\index{optimalSolutions@{optimalSolutions}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{optimalSolutions()}{optimalSolutions()}}
+{\footnotesize\ttfamily list$<$ list$<$ int $>$ $>$ Graph\+::optimal\+Solutions (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+min\+Distancepaths.\+push\+\_\+back(min\+Distance\+Solution);\mbox{\Hypertarget{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}\label{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}} 
+\index{Graph@{Graph}!setDistance@{setDistance}}
+\index{setDistance@{setDistance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{setDistance()}{setDistance()}}
+{\footnotesize\ttfamily void Graph\+::set\+Distance (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}\label{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}} 
+\index{Graph@{Graph}!setMaxCapacity@{setMaxCapacity}}
+\index{setMaxCapacity@{setMaxCapacity}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{setMaxCapacity()}{setMaxCapacity()}}
+{\footnotesize\ttfamily void Graph\+::set\+Max\+Capacity (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}\label{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}} 
+\index{Graph@{Graph}!totalSpare@{totalSpare}}
+\index{totalSpare@{totalSpare}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{totalSpare()}{totalSpare()}}
+{\footnotesize\ttfamily map$<$ int, int $>$ Graph\+::total\+Spare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/travel-\/agency/\+Classes/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/travel-\/agency/\+Classes/\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}
