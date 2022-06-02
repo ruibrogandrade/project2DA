@@ -110,9 +110,9 @@ list<list<int>> Graph::optimalSolutions(int a, int b) {
     maxCapacityPaths.push_back(maxCapacitySolution);
     list<int> minDistanceSolution = paretoGraph.MinDistanceList(a,b);
     ///minDistancepaths.push_back(minDistanceSolution);
-    list<list<int>> Solutions;
-    Solutions.push_back(maxCapacitySolution);
-    Solutions.push_back(minDistanceSolution);
+    list<list<int>> solutions;
+    solutions.push_back(maxCapacitySolution);
+    solutions.push_back(minDistanceSolution);
     int aux;
     int v = b;
     while(v != a) {
@@ -121,9 +121,10 @@ list<list<int>> Graph::optimalSolutions(int a, int b) {
             if(e.dest == v) {
                 aux = e.capacity;
                 e.capacity = INT_MIN;
-                if(paretoGraph.MaxCapacityList(a,b).size() < maxCapacitySolution.size() &&
-                    nodes[paretoGraph.MaxCapacityList(a,b).back()].maxCapacity > nodes[minDistanceSolution.back()].maxCapacity){
-                    Solutions.push_back(paretoGraph.MaxCapacityList(a,b));
+                list<int> newPathMaxCapacityList = paretoGraph.MaxCapacityList(a,b);
+                if(newPathMaxCapacityList.size() < maxCapacitySolution.size() &&
+                    nodes[newPathMaxCapacityList.back()].maxCapacity > nodes[minDistanceSolution.back()].maxCapacity){
+                    solutions.push_back(newPathMaxCapacityList);
                 }
                 e.capacity = aux;
                 break;
@@ -131,7 +132,7 @@ list<list<int>> Graph::optimalSolutions(int a, int b) {
         }
         v = w;
     }
-    return Solutions;
+    return solutions;
 }
 
 void Graph::maxCapacityPath(int a, int b) {
