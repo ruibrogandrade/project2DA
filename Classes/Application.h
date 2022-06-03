@@ -85,4 +85,5 @@ public:
      */
     void run();
 
+    int getGroupDimension();
 };

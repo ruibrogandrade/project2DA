@@ -136,9 +136,10 @@ public:
      * Ford Fulkerson algorithm.
      * @param source
      * @param sink
-     * @return returns a map that contains the paths and the path flow associated with it.
+     * @param dimension - dimension passed as an input
+     * @return returns a map that contains the paths and the capacity used.
      */
-    map<list<int>,int> FordFulkerson(int source, int sink);
+    map<list<int>,int> FordFulkerson(int source, int sink, int dimension);
 
     /**
      *

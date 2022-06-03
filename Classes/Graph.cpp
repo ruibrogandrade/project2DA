@@ -191,15 +191,18 @@ list<int> Graph::MinDistanceList(int a, int b) {
 }
 
 
-map<list<int>,int> Graph::FordFulkerson(int source, int sink) {
+map<list<int>,int> Graph::FordFulkerson(int source, int sink, int dimension) {
     map<list<int>,int> paths;
     Graph residualGraph = *this;
+    int capacityUsed = 0;
 
-    while (residualGraph.existPath(source, sink)){
+    while (residualGraph.existPath(source, sink) || capacityUsed >= dimension){
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
         path.push_front(v);
+
+        // This while calculates the pathflow for a path found
         while (v != source) {
             u = residualGraph.nodes[v].pred;
             for (auto &e: residualGraph.nodes[u].adjEdges){
@@ -211,8 +214,9 @@ map<list<int>,int> Graph::FordFulkerson(int source, int sink) {
             path.push_front(v);
         }
 
-        paths.insert({path,pathFlow});
         v = sink;
+        // This while updates the path found in the residual graph
+        // reducing all edges by pathflow encountered in the while above
         while (v != source){
             u = residualGraph.nodes[v].pred;
             for (auto &e: residualGraph.nodes[u].adjEdges){
@@ -232,6 +236,8 @@ map<list<int>,int> Graph::FordFulkerson(int source, int sink) {
             }
             v = residualGraph.nodes[v].pred;
         }
+        capacityUsed += pathFlow;
+        paths.insert({path,pathFlow});
     }
     return paths;
 }

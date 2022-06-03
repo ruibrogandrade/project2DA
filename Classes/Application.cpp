@@ -25,6 +25,17 @@ bool Application::isBadCin() {
     return false;
 }
 
+int Application::getGroupDimension() {
+    int groupDim;
+    while (true) {
+        cout << "\n Write the group's dimension: ";
+        cin >> groupDim;
+
+        if (!isBadCin() && groupDim >= 0) return groupDim;
+        cout << "\nINVALID NUMBER!\n";
+    }
+}
+
 unsigned Application::showMenu() {
     unsigned int choice;
 
@@ -47,16 +58,11 @@ unsigned Application::showMenu() {
 
 // 2.1
 pair<list<list<int>>,int> Application::fixedFlow(map<list<int>, int> &paths) {
-    int groupDim;
     list<list<int>> pathsUsed;
-    int remainingDim;
-    while (true) {
-        cout << "\n Write the group's dimension: ";
-        cin >> groupDim;
 
-        if (!isBadCin() && groupDim >= 0) break;
-        cout << "\nINVALID NUMBER!\n";
-    }
+    int groupDim = getGroupDimension();
+
+    int remainingDim;
 
     for (auto &path: paths) {
         pathsUsed.push_back(path.first);
@@ -87,20 +93,11 @@ pair<list<list<int>>,int> Application::fixedFlow(map<list<int>, int> &paths) {
 
 //2.2
 list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
-    int addedDimension;
+    int addedDimension = getGroupDimension();
 
     pair<list<list<int>>,int> fixedFl = fixedFlow(paths);
     list<list<int>> pathsUsed = fixedFl.first;
     int remainingDim = fixedFl.second;
-
-    while (true) {
-        cout << "\n Write the group's added dimension: ";
-        cin >> addedDimension;
-
-        if (!isBadCin() && addedDimension >= 0) break;
-        cout << "\nINVALID NUMBER!\n";
-    }
-
 
     int groupDim = addedDimension;
     int n;
@@ -139,11 +136,6 @@ list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
             break;
         }
     }
-
-    if (groupDim > 0)
-        cout << "\nUnable to pass the entirety of the group."
-                "\nThe remaining capacity is: " << groupDim;
-    else cout << "\nSUCCESS!\n";
 
     return pathsUsed;
 }
@@ -187,7 +179,7 @@ void Application::maxWaiting(map<list<int>, int> &paths) {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("13")) exit(1);
+    if(!file.readFile("07")) exit(1);
     graph = file.getGraph();
     map<list<int>, int> paths;
     list<list<int>> paretoSolutions;
@@ -225,7 +217,7 @@ void Application::run(){
                 break;
             case 2:
                 subProblem = secondScenario();
-                paths = graph.FordFulkerson(1, 4);
+                paths = graph.FordFulkerson(1, 4, 4);
                 switch (subProblem) {
                     case 1:
                         fixedFlow(paths);
