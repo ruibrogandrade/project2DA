@@ -13,6 +13,17 @@ bool \mbox{\hyperlink{class_file_reader_ac29d091dd5c83873ee85f14cee7ad278}{read\
 \item 
 \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_file_reader_a33e4f5173be0851094b2c1e79d2f76ad}{get\+Graph}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_file_reader_acba65012a74c89d60190156de33a7b44}{path}} = \char`\"{}../Dataset/in\char`\"{}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_file_reader_a403af8561d6ab9de61210f20aa828292}{graph}}
+\item 
+int \mbox{\hyperlink{class_file_reader_afb488fcc53bc66fcea493f4955743b8c}{num\+Nodes}}
+\item 
+int \mbox{\hyperlink{class_file_reader_a1e27a22c777dc7587d090cb44ee67661}{num\+Edges}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -31,13 +42,51 @@ bool \mbox{\hyperlink{class_file_reader_ac29d091dd5c83873ee85f14cee7ad278}{read\
 \doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} File\+Reader\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_graph}{Graph}} created with read\+File function 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_file_reader_ac29d091dd5c83873ee85f14cee7ad278}\label{class_file_reader_ac29d091dd5c83873ee85f14cee7ad278}} 
 \index{FileReader@{FileReader}!readFile@{readFile}}
 \index{readFile@{readFile}!FileReader@{FileReader}}
 \doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
 {\footnotesize\ttfamily bool File\+Reader\+::read\+File (\begin{DoxyParamCaption}\item[{const string \&}]{input\+Num }\end{DoxyParamCaption})}
 
+Reads a file associated with the number \textquotesingle{}input\+Num\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em input\+Num} & -\/ used to build a file\textquotesingle{}s path ( \char`\"{}path\char`\"{} + \char`\"{}input\+Num\char`\"{} + \char`\"{}.\+txt\char`\"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the could open specified file or false otherwise. 
+\end{DoxyReturn}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_file_reader_a403af8561d6ab9de61210f20aa828292}\label{class_file_reader_a403af8561d6ab9de61210f20aa828292}} 
+\index{FileReader@{FileReader}!graph@{graph}}
+\index{graph@{graph}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} File\+Reader\+::graph\hspace{0.3cm}{\ttfamily [private]}}
+
+graph that will be constructed after reading \mbox{\Hypertarget{class_file_reader_a1e27a22c777dc7587d090cb44ee67661}\label{class_file_reader_a1e27a22c777dc7587d090cb44ee67661}} 
+\index{FileReader@{FileReader}!numEdges@{numEdges}}
+\index{numEdges@{numEdges}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{numEdges}{numEdges}}
+{\footnotesize\ttfamily int File\+Reader\+::num\+Edges\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_file_reader_afb488fcc53bc66fcea493f4955743b8c}\label{class_file_reader_afb488fcc53bc66fcea493f4955743b8c}} 
+\index{FileReader@{FileReader}!numNodes@{numNodes}}
+\index{numNodes@{numNodes}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{numNodes}{numNodes}}
+{\footnotesize\ttfamily int File\+Reader\+::num\+Nodes\hspace{0.3cm}{\ttfamily [private]}}
+
+Number of nodes. Number of edges. \mbox{\Hypertarget{class_file_reader_acba65012a74c89d60190156de33a7b44}\label{class_file_reader_acba65012a74c89d60190156de33a7b44}} 
+\index{FileReader@{FileReader}!path@{path}}
+\index{path@{path}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily string File\+Reader\+::path = \char`\"{}../Dataset/in\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+path skeleton that is used to build the file\textquotesingle{}s paths; 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

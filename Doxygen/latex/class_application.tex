@@ -10,8 +10,37 @@
 \mbox{\hyperlink{class_application_afa8cc05ce6b6092be5ecdfdae44e05f8}{Application}} ()
 \item 
 void \mbox{\hyperlink{class_application_a68965449404743bf1add056784d6cf81}{run}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+pair$<$ list$<$ list$<$ int $>$ $>$, int $>$ \mbox{\hyperlink{class_application_a8cb0d1304e48d793521c87456250d7aa}{fixed\+Flow}} (const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&paths)
 \item 
 list$<$ list$<$ int $>$ $>$ \mbox{\hyperlink{class_application_af6e9834bbaab32b30a1ba53d09470b39}{changed\+Flow}} (const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&paths)
+\item 
+void \mbox{\hyperlink{class_application_ac4937fd38940fe9181cafcb854c7c1ca}{min\+Duration}} (const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&paths)
+\item 
+void \mbox{\hyperlink{class_application_a9882bf760aa369d5beb7682539af834e}{max\+Waiting}} (const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&paths)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned \mbox{\hyperlink{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}{show\+Menu}} ()
+\item 
+static bool \mbox{\hyperlink{class_application_ae79d05d21fa41f711f0de36fd9153a1d}{is\+Bad\+Cin}} ()
+\item 
+static void \mbox{\hyperlink{class_application_adf391e72aaf4cdf1ff69b4fa2962d4c5}{max\+Flow}} (const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&paths)
+\item 
+static unsigned int \mbox{\hyperlink{class_application_a4b566c1a3dcfadeb2f2962784dc1935b}{first\+Scenario}} ()
+\item 
+static unsigned int \mbox{\hyperlink{class_application_a64b0d821d71af1e7c21236db021b7264}{second\+Scenario}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_reader}{File\+Reader}} \mbox{\hyperlink{class_application_a45d4880cdbcc7f29a835d21492145d4d}{reader}}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_application_a7d0a74b8b696cfdc5e5002dbb5bf7bb9}{graph}}
 \end{DoxyCompactItemize}
 
 
@@ -22,20 +51,126 @@ list$<$ list$<$ int $>$ $>$ \mbox{\hyperlink{class_application_af6e9834bbaab32b3
 \doxysubsubsection{\texorpdfstring{Application()}{Application()}}
 {\footnotesize\ttfamily Application\+::\+Application (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-
+empty constructor 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_application_af6e9834bbaab32b30a1ba53d09470b39}\label{class_application_af6e9834bbaab32b30a1ba53d09470b39}} 
 \index{Application@{Application}!changedFlow@{changedFlow}}
 \index{changedFlow@{changedFlow}!Application@{Application}}
 \doxysubsubsection{\texorpdfstring{changedFlow()}{changedFlow()}}
-{\footnotesize\ttfamily list$<$ list$<$ int $>$ $>$ Application\+::changed\+Flow (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily list$<$ list$<$ int $>$ $>$ Application\+::changed\+Flow (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+Displays the new path after adding a certain amount of size to an existing group 
+\begin{DoxyParams}{Parameters}
+{\em paths} & map\texorpdfstring{$<$}{<}list$<$int$>$, pair$<$int, int$>$\texorpdfstring{$>$}{>} -\/ map containing the paths available to be used and the respective path\+Flow and duration of those paths \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$list$<$int$>$$>$ -\/ the paths used in this algorithm 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a4b566c1a3dcfadeb2f2962784dc1935b}\label{class_application_a4b566c1a3dcfadeb2f2962784dc1935b}} 
+\index{Application@{Application}!firstScenario@{firstScenario}}
+\index{firstScenario@{firstScenario}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{firstScenario()}{firstScenario()}}
+{\footnotesize\ttfamily unsigned Application\+::first\+Scenario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Displays the options for the First Scenario \begin{DoxyReturn}{Returns}
+which algorithm to use in the first scenario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a8cb0d1304e48d793521c87456250d7aa}\label{class_application_a8cb0d1304e48d793521c87456250d7aa}} 
+\index{Application@{Application}!fixedFlow@{fixedFlow}}
+\index{fixedFlow@{fixedFlow}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{fixedFlow()}{fixedFlow()}}
+{\footnotesize\ttfamily pair$<$ list$<$ list$<$ int $>$ $>$, int $>$ Application\+::fixed\+Flow (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Displays the path of a group with a certain dimension and the respective path flows 
+\begin{DoxyParams}{Parameters}
+{\em paths} & map\texorpdfstring{$<$}{<}list$<$int$>$, pair$<$int, int$>$\texorpdfstring{$>$}{>} -\/ map containing the paths available to be used and the respective path\+Flow and duration of those paths \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair\texorpdfstring{$<$}{<}list$<$list$<$int$>$$>$,int\texorpdfstring{$>$}{>} -\/ pair containing the paths that were Used and the remaining Dimension of the last one 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_ae79d05d21fa41f711f0de36fd9153a1d}\label{class_application_ae79d05d21fa41f711f0de36fd9153a1d}} 
+\index{Application@{Application}!isBadCin@{isBadCin}}
+\index{isBadCin@{isBadCin}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{isBadCin()}{isBadCin()}}
+{\footnotesize\ttfamily bool Application\+::is\+Bad\+Cin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Checks if the cin is not what was expected \begin{DoxyReturn}{Returns}
+bool -\/ if the cin was expected or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_adf391e72aaf4cdf1ff69b4fa2962d4c5}\label{class_application_adf391e72aaf4cdf1ff69b4fa2962d4c5}} 
+\index{Application@{Application}!maxFlow@{maxFlow}}
+\index{maxFlow@{maxFlow}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
+{\footnotesize\ttfamily void Application\+::max\+Flow (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Displays the max dimension that a group can grow to while being able to get through the path 
+\begin{DoxyParams}{Parameters}
+{\em paths} & map\texorpdfstring{$<$}{<}list$<$int$>$, pair$<$int, int$>$\texorpdfstring{$>$}{>} -\/ map containing the paths available to be used and the respective path\+Flow and duration of those paths \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_application_a9882bf760aa369d5beb7682539af834e}\label{class_application_a9882bf760aa369d5beb7682539af834e}} 
+\index{Application@{Application}!maxWaiting@{maxWaiting}}
+\index{maxWaiting@{maxWaiting}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{maxWaiting()}{maxWaiting()}}
+{\footnotesize\ttfamily void Application\+::max\+Waiting (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Displays the Maximum time a group can have to wait and in what nodes those wait times can happen 
+\begin{DoxyParams}{Parameters}
+{\em paths} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_application_ac4937fd38940fe9181cafcb854c7c1ca}\label{class_application_ac4937fd38940fe9181cafcb854c7c1ca}} 
+\index{Application@{Application}!minDuration@{minDuration}}
+\index{minDuration@{minDuration}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{minDuration()}{minDuration()}}
+{\footnotesize\ttfamily void Application\+::min\+Duration (\begin{DoxyParamCaption}\item[{const map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Displays the minimum Duration that a certain group can take while going through the path 
+\begin{DoxyParams}{Parameters}
+{\em paths} & map\texorpdfstring{$<$}{<}list$<$int$>$, pair$<$int, int$>$\texorpdfstring{$>$}{>} -\/ map containing the paths available to be used and the respective path\+Flow and duration of those paths \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_application_a68965449404743bf1add056784d6cf81}\label{class_application_a68965449404743bf1add056784d6cf81}} 
 \index{Application@{Application}!run@{run}}
 \index{run@{run}!Application@{Application}}
 \doxysubsubsection{\texorpdfstring{run()}{run()}}
 {\footnotesize\ttfamily void Application\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads the files and Displays the executes the algorithms for each option \mbox{\Hypertarget{class_application_a64b0d821d71af1e7c21236db021b7264}\label{class_application_a64b0d821d71af1e7c21236db021b7264}} 
+\index{Application@{Application}!secondScenario@{secondScenario}}
+\index{secondScenario@{secondScenario}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{secondScenario()}{secondScenario()}}
+{\footnotesize\ttfamily unsigned Application\+::second\+Scenario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Displays the options for the Second Scenario \begin{DoxyReturn}{Returns}
+which algorithm to use in the second scenario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}\label{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}} 
+\index{Application@{Application}!showMenu@{showMenu}}
+\index{showMenu@{showMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{showMenu()}{showMenu()}}
+{\footnotesize\ttfamily unsigned Application\+::show\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Displays the different algorithms available \begin{DoxyReturn}{Returns}
+unsigned -\/ number of the algorithm chosen 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_application_a7d0a74b8b696cfdc5e5002dbb5bf7bb9}\label{class_application_a7d0a74b8b696cfdc5e5002dbb5bf7bb9}} 
+\index{Application@{Application}!graph@{graph}}
+\index{graph@{graph}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Application\+::graph\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_application_a45d4880cdbcc7f29a835d21492145d4d}\label{class_application_a45d4880cdbcc7f29a835d21492145d4d}} 
+\index{Application@{Application}!reader@{reader}}
+\index{reader@{reader}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{reader}{reader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_reader}{File\+Reader}} Application\+::reader\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

@@ -4,6 +4,11 @@
 
 {\ttfamily \#include $<$min\+Heap.\+h$>$}
 
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_min_heap_1_1_node}{Node}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,6 +23,28 @@ void \mbox{\hyperlink{class_min_heap_a708cab4630ba761be49aea0ae536d772}{insert}}
 void \mbox{\hyperlink{class_min_heap_acb40738ccbaf73f7c093f8504387587b}{decrease\+Key}} (const K \&key, const V \&value)
 \item 
 K \mbox{\hyperlink{class_min_heap_a3ab07802846cc4314d7ec383180d3b82}{remove\+Min}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_min_heap_aa557bc2acdf4c278e37811f1260fe992}{up\+Heap}} (int i)
+\item 
+void \mbox{\hyperlink{class_min_heap_a3c546146fe05dce2d81e3f4e93fbf014}{down\+Heap}} (int i)
+\item 
+void \mbox{\hyperlink{class_min_heap_aa7def05463b20015e9956e6c5bb3f291}{swap}} (int i1, int i2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_min_heap_a63167fa7a87828b182d552c31be43be3}{size}}
+\item 
+int \mbox{\hyperlink{class_min_heap_a113297ceca49dbb1999d6a2bd1a8a884}{max\+Size}}
+\item 
+vector$<$ \mbox{\hyperlink{struct_min_heap_1_1_node}{Node}} $>$ \mbox{\hyperlink{class_min_heap_a506467ea6e5c2680c47eea76092beb89}{a}}
+\item 
+unordered\+\_\+map$<$ K, int $>$ \mbox{\hyperlink{class_min_heap_af754d24ad86ac63ffecefa960021cc51}{pos}}
+\item 
+const K \mbox{\hyperlink{class_min_heap_a9807875fda68c608ad977021c767afe9}{KEY\+\_\+\+NOT\+\_\+\+FOUND}}
 \end{DoxyCompactItemize}
 
 
@@ -38,6 +65,13 @@ K \mbox{\hyperlink{class_min_heap_a3ab07802846cc4314d7ec383180d3b82}{remove\+Min
 \doxysubsubsection{\texorpdfstring{decreaseKey()}{decreaseKey()}}
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::decrease\+Key (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{const V \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_min_heap_a3c546146fe05dce2d81e3f4e93fbf014}\label{class_min_heap_a3c546146fe05dce2d81e3f4e93fbf014}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!downHeap@{downHeap}}
+\index{downHeap@{downHeap}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{downHeap()}{downHeap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::down\+Heap (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_min_heap_a17652e042dae3954be25a1cd9e04f3b0}\label{class_min_heap_a17652e042dae3954be25a1cd9e04f3b0}} 
 \index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!getSize@{getSize}}
@@ -66,6 +100,58 @@ void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::insert (\begin{
 \doxysubsubsection{\texorpdfstring{removeMin()}{removeMin()}}
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 K \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::remove\+Min}
+
+\mbox{\Hypertarget{class_min_heap_aa7def05463b20015e9956e6c5bb3f291}\label{class_min_heap_aa7def05463b20015e9956e6c5bb3f291}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!swap@{swap}}
+\index{swap@{swap}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::swap (\begin{DoxyParamCaption}\item[{int}]{i1,  }\item[{int}]{i2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_min_heap_aa557bc2acdf4c278e37811f1260fe992}\label{class_min_heap_aa557bc2acdf4c278e37811f1260fe992}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!upHeap@{upHeap}}
+\index{upHeap@{upHeap}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{upHeap()}{upHeap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::up\+Heap (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_min_heap_a506467ea6e5c2680c47eea76092beb89}\label{class_min_heap_a506467ea6e5c2680c47eea76092beb89}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!a@{a}}
+\index{a@{a}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+vector$<$\mbox{\hyperlink{struct_min_heap_1_1_node}{Node}}$>$ \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_min_heap_a9807875fda68c608ad977021c767afe9}\label{class_min_heap_a9807875fda68c608ad977021c767afe9}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!KEY\_NOT\_FOUND@{KEY\_NOT\_FOUND}}
+\index{KEY\_NOT\_FOUND@{KEY\_NOT\_FOUND}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{KEY\_NOT\_FOUND}{KEY\_NOT\_FOUND}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+const K \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::\+KEY\+\_\+\+NOT\+\_\+\+FOUND\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_min_heap_a113297ceca49dbb1999d6a2bd1a8a884}\label{class_min_heap_a113297ceca49dbb1999d6a2bd1a8a884}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!maxSize@{maxSize}}
+\index{maxSize@{maxSize}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{maxSize}{maxSize}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+int \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::max\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_min_heap_af754d24ad86ac63ffecefa960021cc51}\label{class_min_heap_af754d24ad86ac63ffecefa960021cc51}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!pos@{pos}}
+\index{pos@{pos}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+unordered\+\_\+map$<$K, int$>$ \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::pos\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_min_heap_a63167fa7a87828b182d552c31be43be3}\label{class_min_heap_a63167fa7a87828b182d552c31be43be3}} 
+\index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!size@{size}}
+\index{size@{size}!MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+int \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::size\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

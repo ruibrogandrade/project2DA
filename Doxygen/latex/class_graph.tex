@@ -4,6 +4,13 @@
 
 {\ttfamily \#include $<$Graph.\+h$>$}
 
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_graph_1_1_edge}{Edge}}
+\item 
+struct \mbox{\hyperlink{struct_graph_1_1_node}{Node}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,9 +20,7 @@
 \item 
 void \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{add\+Edge}} (int src, int dest, int capacity, int duration)
 \item 
-int \mbox{\hyperlink{class_graph_a5a816844b989c28c01b97015ab8868e4}{distance}} (int a, int b)
-\item 
-int \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}} (int v)
+void \mbox{\hyperlink{class_graph_af81888a45922aa1839fe0262bd0ca7b3}{dfs}} (int v)
 \item 
 void \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}} (int v)
 \item 
@@ -27,9 +32,7 @@ void \mbox{\hyperlink{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}{max\+Capaci
 \item 
 void \mbox{\hyperlink{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}{set\+Distance}} (int s)
 \item 
-void \mbox{\hyperlink{class_graph_a0ac1453221d8e95176a69a7039b415ea}{min\+Distance\+Path}} (int a, int b)
-\item 
-map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ \mbox{\hyperlink{class_graph_a03b9e0d4125c3f213e35a3ef92945588}{Ford\+Fulkersen}} (int source, int sink)
+map$<$ list$<$ int $>$, int $>$ \mbox{\hyperlink{class_graph_a255d02d33d21ec38565be6cd7cd26b5d}{Ford\+Fulkerson}} (int source, int sink)
 \item 
 \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a04b536e8c41e4fde8ef291888c7432ea}{create\+Transposed}} ()
 \item 
@@ -47,6 +50,15 @@ list$<$ int $>$ \mbox{\hyperlink{class_graph_a10e51df30debf8041235e37399c6a413}{
 \item 
 list$<$ int $>$ \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{Min\+Distance\+List}} (int a, int b)
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_graph_afe71579cdcdc5c7b9645c76a6e45f06a}{graph\+Size}}
+\item 
+bool \mbox{\hyperlink{class_graph_a60baa846929049c84b7e50ffb5f401e8}{has\+Dir}}
+\item 
+vector$<$ \mbox{\hyperlink{struct_graph_1_1_node}{Node}} $>$ \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -62,6 +74,13 @@ list$<$ int $>$ \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{
 \doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{num\+Nodes,  }\item[{bool}]{dir = {\ttfamily false} }\end{DoxyParamCaption})}
 
+Creates a graph with \textquotesingle{}num\+Nodes\textquotesingle{} nodes that can be directed (dir = true) or undirected (dir = false) 
+\begin{DoxyParams}{Parameters}
+{\em num\+Nodes} & -\/ number of graph\textquotesingle{}s nodes \\
+\hline
+{\em dir} & -\/ graph directed or not \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
@@ -71,109 +90,231 @@ list$<$ int $>$ \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{
 \doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
 {\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{int}]{capacity,  }\item[{int}]{duration }\end{DoxyParamCaption})}
 
+Used for creating the edges of a graph 
+\begin{DoxyParams}{Parameters}
+{\em src} & -\/ edge source \\
+\hline
+{\em dest} & -\/ edge destiny \\
+\hline
+{\em capacity} & -\/ edge capacity \\
+\hline
+{\em duration} & -\/ edge duration \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_ae1e45e27c60711dadec619ca17e830a4}\label{class_graph_ae1e45e27c60711dadec619ca17e830a4}} 
 \index{Graph@{Graph}!bfs@{bfs}}
 \index{bfs@{bfs}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
 {\footnotesize\ttfamily void Graph\+::bfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
 
+Breadth first search from node v 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_a6128d097cbc21929a318d75650b9a202}\label{class_graph_a6128d097cbc21929a318d75650b9a202}} 
 \index{Graph@{Graph}!createGraphByPath@{createGraphByPath}}
 \index{createGraphByPath@{createGraphByPath}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{createGraphByPath()}{createGraphByPath()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+::create\+Graph\+By\+Path (\begin{DoxyParamCaption}\item[{const list$<$ list$<$ int $>$ $>$ \&}]{paths }\end{DoxyParamCaption})}
 
+Creates a graph that only has the edges of the specified path 
+\begin{DoxyParams}{Parameters}
+{\em paths} & list$<$list$<$int$>$$>$ -\/ paths that are going to used to create the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_graph}{Graph}} with only the edges of the specified path 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a04b536e8c41e4fde8ef291888c7432ea}\label{class_graph_a04b536e8c41e4fde8ef291888c7432ea}} 
 \index{Graph@{Graph}!createTransposed@{createTransposed}}
 \index{createTransposed@{createTransposed}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{createTransposed()}{createTransposed()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+::create\+Transposed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}\label{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}} 
+\begin{DoxyReturn}{Returns}
+Transposed graph of the graph that call this function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_af81888a45922aa1839fe0262bd0ca7b3}\label{class_graph_af81888a45922aa1839fe0262bd0ca7b3}} 
 \index{Graph@{Graph}!dfs@{dfs}}
 \index{dfs@{dfs}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
-{\footnotesize\ttfamily int Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_graph_a5a816844b989c28c01b97015ab8868e4}\label{class_graph_a5a816844b989c28c01b97015ab8868e4}} 
-\index{Graph@{Graph}!distance@{distance}}
-\index{distance@{distance}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
-{\footnotesize\ttfamily int Graph\+::distance (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+Depth first search algorithm from node v 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_aa53c98c0e0e434acfd87f871f55ad061}\label{class_graph_aa53c98c0e0e434acfd87f871f55ad061}} 
 \index{Graph@{Graph}!existPath@{existPath}}
 \index{existPath@{existPath}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{existPath()}{existPath()}}
 {\footnotesize\ttfamily bool Graph\+::exist\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_graph_a03b9e0d4125c3f213e35a3ef92945588}\label{class_graph_a03b9e0d4125c3f213e35a3ef92945588}} 
-\index{Graph@{Graph}!FordFulkersen@{FordFulkersen}}
-\index{FordFulkersen@{FordFulkersen}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{FordFulkersen()}{FordFulkersen()}}
-{\footnotesize\ttfamily map$<$ list$<$ int $>$, pair$<$ int, int $>$ $>$ Graph\+::\+Ford\+Fulkersen (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{sink }\end{DoxyParamCaption})}
+Verify if exists path from node a to node b 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ source node \\
+\hline
+{\em b} & -\/ sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if exists a path or false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a255d02d33d21ec38565be6cd7cd26b5d}\label{class_graph_a255d02d33d21ec38565be6cd7cd26b5d}} 
+\index{Graph@{Graph}!FordFulkerson@{FordFulkerson}}
+\index{FordFulkerson@{FordFulkerson}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{FordFulkerson()}{FordFulkerson()}}
+{\footnotesize\ttfamily map$<$ list$<$ int $>$, int $>$ Graph\+::\+Ford\+Fulkerson (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{sink }\end{DoxyParamCaption})}
 
+Ford Fulkerson algorithm. 
+\begin{DoxyParams}{Parameters}
+{\em source} & \\
+\hline
+{\em sink} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a map that contains the paths and the path flow associated with it. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}\label{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}} 
 \index{Graph@{Graph}!latestFinish@{latestFinish}}
 \index{latestFinish@{latestFinish}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{latestFinish()}{latestFinish()}}
 {\footnotesize\ttfamily void Graph\+::latest\+Finish (\begin{DoxyParamCaption}\item[{int}]{sink }\end{DoxyParamCaption})}
 
+Critical path method with latest finish 
+\begin{DoxyParams}{Parameters}
+{\em sink} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_a10e51df30debf8041235e37399c6a413}\label{class_graph_a10e51df30debf8041235e37399c6a413}} 
 \index{Graph@{Graph}!MaxCapacityList@{MaxCapacityList}}
 \index{MaxCapacityList@{MaxCapacityList}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{MaxCapacityList()}{MaxCapacityList()}}
 {\footnotesize\ttfamily list$<$ int $>$ Graph\+::\+Max\+Capacity\+List (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
 
+Calls the Max Distance Algorithm and outputs the path to a certain node 
+\begin{DoxyParams}{Parameters}
+{\em a} & int -\/ source node \\
+\hline
+{\em b} & int -\/ sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$int$>$ -\/ path with the maximum capacity to a certain node 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}\label{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}} 
 \index{Graph@{Graph}!maxCapacityPath@{maxCapacityPath}}
 \index{maxCapacityPath@{maxCapacityPath}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{maxCapacityPath()}{maxCapacityPath()}}
 {\footnotesize\ttfamily void Graph\+::max\+Capacity\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
 
+Prints the maximum capacity path from a to b 
+\begin{DoxyParams}{Parameters}
+{\em a} & -\/ source node \\
+\hline
+{\em b} & -\/ sink node \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_aeddcc8667fe38758d5135220052a60ba}\label{class_graph_aeddcc8667fe38758d5135220052a60ba}} 
 \index{Graph@{Graph}!MinDistanceList@{MinDistanceList}}
 \index{MinDistanceList@{MinDistanceList}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{MinDistanceList()}{MinDistanceList()}}
 {\footnotesize\ttfamily list$<$ int $>$ Graph\+::\+Min\+Distance\+List (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_graph_a0ac1453221d8e95176a69a7039b415ea}\label{class_graph_a0ac1453221d8e95176a69a7039b415ea}} 
-\index{Graph@{Graph}!minDistancePath@{minDistancePath}}
-\index{minDistancePath@{minDistancePath}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{minDistancePath()}{minDistancePath()}}
-{\footnotesize\ttfamily void Graph\+::min\+Distance\+Path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
-
+Calls the Set Distance Algorithm and outputs the path to a certain node 
+\begin{DoxyParams}{Parameters}
+{\em a} & int -\/ source node \\
+\hline
+{\em b} & int -\/ sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$int$>$ -\/ path with the least amount of transbords to a certain node 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}\label{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}} 
 \index{Graph@{Graph}!minDuration@{minDuration}}
 \index{minDuration@{minDuration}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{minDuration()}{minDuration()}}
 {\footnotesize\ttfamily int Graph\+::min\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Critical path method with earliest start \begin{DoxyReturn}{Returns}
+Minimum duration 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a67f736f9a2ce9d9875061d10a820b950}\label{class_graph_a67f736f9a2ce9d9875061d10a820b950}} 
 \index{Graph@{Graph}!optimalSolutions@{optimalSolutions}}
 \index{optimalSolutions@{optimalSolutions}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{optimalSolutions()}{optimalSolutions()}}
 {\footnotesize\ttfamily list$<$ list$<$ int $>$ $>$ Graph\+::optimal\+Solutions (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
 
+Calculates the pareto-\/optimal solutions for the paths between two nodes 
+\begin{DoxyParams}{Parameters}
+{\em a} & int -\/ source path \\
+\hline
+{\em b} & int -\/ sink path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$list$<$int$>$$>$ -\/ pareto-\/optimal paths 
+\end{DoxyReturn}
 min\+Distancepaths.\+push\+\_\+back(min\+Distance\+Solution);\mbox{\Hypertarget{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}\label{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}} 
 \index{Graph@{Graph}!setDistance@{setDistance}}
 \index{setDistance@{setDistance}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{setDistance()}{setDistance()}}
 {\footnotesize\ttfamily void Graph\+::set\+Distance (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
 
+Sets the distance of all nodes from node s. 
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}\label{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}} 
 \index{Graph@{Graph}!setMaxCapacity@{setMaxCapacity}}
 \index{setMaxCapacity@{setMaxCapacity}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{setMaxCapacity()}{setMaxCapacity()}}
 {\footnotesize\ttfamily void Graph\+::set\+Max\+Capacity (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
 
+Set maximum capacity for each node. 
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}\label{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}} 
 \index{Graph@{Graph}!totalSpare@{totalSpare}}
 \index{totalSpare@{totalSpare}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{totalSpare()}{totalSpare()}}
 {\footnotesize\ttfamily map$<$ int, int $>$ Graph\+::total\+Spare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Finds the Total Slack of each node \begin{DoxyReturn}{Returns}
+map -\/ nodes with their respective total Slack 
+\end{DoxyReturn}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_graph_afe71579cdcdc5c7b9645c76a6e45f06a}\label{class_graph_afe71579cdcdc5c7b9645c76a6e45f06a}} 
+\index{Graph@{Graph}!graphSize@{graphSize}}
+\index{graphSize@{graphSize}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{graphSize}{graphSize}}
+{\footnotesize\ttfamily int Graph\+::graph\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\hyperlink{class_graph}{Graph}} size (vertices are numbered from 1 to n) \mbox{\Hypertarget{class_graph_a60baa846929049c84b7e50ffb5f401e8}\label{class_graph_a60baa846929049c84b7e50ffb5f401e8}} 
+\index{Graph@{Graph}!hasDir@{hasDir}}
+\index{hasDir@{hasDir}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{hasDir}{hasDir}}
+{\footnotesize\ttfamily bool Graph\+::has\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+false\+: undirected; true\+: directed \mbox{\Hypertarget{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}\label{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}} 
+\index{Graph@{Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{struct_graph_1_1_node}{Node}}$>$ Graph\+::nodes\hspace{0.3cm}{\ttfamily [private]}}
+
+The list of nodes being represented 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

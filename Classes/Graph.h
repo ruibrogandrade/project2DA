@@ -12,68 +12,188 @@
 using namespace std;
 
 class Graph {
+    /**
+     * Struct that represents graph's edges which contains the destiny
+     * of edge, the capacity and the duration.
+     */
     struct Edge {
         int dest;
         int capacity;
         int duration;
     };
 
+    /**
+     * Struct that represents the graph's nodes which contains
+     * the list of edges that come out of a node.
+     */
     struct Node {
+        /**
+         * Adjacent edges.
+         */
         list<Edge> adjEdges;
+        /**
+         * If node was visited or not in an algorithm implemented
+         */
         bool visited;
-        int distance; //distance from source node
-        int pred; // previous node
+        /**
+         * Distance from source node
+         */
+        int distance;
+        /**
+         * Parent of a node
+         */
+        int pred;
+        /**
+         * Maximum capacity of a node after applying setMaxCapacity algorithm
+         */
         int maxCapacity;
+        /**
+         * Nodes degrees
+         */
         int sDegree, eDegree;
+        /**
+         * LF - latest finish
+         * ES - earliest start
+         */
         int LF, ES;
     };
 
-    int graphSize;      // Graph size (vertices are numbered from 1 to n)
-    bool hasDir;        // false: undirected; true: directed
-    vector<Node> nodes; // The list of nodes being represented
-    list<list<int>> paths;
-    list<int> path;
+    /**
+     * Graph size (vertices are numbered from 1 to n)
+     */
+    int graphSize;
+    /**
+     * false: undirected; true: directed
+     */
+    bool hasDir;
+    /**
+     * The list of nodes being represented
+     */
+    vector<Node> nodes;
 
 public:
 
     Graph() = default;
 
+    /**
+     * Creates a graph with 'numNodes' nodes that can be directed (dir = true)
+     * or undirected (dir = false)
+     * @param numNodes - number of graph's nodes
+     * @param dir - graph directed or not
+     */
     Graph(int numNodes, bool dir = false);
 
+    /**
+     * Used for creating the edges of a graph
+     * @param src - edge source
+     * @param dest - edge destiny
+     * @param capacity - edge capacity
+     * @param duration - edge duration
+     */
     void addEdge(int src, int dest, int capacity, int duration);
 
-    int distance(int a, int b);
+    /**
+     * Depth first search algorithm from node v
+     * @param v
+     * @return
+     */
+    void dfs(int v);
 
-    int dfs(int v);
-
+    /**
+     * Breadth first search from node v
+     * @param v
+     */
     void bfs(int v);
 
+    /**
+     * Verify if exists path from node a to node b
+     * @param a - source node
+     * @param b - sink node
+     * @return true if exists a path or false otherwise.
+     */
     bool existPath(int a, int b);
 
+    /**
+     * Set maximum capacity for each node.
+     * @param s
+     */
     void setMaxCapacity(int s);
 
+    /**
+     * Prints the maximum capacity path from a to b
+     * @param a - source node
+     * @param b - sink node
+     */
     void maxCapacityPath(int a, int b);
 
+    /**
+     * Sets the distance of all nodes from node s.
+     * @param s
+     */
     void setDistance(int s);
 
-    void minDistancePath(int a, int b);
+    /**
+     * Ford Fulkerson algorithm.
+     * @param source
+     * @param sink
+     * @return returns a map that contains the paths and the path flow associated with it.
+     */
+    map<list<int>,int> FordFulkerson(int source, int sink);
 
-    map<list<int>,pair<int,int>> FordFulkersen(int source, int sink);
-
+    /**
+     *
+     * @return Transposed graph of the graph that call this function.
+     */
     Graph createTransposed();
 
+    /**
+     * Critical path method with earliest start
+     * @return Minimum duration
+     */
     int minDuration();
 
+    /**
+     * Critical path method with latest finish
+     * @param sink
+     */
     void latestFinish(int sink);
 
+    /**
+     * Creates a graph that only has the edges of the specified path
+     * @param paths list<list<int>> - paths that are going to used to create the graph
+     * @return Graph with only the edges of the specified path
+     */
     Graph createGraphByPath(const list<list<int>>& paths);
 
+    /**
+     * Finds the Total Slack of each node
+     * @return map - nodes with their respective total Slack
+     */
     map<int, int> totalSpare();
 
+
+    /**
+     * Calculates the pareto-optimal solutions for the paths between two nodes
+     * @param a int - source path
+     * @param b int - sink path
+     * @return list<list<int>> - pareto-optimal paths
+     */
     list<list<int>> optimalSolutions(int a, int b);
 
-    list<int> MaxCapacityList(int a, int b);
 
+    /**
+     * Calls the Max Distance Algorithm and outputs the path to a certain node
+     * @param a int - source node
+     * @param b int - sink node
+     * @return list<int> - path with the maximum capacity to a certain node
+     */
+    list<int> MaxCapacityList(int a, int b);
+    /**
+     * Calls the Set Distance Algorithm and outputs the path to a certain node
+     * @param a int - source node
+     * @param b int - sink node
+     * @return list<int> - path with the least amount of transbords to a certain node
+     */
     list<int> MinDistanceList(int a, int b);
 };
 

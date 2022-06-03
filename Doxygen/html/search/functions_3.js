@@ -1,6 +1,6 @@
 var searchData=
 [
   ['decreasekey_0',['decreaseKey',['../class_min_heap.html#acb40738ccbaf73f7c093f8504387587b',1,'MinHeap']]],
-  ['dfs_1',['dfs',['../class_graph.html#a0b8af8ed6acdd35d9321742c7ffa4950',1,'Graph']]],
-  ['distance_2',['distance',['../class_graph.html#a5a816844b989c28c01b97015ab8868e4',1,'Graph']]]
+  ['dfs_1',['dfs',['../class_graph.html#af81888a45922aa1839fe0262bd0ca7b3',1,'Graph']]],
+  ['downheap_2',['downHeap',['../class_max_heap.html#ad908fb7c202d80540db6924852ae06c6',1,'MaxHeap::downHeap()'],['../class_min_heap.html#a3c546146fe05dce2d81e3f4e93fbf014',1,'MinHeap::downHeap()']]]
 ];

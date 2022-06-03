@@ -1,0 +1,88 @@
+\hypertarget{struct_graph_1_1_node}{}\doxysection{Graph\+::Node Struct Reference}
+\label{struct_graph_1_1_node}\index{Graph::Node@{Graph::Node}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list$<$ \mbox{\hyperlink{struct_graph_1_1_edge}{Edge}} $>$ \mbox{\hyperlink{struct_graph_1_1_node_a0af22bfd1227385c26f2fe386f45bc64}{adj\+Edges}}
+\item 
+bool \mbox{\hyperlink{struct_graph_1_1_node_a2360e752c746736f533bc4e673c1f80d}{visited}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_a323d58c178429217d8b33d38b023f3d2}{distance}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_a09f5571b617c4763e2b74ef1a83232c8}{pred}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_adc63eae897d2a8198ab14006efb67c75}{max\+Capacity}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_aa2452d290da199bf059411ae26711125}{s\+Degree}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_a100c80b35cc5b2aebbbe28be392bc0da}{e\+Degree}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_a6febd11673d4273dde151e81aa71b98d}{LF}}
+\item 
+int \mbox{\hyperlink{struct_graph_1_1_node_a5e4addc4491870d9ed29aa96547e3609}{ES}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct that represents the graph\textquotesingle{}s nodes which contains the list of edges that come out of a node. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_graph_1_1_node_a0af22bfd1227385c26f2fe386f45bc64}\label{struct_graph_1_1_node_a0af22bfd1227385c26f2fe386f45bc64}} 
+\index{Graph::Node@{Graph::Node}!adjEdges@{adjEdges}}
+\index{adjEdges@{adjEdges}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{adjEdges}{adjEdges}}
+{\footnotesize\ttfamily list$<$\mbox{\hyperlink{struct_graph_1_1_edge}{Edge}}$>$ Graph\+::\+Node\+::adj\+Edges}
+
+Adjacent edges. \mbox{\Hypertarget{struct_graph_1_1_node_a323d58c178429217d8b33d38b023f3d2}\label{struct_graph_1_1_node_a323d58c178429217d8b33d38b023f3d2}} 
+\index{Graph::Node@{Graph::Node}!distance@{distance}}
+\index{distance@{distance}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{distance}{distance}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::distance}
+
+Distance from source node \mbox{\Hypertarget{struct_graph_1_1_node_a100c80b35cc5b2aebbbe28be392bc0da}\label{struct_graph_1_1_node_a100c80b35cc5b2aebbbe28be392bc0da}} 
+\index{Graph::Node@{Graph::Node}!eDegree@{eDegree}}
+\index{eDegree@{eDegree}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{eDegree}{eDegree}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::e\+Degree}
+
+\mbox{\Hypertarget{struct_graph_1_1_node_a5e4addc4491870d9ed29aa96547e3609}\label{struct_graph_1_1_node_a5e4addc4491870d9ed29aa96547e3609}} 
+\index{Graph::Node@{Graph::Node}!ES@{ES}}
+\index{ES@{ES}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{ES}{ES}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::\+ES}
+
+\mbox{\Hypertarget{struct_graph_1_1_node_a6febd11673d4273dde151e81aa71b98d}\label{struct_graph_1_1_node_a6febd11673d4273dde151e81aa71b98d}} 
+\index{Graph::Node@{Graph::Node}!LF@{LF}}
+\index{LF@{LF}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{LF}{LF}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::\+LF}
+
+LF -\/ latest finish ES -\/ earliest start \mbox{\Hypertarget{struct_graph_1_1_node_adc63eae897d2a8198ab14006efb67c75}\label{struct_graph_1_1_node_adc63eae897d2a8198ab14006efb67c75}} 
+\index{Graph::Node@{Graph::Node}!maxCapacity@{maxCapacity}}
+\index{maxCapacity@{maxCapacity}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{maxCapacity}{maxCapacity}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::max\+Capacity}
+
+Maximum capacity of a node after applying set\+Max\+Capacity algorithm \mbox{\Hypertarget{struct_graph_1_1_node_a09f5571b617c4763e2b74ef1a83232c8}\label{struct_graph_1_1_node_a09f5571b617c4763e2b74ef1a83232c8}} 
+\index{Graph::Node@{Graph::Node}!pred@{pred}}
+\index{pred@{pred}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{pred}{pred}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::pred}
+
+Parent of a node \mbox{\Hypertarget{struct_graph_1_1_node_aa2452d290da199bf059411ae26711125}\label{struct_graph_1_1_node_aa2452d290da199bf059411ae26711125}} 
+\index{Graph::Node@{Graph::Node}!sDegree@{sDegree}}
+\index{sDegree@{sDegree}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{sDegree}{sDegree}}
+{\footnotesize\ttfamily int Graph\+::\+Node\+::s\+Degree}
+
+Nodes degrees \mbox{\Hypertarget{struct_graph_1_1_node_a2360e752c746736f533bc4e673c1f80d}\label{struct_graph_1_1_node_a2360e752c746736f533bc4e673c1f80d}} 
+\index{Graph::Node@{Graph::Node}!visited@{visited}}
+\index{visited@{visited}!Graph::Node@{Graph::Node}}
+\doxysubsubsection{\texorpdfstring{visited}{visited}}
+{\footnotesize\ttfamily bool Graph\+::\+Node\+::visited}
+
+If node was visited or not in an algorithm implemented 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/travel-\/agency/\+Classes/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\end{DoxyCompactItemize}

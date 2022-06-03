@@ -65,6 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_graph-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Graph Class Reference</div></div>
 </div><!--header-->
@@ -72,6 +73,13 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_edge.html">Edge</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_node.html">Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a90961be426ad80001cbc103b6385df31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a90961be426ad80001cbc103b6385df31">Graph</a> ()=default</td></tr>
@@ -80,10 +88,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a55cd8defad17c36085005e2dae74399b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3157a04ab5d808f5bc15823827c744e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ac3157a04ab5d808f5bc15823827c744e">addEdge</a> (int src, int dest, int capacity, int duration)</td></tr>
 <tr class="separator:ac3157a04ab5d808f5bc15823827c744e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a816844b989c28c01b97015ab8868e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5a816844b989c28c01b97015ab8868e4">distance</a> (int a, int b)</td></tr>
-<tr class="separator:a5a816844b989c28c01b97015ab8868e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8af8ed6acdd35d9321742c7ffa4950"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a0b8af8ed6acdd35d9321742c7ffa4950">dfs</a> (int v)</td></tr>
-<tr class="separator:a0b8af8ed6acdd35d9321742c7ffa4950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81888a45922aa1839fe0262bd0ca7b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af81888a45922aa1839fe0262bd0ca7b3">dfs</a> (int v)</td></tr>
+<tr class="separator:af81888a45922aa1839fe0262bd0ca7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1e45e27c60711dadec619ca17e830a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae1e45e27c60711dadec619ca17e830a4">bfs</a> (int v)</td></tr>
 <tr class="separator:ae1e45e27c60711dadec619ca17e830a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa53c98c0e0e434acfd87f871f55ad061"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aa53c98c0e0e434acfd87f871f55ad061">existPath</a> (int a, int b)</td></tr>
@@ -94,10 +100,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abb0c4d7bed3f6ee2ba3d4124be0798ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8c82134bbb12a6ff28ff463f9f1fb27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af8c82134bbb12a6ff28ff463f9f1fb27">setDistance</a> (int s)</td></tr>
 <tr class="separator:af8c82134bbb12a6ff28ff463f9f1fb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ac1453221d8e95176a69a7039b415ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a0ac1453221d8e95176a69a7039b415ea">minDistancePath</a> (int a, int b)</td></tr>
-<tr class="separator:a0ac1453221d8e95176a69a7039b415ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03b9e0d4125c3f213e35a3ef92945588"><td class="memItemLeft" align="right" valign="top">map&lt; list&lt; int &gt;, pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a03b9e0d4125c3f213e35a3ef92945588">FordFulkersen</a> (int source, int sink)</td></tr>
-<tr class="separator:a03b9e0d4125c3f213e35a3ef92945588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255d02d33d21ec38565be6cd7cd26b5d"><td class="memItemLeft" align="right" valign="top">map&lt; list&lt; int &gt;, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a255d02d33d21ec38565be6cd7cd26b5d">FordFulkerson</a> (int source, int sink)</td></tr>
+<tr class="separator:a255d02d33d21ec38565be6cd7cd26b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04b536e8c41e4fde8ef291888c7432ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph.html">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a04b536e8c41e4fde8ef291888c7432ea">createTransposed</a> ()</td></tr>
 <tr class="separator:a04b536e8c41e4fde8ef291888c7432ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7df6c90f1d097d7002c8fcd5f7b63652"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7df6c90f1d097d7002c8fcd5f7b63652">minDuration</a> ()</td></tr>
@@ -114,6 +118,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a10e51df30debf8041235e37399c6a413"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeddcc8667fe38758d5135220052a60ba"><td class="memItemLeft" align="right" valign="top">list&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aeddcc8667fe38758d5135220052a60ba">MinDistanceList</a> (int a, int b)</td></tr>
 <tr class="separator:aeddcc8667fe38758d5135220052a60ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afe71579cdcdc5c7b9645c76a6e45f06a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#afe71579cdcdc5c7b9645c76a6e45f06a">graphSize</a></td></tr>
+<tr class="separator:afe71579cdcdc5c7b9645c76a6e45f06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60baa846929049c84b7e50ffb5f401e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a60baa846929049c84b7e50ffb5f401e8">hasDir</a></td></tr>
+<tr class="separator:a60baa846929049c84b7e50ffb5f401e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b5e16eb9e0670fea3ecee3526abb41"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="struct_graph_1_1_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a71b5e16eb9e0670fea3ecee3526abb41">nodes</a></td></tr>
+<tr class="separator:a71b5e16eb9e0670fea3ecee3526abb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a90961be426ad80001cbc103b6385df31" name="a90961be426ad80001cbc103b6385df31"></a>
@@ -166,6 +179,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Creates a graph with 'numNodes' nodes that can be directed (dir = true) or undirected (dir = false) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numNodes</td><td>- number of graph's nodes </td></tr>
+    <tr><td class="paramname">dir</td><td>- graph directed or not </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -207,6 +227,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Used for creating the edges of a graph </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>- edge source </td></tr>
+    <tr><td class="paramname">dest</td><td>- edge destiny </td></tr>
+    <tr><td class="paramname">capacity</td><td>- edge capacity </td></tr>
+    <tr><td class="paramname">duration</td><td>- edge duration </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -225,6 +254,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Breadth first search from node v </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -243,6 +278,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Creates a graph that only has the edges of the specified path </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">paths</td><td>list&lt;list&lt;int&gt;&gt; - paths that are going to used to create the graph </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_graph.html">Graph</a> with only the edges of the specified path </dd></dl>
 
 </div>
 </div>
@@ -260,17 +302,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Transposed graph of the graph that call this function. </dd></dl>
 
 </div>
 </div>
-<a id="a0b8af8ed6acdd35d9321742c7ffa4950" name="a0b8af8ed6acdd35d9321742c7ffa4950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b8af8ed6acdd35d9321742c7ffa4950">&#9670;&nbsp;</a></span>dfs()</h2>
+<a id="af81888a45922aa1839fe0262bd0ca7b3" name="af81888a45922aa1839fe0262bd0ca7b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af81888a45922aa1839fe0262bd0ca7b3">&#9670;&nbsp;</a></span>dfs()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Graph::dfs </td>
+          <td class="memname">void Graph::dfs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
@@ -278,34 +321,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5a816844b989c28c01b97015ab8868e4" name="a5a816844b989c28c01b97015ab8868e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a816844b989c28c01b97015ab8868e4">&#9670;&nbsp;</a></span>distance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Graph::distance </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p >Depth first search algorithm from node v </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -334,17 +356,25 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Verify if exists path from node a to node b </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>- source node </td></tr>
+    <tr><td class="paramname">b</td><td>- sink node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if exists a path or false otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="a03b9e0d4125c3f213e35a3ef92945588" name="a03b9e0d4125c3f213e35a3ef92945588"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03b9e0d4125c3f213e35a3ef92945588">&#9670;&nbsp;</a></span>FordFulkersen()</h2>
+<a id="a255d02d33d21ec38565be6cd7cd26b5d" name="a255d02d33d21ec38565be6cd7cd26b5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255d02d33d21ec38565be6cd7cd26b5d">&#9670;&nbsp;</a></span>FordFulkerson()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">map&lt; list&lt; int &gt;, pair&lt; int, int &gt; &gt; Graph::FordFulkersen </td>
+          <td class="memname">map&lt; list&lt; int &gt;, int &gt; Graph::FordFulkerson </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>source</em>, </td>
@@ -362,6 +392,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Ford Fulkerson algorithm. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">sink</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns a map that contains the paths and the path flow associated with it. </dd></dl>
 
 </div>
 </div>
@@ -380,6 +418,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Critical path method with latest finish </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sink</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -408,6 +452,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Calls the Max Distance Algorithm and outputs the path to a certain node </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>int - source node </td></tr>
+    <tr><td class="paramname">b</td><td>int - sink node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>list&lt;int&gt; - path with the maximum capacity to a certain node </dd></dl>
 
 </div>
 </div>
@@ -436,6 +488,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Prints the maximum capacity path from a to b </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>- source node </td></tr>
+    <tr><td class="paramname">b</td><td>- sink node </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -464,34 +523,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0ac1453221d8e95176a69a7039b415ea" name="a0ac1453221d8e95176a69a7039b415ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ac1453221d8e95176a69a7039b415ea">&#9670;&nbsp;</a></span>minDistancePath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Graph::minDistancePath </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p >Calls the Set Distance Algorithm and outputs the path to a certain node </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>int - source node </td></tr>
+    <tr><td class="paramname">b</td><td>int - sink node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>list&lt;int&gt; - path with the least amount of transbords to a certain node </dd></dl>
 
 </div>
 </div>
@@ -509,6 +548,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Critical path method with earliest start </p><dl class="section return"><dt>Returns</dt><dd>Minimum duration </dd></dl>
 
 </div>
 </div>
@@ -537,6 +577,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Calculates the pareto-optimal solutions for the paths between two nodes </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>int - source path </td></tr>
+    <tr><td class="paramname">b</td><td>int - sink path </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>list&lt;list&lt;int&gt;&gt; - pareto-optimal paths </dd></dl>
 <p >minDistancepaths.push_back(minDistanceSolution);</p>
 
 </div>
@@ -556,6 +604,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Sets the distance of all nodes from node s. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -574,6 +628,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Set maximum capacity for each node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -591,6 +651,77 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Finds the Total Slack of each node </p><dl class="section return"><dt>Returns</dt><dd>map - nodes with their respective total Slack </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afe71579cdcdc5c7b9645c76a6e45f06a" name="afe71579cdcdc5c7b9645c76a6e45f06a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe71579cdcdc5c7b9645c76a6e45f06a">&#9670;&nbsp;</a></span>graphSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::graphSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p ><a class="el" href="class_graph.html">Graph</a> size (vertices are numbered from 1 to n) </p>
+
+</div>
+</div>
+<a id="a60baa846929049c84b7e50ffb5f401e8" name="a60baa846929049c84b7e50ffb5f401e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60baa846929049c84b7e50ffb5f401e8">&#9670;&nbsp;</a></span>hasDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Graph::hasDir</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >false: undirected; true: directed </p>
+
+</div>
+</div>
+<a id="a71b5e16eb9e0670fea3ecee3526abb41" name="a71b5e16eb9e0670fea3ecee3526abb41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b5e16eb9e0670fea3ecee3526abb41">&#9670;&nbsp;</a></span>nodes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="struct_graph_1_1_node.html">Node</a>&gt; Graph::nodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >The list of nodes being represented </p>
 
 </div>
 </div>

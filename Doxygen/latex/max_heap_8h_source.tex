@@ -20,20 +20,20 @@
 \DoxyCodeLine{16 \textcolor{comment}{// Binary min-\/heap to represent integer keys of type K with values (priorities) of type V}}
 \DoxyCodeLine{17 \textcolor{keyword}{template} <\textcolor{keyword}{class} K, \textcolor{keyword}{class} V>}
 \DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_max_heap}{MaxHeap}} \{}
-\DoxyCodeLine{19     \textcolor{keyword}{struct }Node \{ \textcolor{comment}{// An element of the heap: a pair (key, value)}}
-\DoxyCodeLine{20         K key;}
-\DoxyCodeLine{21         V value;}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_max_heap_1_1_node}{Node}} \{ \textcolor{comment}{// An element of the heap: a pair (key, value)}}
+\DoxyCodeLine{20         K \mbox{\hyperlink{struct_max_heap_1_1_node_a144b7c3a43c6089ca0ee44a38b559a67}{key}};}
+\DoxyCodeLine{21         V \mbox{\hyperlink{struct_max_heap_1_1_node_a13b34bc222a189bc4f30900057d5508b}{value}};}
 \DoxyCodeLine{22     \};}
 \DoxyCodeLine{23 }
-\DoxyCodeLine{24     \textcolor{keywordtype}{int} size;                  \textcolor{comment}{// Number of elements in heap}}
-\DoxyCodeLine{25     \textcolor{keywordtype}{int} maxSize;               \textcolor{comment}{// Maximum number of elements in heap}}
-\DoxyCodeLine{26     vector<Node> a;            \textcolor{comment}{// The heap array}}
-\DoxyCodeLine{27     unordered\_map<K, int> pos; \textcolor{comment}{// maps a key into its position on the array a}}
-\DoxyCodeLine{28     \textcolor{keyword}{const} K KEY\_NOT\_FOUND;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_max_heap_a8c3a97a9b3765f62ecbb4de7f82b8f7b}{size}};                  \textcolor{comment}{// Number of elements in heap}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_max_heap_aacb9195df606635470e1926129fe17e6}{maxSize}};               \textcolor{comment}{// Maximum number of elements in heap}}
+\DoxyCodeLine{26     vector<Node> \mbox{\hyperlink{class_max_heap_ab2939e2fe509f5607e9a2fbfed54c11f}{a}};            \textcolor{comment}{// The heap array}}
+\DoxyCodeLine{27     unordered\_map<K, int> \mbox{\hyperlink{class_max_heap_a19487b967190bc6d2376fabc4d83c0f0}{pos}}; \textcolor{comment}{// maps a key into its position on the array a}}
+\DoxyCodeLine{28     \textcolor{keyword}{const} K \mbox{\hyperlink{class_max_heap_afd7702c650d7f5715d90e2305dbf3a29}{KEY\_NOT\_FOUND}};}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30     \textcolor{keywordtype}{void} upHeap(\textcolor{keywordtype}{int} i);}
-\DoxyCodeLine{31     \textcolor{keywordtype}{void} downHeap(\textcolor{keywordtype}{int} i);}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} swap(\textcolor{keywordtype}{int} i1, \textcolor{keywordtype}{int} i2);}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_a96866cb019ff4727229a5a415916bd21}{upHeap}}(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_ad908fb7c202d80540db6924852ae06c6}{downHeap}}(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_ac2270bc13e0ce5632cf4d77b41197144}{swap}}(\textcolor{keywordtype}{int} i1, \textcolor{keywordtype}{int} i2);}
 \DoxyCodeLine{33 }
 \DoxyCodeLine{34 \textcolor{keyword}{public}:}
 \DoxyCodeLine{35     \mbox{\hyperlink{class_max_heap_a4b7fb8601747d2c8364fe7525f23f45c}{MaxHeap}}(\textcolor{keywordtype}{int} n, \textcolor{keyword}{const} K\& notFound); \textcolor{comment}{// Create a min-\/heap for a max of n pairs (K,V) with notFound returned when empty}}
@@ -48,7 +48,7 @@
 \DoxyCodeLine{44 }
 \DoxyCodeLine{45 \textcolor{comment}{// Make a value go "{}up the tree"{} until it reaches its position}}
 \DoxyCodeLine{46 \textcolor{keyword}{template} <\textcolor{keyword}{class} K, \textcolor{keyword}{class} V>}
-\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap}{MaxHeap<K,V>::upHeap}}(\textcolor{keywordtype}{int} i) \{}
+\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_a96866cb019ff4727229a5a415916bd21}{MaxHeap<K,V>::upHeap}}(\textcolor{keywordtype}{int} i) \{}
 \DoxyCodeLine{48     \textcolor{keywordflow}{while} (i>1 \&\& a[i].value < a[\mbox{\hyperlink{max_heap_8h_a91004761621b8ef1c66f3601988fde7c}{PARENT}}(i)].value) \{ \textcolor{comment}{// while pos smaller than parent, keep swapping to upper position}}
 \DoxyCodeLine{49         swap(i, \mbox{\hyperlink{max_heap_8h_a91004761621b8ef1c66f3601988fde7c}{PARENT}}(i));}
 \DoxyCodeLine{50         i = \mbox{\hyperlink{max_heap_8h_a91004761621b8ef1c66f3601988fde7c}{PARENT}}(i);}
@@ -57,7 +57,7 @@
 \DoxyCodeLine{53 }
 \DoxyCodeLine{54 \textcolor{comment}{// Make a value go "{}down the tree"{} until it reaches its position}}
 \DoxyCodeLine{55 \textcolor{keyword}{template} <\textcolor{keyword}{class} K, \textcolor{keyword}{class} V>}
-\DoxyCodeLine{56 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap}{MaxHeap<K,V>::downHeap}}(\textcolor{keywordtype}{int} i) \{}
+\DoxyCodeLine{56 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_ad908fb7c202d80540db6924852ae06c6}{MaxHeap<K,V>::downHeap}}(\textcolor{keywordtype}{int} i) \{}
 \DoxyCodeLine{57     \textcolor{keywordflow}{while} (\mbox{\hyperlink{max_heap_8h_a25d5ae2e52c533b5f27895fcf7a4ea95}{LEFT}}(i) <= size) \{ \textcolor{comment}{// while within heap limits}}
 \DoxyCodeLine{58         \textcolor{keywordtype}{int} j = \mbox{\hyperlink{max_heap_8h_a25d5ae2e52c533b5f27895fcf7a4ea95}{LEFT}}(i);}
 \DoxyCodeLine{59         \textcolor{keywordflow}{if} (\mbox{\hyperlink{max_heap_8h_a134d4f19a207929c1e9716743771ae5a}{RIGHT}}(i)<=size \&\& a[\mbox{\hyperlink{max_heap_8h_a134d4f19a207929c1e9716743771ae5a}{RIGHT}}(i)].value < a[j].value) j = \mbox{\hyperlink{max_heap_8h_a134d4f19a207929c1e9716743771ae5a}{RIGHT}}(i); \textcolor{comment}{// choose smaller child}}
@@ -69,8 +69,8 @@
 \DoxyCodeLine{65 }
 \DoxyCodeLine{66 \textcolor{comment}{// Swap two positions of the heap (update their positions)}}
 \DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keyword}{class} K, \textcolor{keyword}{class} V>}
-\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap}{MaxHeap<K,V>::swap}}(\textcolor{keywordtype}{int} i1, \textcolor{keywordtype}{int} i2) \{}
-\DoxyCodeLine{69     Node tmp = a[i1]; a[i1] = a[i2]; a[i2] = tmp;}
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_ac2270bc13e0ce5632cf4d77b41197144}{MaxHeap<K,V>::swap}}(\textcolor{keywordtype}{int} i1, \textcolor{keywordtype}{int} i2) \{}
+\DoxyCodeLine{69     \mbox{\hyperlink{struct_max_heap_1_1_node}{Node}} tmp = a[i1]; a[i1] = a[i2]; a[i2] = tmp;}
 \DoxyCodeLine{70     pos[a[i1].key] = i1;}
 \DoxyCodeLine{71     pos[a[i2].key] = i2;}
 \DoxyCodeLine{72 \}}

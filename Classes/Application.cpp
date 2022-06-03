@@ -7,8 +7,10 @@
 #include <iostream>
 #include <algorithm>
 #include <climits>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 Application::Application() = default;
 
@@ -44,7 +46,7 @@ unsigned Application::showMenu() {
 }
 
 // 2.1
-pair<list<list<int>>,int> Application::fixedFlow(const map<list<int>, pair<int, int>> &paths) {
+pair<list<list<int>>,int> Application::fixedFlow(map<list<int>, int> &paths) {
     int groupDim;
     list<list<int>> pathsUsed;
     int remainingDim;
@@ -58,19 +60,19 @@ pair<list<list<int>>,int> Application::fixedFlow(const map<list<int>, pair<int, 
 
     for (auto &path: paths) {
         pathsUsed.push_back(path.first);
-        if (groupDim - path.second.first > 0) {
-            groupDim -= path.second.first;
+        if (groupDim - path.second > 0) {
+            groupDim -= path.second;
             cout << '\n';
             for (int et: path.first)
                 cout << " -> " << et;
-            cout << "\nPath Flow: " << path.second.first << '\n';
+            cout << "\nPath Flow: " << path.second<< '\n';
         } else {
-            remainingDim = abs(groupDim - path.second.first);
+            remainingDim = abs(groupDim - path.second);
             cout << '\n';
             for (int et: path.first)
                 cout << " -> " << et;
             cout << "\nPath Flow: " << groupDim << '\n';
-            groupDim -= path.second.first;
+            groupDim -= path.second;
             break;
         }
     }
@@ -84,7 +86,7 @@ pair<list<list<int>>,int> Application::fixedFlow(const map<list<int>, pair<int, 
 }
 
 //2.2
-list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &paths) {
+list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
     int addedDimension;
 
     pair<list<list<int>>,int> fixedFl = fixedFlow(paths);
@@ -119,7 +121,7 @@ list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &p
             edgeDim = remainingDim;
             firstIter = false;
         } else{
-            edgeDim = path->second.first;
+            edgeDim = path->second;
         }
         if (groupDim - edgeDim > 0) {
             groupDim -= edgeDim;
@@ -128,7 +130,7 @@ list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &p
                 cout << " -> " << et;
             cout << "\nPath Flow: " << edgeDim << '\n';
         } else {
-            remainingDim = abs(groupDim - path->second.first);
+            remainingDim = abs(groupDim - path->second);
             cout << '\n';
             for (int et: path->first)
                 cout << " -> " << et;
@@ -147,20 +149,20 @@ list<list<int>> Application::changedFlow(const map<list<int>, pair<int, int>> &p
 }
 
 // 2.3
-void Application::maxFlow(const map<list<int>, pair<int, int>> &paths){
+void Application::maxFlow(const map<list<int>, int> &paths) {
     int maxFlow = 0;
     for(auto & path : paths) {
-        maxFlow += path.second.first;
+        maxFlow += path.second;
         cout << '\n';
         for (int et: path.first)
             cout << " -> " << et;
-        cout << "\nPath Flow: " << path.second.first << '\n';
+        cout << "\nPath Flow: " << path.second << '\n';
     }
     cout << "\nMax Flow is: " << maxFlow;
 }
 
 // 2.4
-void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
+void Application::minDuration(map<list<int>, int> &paths) {
     list<list<int>> usedPaths = fixedFlow(paths).first;
     auto reducedGraph = graph.createGraphByPath(usedPaths);
     int result = reducedGraph.minDuration();
@@ -169,7 +171,7 @@ void Application::minDuration(const map<list<int>, pair<int, int>> &paths){
 }
 
 // 2.5
-void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
+void Application::maxWaiting(map<list<int>, int> &paths) {
     list<list<int>> usedPaths = fixedFlow(paths).first;
     auto reducedGraph = graph.createGraphByPath(usedPaths);
 
@@ -185,10 +187,13 @@ void Application::maxWaiting(const map<list<int>, pair<int, int>> &paths) {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("01")) exit(1);
+    if(!file.readFile("13")) exit(1);
     graph = file.getGraph();
-    map<list<int>, pair<int, int>> paths;
+    map<list<int>, int> paths;
     list<list<int>> paretoSolutions;
+    auto start = high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
     while (true) {
         auto scenario = showMenu();
         unsigned subProblem;
@@ -201,7 +206,11 @@ void Application::run(){
                 switch (subProblem) {
                     case 1:
                         // 1.1
+                        start = high_resolution_clock::now();
                         graph.maxCapacityPath(1,4);
+                        stop = high_resolution_clock::now();
+                        duration = duration_cast<microseconds>(stop - start);
+                        cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
                         break;
                     case 2:
                         // 1.2
@@ -216,7 +225,7 @@ void Application::run(){
                 break;
             case 2:
                 subProblem = secondScenario();
-                paths = graph.FordFulkersen(1, 4);
+                paths = graph.FordFulkerson(1, 4);
                 switch (subProblem) {
                     case 1:
                         fixedFlow(paths);

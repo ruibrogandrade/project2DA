@@ -16,71 +16,66 @@
 \DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{13 }
 \DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
-\DoxyCodeLine{15     \textcolor{keyword}{struct }Edge \{}
-\DoxyCodeLine{16         \textcolor{keywordtype}{int} dest;}
-\DoxyCodeLine{17         \textcolor{keywordtype}{int} capacity;}
-\DoxyCodeLine{18         \textcolor{keywordtype}{int} duration;}
-\DoxyCodeLine{19     \};}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21     \textcolor{keyword}{struct }Node \{}
-\DoxyCodeLine{22         list<Edge> adjEdges;}
-\DoxyCodeLine{23         \textcolor{keywordtype}{bool} visited;}
-\DoxyCodeLine{24         \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a5a816844b989c28c01b97015ab8868e4}{distance}}; \textcolor{comment}{//distance from source node}}
-\DoxyCodeLine{25         \textcolor{keywordtype}{int} pred; \textcolor{comment}{// previous node}}
-\DoxyCodeLine{26         \textcolor{keywordtype}{int} maxCapacity;}
-\DoxyCodeLine{27         \textcolor{keywordtype}{int} sDegree, eDegree;}
-\DoxyCodeLine{28         \textcolor{keywordtype}{int} LF, ES;}
-\DoxyCodeLine{29     \};}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31     \textcolor{keywordtype}{int} graphSize;      \textcolor{comment}{// Graph size (vertices are numbered from 1 to n)}}
-\DoxyCodeLine{32     \textcolor{keywordtype}{bool} hasDir;        \textcolor{comment}{// false: undirected; true: directed}}
-\DoxyCodeLine{33     vector<Node> nodes; \textcolor{comment}{// The list of nodes being represented}}
-\DoxyCodeLine{34     list<list<int>> paths;}
-\DoxyCodeLine{35     list<int> path;}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{37 \textcolor{keyword}{public}:}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{39     \mbox{\hyperlink{class_graph_a90961be426ad80001cbc103b6385df31}{Graph}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41     \mbox{\hyperlink{class_graph_a90961be426ad80001cbc103b6385df31}{Graph}}(\textcolor{keywordtype}{int} numNodes, \textcolor{keywordtype}{bool} dir = \textcolor{keyword}{false});}
-\DoxyCodeLine{42 }
-\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{addEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a5a816844b989c28c01b97015ab8868e4}{distance}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}}(\textcolor{keywordtype}{int} v);}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}}(\textcolor{keywordtype}{int} v);}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{51     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aa53c98c0e0e434acfd87f871f55ad061}{existPath}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}{setMaxCapacity}}(\textcolor{keywordtype}{int} s);}
-\DoxyCodeLine{54 }
-\DoxyCodeLine{55     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}{maxCapacityPath}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}{setDistance}}(\textcolor{keywordtype}{int} s);}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0ac1453221d8e95176a69a7039b415ea}{minDistancePath}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_graph_1_1_edge}{Edge}} \{}
+\DoxyCodeLine{20         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_edge_a7afb7da8c73dfaca8bb3808b185fa05b}{dest}};}
+\DoxyCodeLine{21         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_edge_ae868588f9fa61f77c008afc446becef9}{capacity}};}
+\DoxyCodeLine{22         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_edge_a0e169394c6fab0c4e53338ded5617e98}{duration}};}
+\DoxyCodeLine{23     \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{29     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_graph_1_1_node}{Node}} \{}
+\DoxyCodeLine{33         list<Edge> \mbox{\hyperlink{struct_graph_1_1_node_a0af22bfd1227385c26f2fe386f45bc64}{adjEdges}};}
+\DoxyCodeLine{37         \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_graph_1_1_node_a2360e752c746736f533bc4e673c1f80d}{visited}};}
+\DoxyCodeLine{41         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_node_a323d58c178429217d8b33d38b023f3d2}{distance}};}
+\DoxyCodeLine{45         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_node_a09f5571b617c4763e2b74ef1a83232c8}{pred}};}
+\DoxyCodeLine{49         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_node_adc63eae897d2a8198ab14006efb67c75}{maxCapacity}};}
+\DoxyCodeLine{53         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_node_aa2452d290da199bf059411ae26711125}{sDegree}}, \mbox{\hyperlink{struct_graph_1_1_node_a100c80b35cc5b2aebbbe28be392bc0da}{eDegree}};}
+\DoxyCodeLine{58         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_graph_1_1_node_a6febd11673d4273dde151e81aa71b98d}{LF}}, \mbox{\hyperlink{struct_graph_1_1_node_a5e4addc4491870d9ed29aa96547e3609}{ES}};}
+\DoxyCodeLine{59     \};}
 \DoxyCodeLine{60 }
-\DoxyCodeLine{61     map<list<int>,pair<int,int>> \mbox{\hyperlink{class_graph_a03b9e0d4125c3f213e35a3ef92945588}{FordFulkersen}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} sink);}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{63     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a04b536e8c41e4fde8ef291888c7432ea}{createTransposed}}();}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}{minDuration}}();}
-\DoxyCodeLine{66 }
-\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}{latestFinish}}(\textcolor{keywordtype}{int} sink);}
-\DoxyCodeLine{68 }
-\DoxyCodeLine{69     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a6128d097cbc21929a318d75650b9a202}{createGraphByPath}}(\textcolor{keyword}{const} list<list<int>>\& paths);}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{71     map<int, int> \mbox{\hyperlink{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}{totalSpare}}();}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73     list<list<int>> \mbox{\hyperlink{class_graph_a67f736f9a2ce9d9875061d10a820b950}{optimalSolutions}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{75     list<int> \mbox{\hyperlink{class_graph_a10e51df30debf8041235e37399c6a413}{MaxCapacityList}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77     list<int> \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{MinDistanceList}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{78 \};}
-\DoxyCodeLine{79 }
-\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_afe71579cdcdc5c7b9645c76a6e45f06a}{graphSize}};}
+\DoxyCodeLine{68     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a60baa846929049c84b7e50ffb5f401e8}{hasDir}};}
+\DoxyCodeLine{72     vector<Node> \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{keyword}{public}:}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \mbox{\hyperlink{class_graph_a90961be426ad80001cbc103b6385df31}{Graph}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{84     \mbox{\hyperlink{class_graph_a90961be426ad80001cbc103b6385df31}{Graph}}(\textcolor{keywordtype}{int} numNodes, \textcolor{keywordtype}{bool} dir = \textcolor{keyword}{false});}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{93     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{addEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af81888a45922aa1839fe0262bd0ca7b3}{dfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{106     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{114     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aa53c98c0e0e434acfd87f871f55ad061}{existPath}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae760fb0e78639dd295e71fffb4e5ea9e}{setMaxCapacity}}(\textcolor{keywordtype}{int} s);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_abb0c4d7bed3f6ee2ba3d4124be0798ae}{maxCapacityPath}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{133     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af8c82134bbb12a6ff28ff463f9f1fb27}{setDistance}}(\textcolor{keywordtype}{int} s);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{141     map<list<int>,\textcolor{keywordtype}{int}> \mbox{\hyperlink{class_graph_a255d02d33d21ec38565be6cd7cd26b5d}{FordFulkerson}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} sink);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{147     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a04b536e8c41e4fde8ef291888c7432ea}{createTransposed}}();}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{153     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a7df6c90f1d097d7002c8fcd5f7b63652}{minDuration}}();}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{159     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_aaab2b151a0da3736a5f68e4e4359eb75}{latestFinish}}(\textcolor{keywordtype}{int} sink);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{166     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_a6128d097cbc21929a318d75650b9a202}{createGraphByPath}}(\textcolor{keyword}{const} list<list<int>>\& paths);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{172     map<int, int> \mbox{\hyperlink{class_graph_aad9fd9d665f4a3fba5a1b30c3c046a08}{totalSpare}}();}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 }
+\DoxyCodeLine{181     list<list<int>> \mbox{\hyperlink{class_graph_a67f736f9a2ce9d9875061d10a820b950}{optimalSolutions}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{190     list<int> \mbox{\hyperlink{class_graph_a10e51df30debf8041235e37399c6a413}{MaxCapacityList}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{197     list<int> \mbox{\hyperlink{class_graph_aeddcc8667fe38758d5135220052a60ba}{MinDistanceList}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{198 \};}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -65,6 +65,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_max_heap-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MaxHeap&lt; K, V &gt; Class Template Reference</div></div>
 </div><!--header-->
@@ -72,6 +74,11 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="max_heap_8h_source.html">maxHeap.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_max_heap_1_1_node.html">Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b7fb8601747d2c8364fe7525f23f45c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#a4b7fb8601747d2c8364fe7525f23f45c">MaxHeap</a> (int n, const K &amp;notFound)</td></tr>
@@ -86,6 +93,28 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afc96285c3c1a9e7878c0f9af2864c5d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac64d27413e9e71de95355ae51ece6ba5"><td class="memItemLeft" align="right" valign="top">K&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#ac64d27413e9e71de95355ae51ece6ba5">removeMax</a> ()</td></tr>
 <tr class="separator:ac64d27413e9e71de95355ae51ece6ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a96866cb019ff4727229a5a415916bd21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#a96866cb019ff4727229a5a415916bd21">upHeap</a> (int i)</td></tr>
+<tr class="separator:a96866cb019ff4727229a5a415916bd21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad908fb7c202d80540db6924852ae06c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#ad908fb7c202d80540db6924852ae06c6">downHeap</a> (int i)</td></tr>
+<tr class="separator:ad908fb7c202d80540db6924852ae06c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2270bc13e0ce5632cf4d77b41197144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#ac2270bc13e0ce5632cf4d77b41197144">swap</a> (int i1, int i2)</td></tr>
+<tr class="separator:ac2270bc13e0ce5632cf4d77b41197144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8c3a97a9b3765f62ecbb4de7f82b8f7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#a8c3a97a9b3765f62ecbb4de7f82b8f7b">size</a></td></tr>
+<tr class="separator:a8c3a97a9b3765f62ecbb4de7f82b8f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacb9195df606635470e1926129fe17e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#aacb9195df606635470e1926129fe17e6">maxSize</a></td></tr>
+<tr class="separator:aacb9195df606635470e1926129fe17e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2939e2fe509f5607e9a2fbfed54c11f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="struct_max_heap_1_1_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#ab2939e2fe509f5607e9a2fbfed54c11f">a</a></td></tr>
+<tr class="separator:ab2939e2fe509f5607e9a2fbfed54c11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19487b967190bc6d2376fabc4d83c0f0"><td class="memItemLeft" align="right" valign="top">unordered_map&lt; K, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#a19487b967190bc6d2376fabc4d83c0f0">pos</a></td></tr>
+<tr class="separator:a19487b967190bc6d2376fabc4d83c0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7702c650d7f5715d90e2305dbf3a29"><td class="memItemLeft" align="right" valign="top">const K&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_max_heap.html#afd7702c650d7f5715d90e2305dbf3a29">KEY_NOT_FOUND</a></td></tr>
+<tr class="separator:afd7702c650d7f5715d90e2305dbf3a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4b7fb8601747d2c8364fe7525f23f45c" name="a4b7fb8601747d2c8364fe7525f23f45c"></a>
@@ -119,6 +148,34 @@ template&lt;class K , class V &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad908fb7c202d80540db6924852ae06c6" name="ad908fb7c202d80540db6924852ae06c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad908fb7c202d80540db6924852ae06c6">&#9670;&nbsp;</a></span>downHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::downHeap </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4d11babd3ad4e094967a405331310fcd" name="a4d11babd3ad4e094967a405331310fcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d11babd3ad4e094967a405331310fcd">&#9670;&nbsp;</a></span>getSize()</h2>
 
@@ -227,6 +284,193 @@ template&lt;class K , class V &gt; </div>
           <td class="memname">K <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::removeMax</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2270bc13e0ce5632cf4d77b41197144" name="ac2270bc13e0ce5632cf4d77b41197144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2270bc13e0ce5632cf4d77b41197144">&#9670;&nbsp;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::swap </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96866cb019ff4727229a5a415916bd21" name="a96866cb019ff4727229a5a415916bd21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96866cb019ff4727229a5a415916bd21">&#9670;&nbsp;</a></span>upHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::upHeap </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab2939e2fe509f5607e9a2fbfed54c11f" name="ab2939e2fe509f5607e9a2fbfed54c11f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2939e2fe509f5607e9a2fbfed54c11f">&#9670;&nbsp;</a></span>a</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="struct_max_heap_1_1_node.html">Node</a>&gt; <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::a</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd7702c650d7f5715d90e2305dbf3a29" name="afd7702c650d7f5715d90e2305dbf3a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7702c650d7f5715d90e2305dbf3a29">&#9670;&nbsp;</a></span>KEY_NOT_FOUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const K <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::KEY_NOT_FOUND</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacb9195df606635470e1926129fe17e6" name="aacb9195df606635470e1926129fe17e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacb9195df606635470e1926129fe17e6">&#9670;&nbsp;</a></span>maxSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::maxSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19487b967190bc6d2376fabc4d83c0f0" name="a19487b967190bc6d2376fabc4d83c0f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19487b967190bc6d2376fabc4d83c0f0">&#9670;&nbsp;</a></span>pos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unordered_map&lt;K, int&gt; <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::pos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c3a97a9b3765f62ecbb4de7f82b8f7b" name="a8c3a97a9b3765f62ecbb4de7f82b8f7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3a97a9b3765f62ecbb4de7f82b8f7b">&#9670;&nbsp;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_max_heap.html">MaxHeap</a>&lt; K, V &gt;::size</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

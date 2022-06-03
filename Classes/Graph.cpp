@@ -23,19 +23,18 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
         nodes[dest].adjEdges.push_back({src, capacity, duration});
 }
 
-int Graph::dfs(int v) {
+void Graph::dfs(int v) {
     if (nodes[v].adjEdges.empty()){
-        return 1;
+        return;
     }
     nodes[v].visited = true;
-    int result = 1;
+    cout << "v" << endl;
     for (auto e : nodes[v].adjEdges) {
         int w = e.dest;
         if (!nodes[w].visited) {
-            result += dfs(w);
+            dfs(w);
         }
     }
-    return result;
 }
 
 void Graph::bfs(int v) {
@@ -56,11 +55,6 @@ void Graph::bfs(int v) {
             }
         }
     }
-}
-
-int Graph::distance(int a, int b) {
-    bfs(a);
-    return nodes[b].visited ? nodes[b].distance : -1;
 }
 
 void Graph::setMaxCapacity(int s) {
@@ -196,35 +190,12 @@ list<int> Graph::MinDistanceList(int a, int b) {
     return path;
 }
 
-void Graph::minDistancePath(int a, int b) {
-    if(!existPath(a,b)){
-        cerr << "\nDoesn't exist a path from " << a << " to " << b << endl;
-        return;
-    }
 
-    setDistance(a);
-    cout << "\n\nThe minimum amount of transbords in this path is: " << nodes[b].distance-1;
-    cout << "\nAlternative way: ";
-
-    stack<int> path;
-    path.push(b);
-    while(b != a) {
-        path.push(nodes[b].pred);
-        b = nodes[b].pred;
-    }
-
-    while(!path.empty()) {
-        cout << " -> " << path.top();
-        path.pop();
-    }
-}
-
-map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
-    map<list<int>,pair<int,int>> paths;
+map<list<int>,int> Graph::FordFulkerson(int source, int sink) {
+    map<list<int>,int> paths;
     Graph residualGraph = *this;
 
     while (residualGraph.existPath(source, sink)){
-        int duration = 0;
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
@@ -234,14 +205,13 @@ map<list<int>,pair<int,int>> Graph::FordFulkersen(int source, int sink) {
             for (auto &e: residualGraph.nodes[u].adjEdges){
                 if (e.dest == v){
                     pathFlow = min(pathFlow, e.capacity);
-                    duration += e.duration;
                 }
             }
             v = residualGraph.nodes[v].pred;
             path.push_front(v);
         }
 
-        paths.insert({path,{pathFlow,duration}});
+        paths.insert({path,pathFlow});
         v = sink;
         while (v != source){
             u = residualGraph.nodes[v].pred;

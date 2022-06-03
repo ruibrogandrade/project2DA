@@ -4,6 +4,11 @@
 
 {\ttfamily \#include $<$max\+Heap.\+h$>$}
 
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_max_heap_1_1_node}{Node}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -19,6 +24,28 @@ void \mbox{\hyperlink{class_max_heap_afc96285c3c1a9e7878c0f9af2864c5d7}{increase
 \item 
 K \mbox{\hyperlink{class_max_heap_ac64d27413e9e71de95355ae51ece6ba5}{remove\+Max}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_max_heap_a96866cb019ff4727229a5a415916bd21}{up\+Heap}} (int i)
+\item 
+void \mbox{\hyperlink{class_max_heap_ad908fb7c202d80540db6924852ae06c6}{down\+Heap}} (int i)
+\item 
+void \mbox{\hyperlink{class_max_heap_ac2270bc13e0ce5632cf4d77b41197144}{swap}} (int i1, int i2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_max_heap_a8c3a97a9b3765f62ecbb4de7f82b8f7b}{size}}
+\item 
+int \mbox{\hyperlink{class_max_heap_aacb9195df606635470e1926129fe17e6}{max\+Size}}
+\item 
+vector$<$ \mbox{\hyperlink{struct_max_heap_1_1_node}{Node}} $>$ \mbox{\hyperlink{class_max_heap_ab2939e2fe509f5607e9a2fbfed54c11f}{a}}
+\item 
+unordered\+\_\+map$<$ K, int $>$ \mbox{\hyperlink{class_max_heap_a19487b967190bc6d2376fabc4d83c0f0}{pos}}
+\item 
+const K \mbox{\hyperlink{class_max_heap_afd7702c650d7f5715d90e2305dbf3a29}{KEY\+\_\+\+NOT\+\_\+\+FOUND}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -32,6 +59,13 @@ K \mbox{\hyperlink{class_max_heap_ac64d27413e9e71de95355ae51ece6ba5}{remove\+Max
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_max_heap_ad908fb7c202d80540db6924852ae06c6}\label{class_max_heap_ad908fb7c202d80540db6924852ae06c6}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!downHeap@{downHeap}}
+\index{downHeap@{downHeap}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{downHeap()}{downHeap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::down\+Heap (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
 \mbox{\Hypertarget{class_max_heap_a4d11babd3ad4e094967a405331310fcd}\label{class_max_heap_a4d11babd3ad4e094967a405331310fcd}} 
 \index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!getSize@{getSize}}
 \index{getSize@{getSize}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
@@ -66,6 +100,58 @@ void \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::insert (\begin{
 \doxysubsubsection{\texorpdfstring{removeMax()}{removeMax()}}
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 K \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::remove\+Max}
+
+\mbox{\Hypertarget{class_max_heap_ac2270bc13e0ce5632cf4d77b41197144}\label{class_max_heap_ac2270bc13e0ce5632cf4d77b41197144}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!swap@{swap}}
+\index{swap@{swap}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::swap (\begin{DoxyParamCaption}\item[{int}]{i1,  }\item[{int}]{i2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_max_heap_a96866cb019ff4727229a5a415916bd21}\label{class_max_heap_a96866cb019ff4727229a5a415916bd21}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!upHeap@{upHeap}}
+\index{upHeap@{upHeap}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{upHeap()}{upHeap()}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+void \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::up\+Heap (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_max_heap_ab2939e2fe509f5607e9a2fbfed54c11f}\label{class_max_heap_ab2939e2fe509f5607e9a2fbfed54c11f}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!a@{a}}
+\index{a@{a}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+vector$<$\mbox{\hyperlink{struct_max_heap_1_1_node}{Node}}$>$ \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_max_heap_afd7702c650d7f5715d90e2305dbf3a29}\label{class_max_heap_afd7702c650d7f5715d90e2305dbf3a29}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!KEY\_NOT\_FOUND@{KEY\_NOT\_FOUND}}
+\index{KEY\_NOT\_FOUND@{KEY\_NOT\_FOUND}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{KEY\_NOT\_FOUND}{KEY\_NOT\_FOUND}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+const K \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::\+KEY\+\_\+\+NOT\+\_\+\+FOUND\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_max_heap_aacb9195df606635470e1926129fe17e6}\label{class_max_heap_aacb9195df606635470e1926129fe17e6}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!maxSize@{maxSize}}
+\index{maxSize@{maxSize}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{maxSize}{maxSize}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+int \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::max\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_max_heap_a19487b967190bc6d2376fabc4d83c0f0}\label{class_max_heap_a19487b967190bc6d2376fabc4d83c0f0}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!pos@{pos}}
+\index{pos@{pos}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+unordered\+\_\+map$<$K, int$>$ \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::pos\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_max_heap_a8c3a97a9b3765f62ecbb4de7f82b8f7b}\label{class_max_heap_a8c3a97a9b3765f62ecbb4de7f82b8f7b}} 
+\index{MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}!size@{size}}
+\index{size@{size}!MaxHeap$<$ K, V $>$@{MaxHeap$<$ K, V $>$}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily template$<$class K , class V $>$ \\
+int \mbox{\hyperlink{class_max_heap}{Max\+Heap}}$<$ K, V $>$\+::size\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

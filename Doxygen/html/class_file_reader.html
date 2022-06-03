@@ -64,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_file_reader-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">FileReader Class Reference</div></div>
 </div><!--header-->
@@ -79,6 +80,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac29d091dd5c83873ee85f14cee7ad278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33e4f5173be0851094b2c1e79d2f76ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph.html">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_reader.html#a33e4f5173be0851094b2c1e79d2f76ad">getGraph</a> ()</td></tr>
 <tr class="separator:a33e4f5173be0851094b2c1e79d2f76ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:acba65012a74c89d60190156de33a7b44"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_reader.html#acba65012a74c89d60190156de33a7b44">path</a> = &quot;../Dataset/in&quot;</td></tr>
+<tr class="separator:acba65012a74c89d60190156de33a7b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a403af8561d6ab9de61210f20aa828292"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph.html">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_reader.html#a403af8561d6ab9de61210f20aa828292">graph</a></td></tr>
+<tr class="separator:a403af8561d6ab9de61210f20aa828292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb488fcc53bc66fcea493f4955743b8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_reader.html#afb488fcc53bc66fcea493f4955743b8c">numNodes</a></td></tr>
+<tr class="separator:afb488fcc53bc66fcea493f4955743b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e27a22c777dc7587d090cb44ee67661"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_reader.html#a1e27a22c777dc7587d090cb44ee67661">numEdges</a></td></tr>
+<tr class="separator:a1e27a22c777dc7587d090cb44ee67661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a615dcb2443cad1f2ca123c7c0c334480" name="a615dcb2443cad1f2ca123c7c0c334480"></a>
@@ -121,6 +133,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_graph.html">Graph</a> created with readFile function </dd></dl>
 
 </div>
 </div>
@@ -139,6 +152,105 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Reads a file associated with the number 'inputNum' </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputNum</td><td>- used to build a file's path ( "path" + "inputNum" + ".txt") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the could open specified file or false otherwise. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a403af8561d6ab9de61210f20aa828292" name="a403af8561d6ab9de61210f20aa828292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a403af8561d6ab9de61210f20aa828292">&#9670;&nbsp;</a></span>graph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_graph.html">Graph</a> FileReader::graph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >graph that will be constructed after reading </p>
+
+</div>
+</div>
+<a id="a1e27a22c777dc7587d090cb44ee67661" name="a1e27a22c777dc7587d090cb44ee67661"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e27a22c777dc7587d090cb44ee67661">&#9670;&nbsp;</a></span>numEdges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileReader::numEdges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb488fcc53bc66fcea493f4955743b8c" name="afb488fcc53bc66fcea493f4955743b8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb488fcc53bc66fcea493f4955743b8c">&#9670;&nbsp;</a></span>numNodes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileReader::numNodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Number of nodes. Number of edges. </p>
+
+</div>
+</div>
+<a id="acba65012a74c89d60190156de33a7b44" name="acba65012a74c89d60190156de33a7b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba65012a74c89d60190156de33a7b44">&#9670;&nbsp;</a></span>path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string FileReader::path = &quot;../Dataset/in&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >path skeleton that is used to build the file's paths; </p>
 
 </div>
 </div>
