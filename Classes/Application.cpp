@@ -25,17 +25,6 @@ bool Application::isBadCin() {
     return false;
 }
 
-int Application::getGroupDimension() {
-    int groupDim;
-    while (true) {
-        cout << "\n Write the group's dimension: ";
-        cin >> groupDim;
-
-        if (!isBadCin() && groupDim >= 0) return groupDim;
-        cout << "\nINVALID NUMBER!\n";
-    }
-}
-
 unsigned Application::showMenu() {
     unsigned int choice;
 
@@ -56,52 +45,209 @@ unsigned Application::showMenu() {
     }
 }
 
-// 2.1
-pair<list<list<int>>,int> Application::fixedFlow(map<list<int>, int> &paths) {
-    list<list<int>> pathsUsed;
+void Application::askSource() {
+    int input;
+    while (true) {
+        cout << "\n Source: ";
+        cin >> input;
 
-    int groupDim = getGroupDimension();
+        if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
+            this->source = input;
+            return;
+        }
+        cout << "\nINVALID NUMBER!\n";
+    }
+}
 
-    int remainingDim;
+void Application::askSink() {
+    int input;
+    while (true) {
+        cout << "\n Sink: ";
+        cin >> input;
 
-    for (auto &path: paths) {
-        pathsUsed.push_back(path.first);
-        if (groupDim - path.second > 0) {
-            groupDim -= path.second;
-            cout << '\n';
-            for (int et: path.first)
-                cout << " -> " << et;
-            cout << "\nPath Flow: " << path.second<< '\n';
-        } else {
-            remainingDim = abs(groupDim - path.second);
-            cout << '\n';
-            for (int et: path.first)
-                cout << " -> " << et;
-            cout << "\nPath Flow: " << groupDim << '\n';
-            groupDim -= path.second;
-            break;
+        if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
+            this->sink = input;
+            return;
+        }
+        cout << "\nINVALID NUMBER!\n";
+    }
+}
+
+int Application::askGroupDim() {
+    int input;
+    while (true) {
+        cout << "\n Group dimension: ";
+        cin >> input;
+
+        if (!isBadCin() && input >= 0) return input;
+        cout << "\nINVALID NUMBER!\n";
+    }
+}
+
+void Application::run(){
+    FileReader file;
+    if(!file.readFile("07")) exit(1);
+    graph = file.getGraph();
+
+    while (true) {
+        auto scenario = showMenu();
+        unsigned subProblem;
+
+        askSource();
+        askSink();
+
+        switch (scenario) {
+            case 0:
+                return;
+            case 1:
+                firstScenario(Graph());
+                break;
+            case 2:
+                groupDim = askGroupDim();
+                secondScenario();
+                break;
+            default:
+                break;
         }
     }
+}
 
-    if (groupDim > 0)
+void Application::firstScenario(Graph g) const {
+    while (true) {
+        unsigned int choice;
+
+        while (true) {
+            cout << "\n 1.1   [1]"
+                    "\n 1.2   [2]"
+                    "\n Back  [0]\n";
+
+            cout << "\nChoose an option: ";
+            cin >> choice;
+
+            if (!isBadCin() && choice >= 0 && choice <= 2) break;
+            cout << "\nINVALID OPTION!\n";
+        }
+
+        switch (choice) {
+            case 0:
+                return;
+            case 1: {
+                // 1.1
+                auto start = high_resolution_clock::now();
+                auto stop = high_resolution_clock::now();
+                auto duration = duration_cast<microseconds>(stop - start);
+                start = high_resolution_clock::now();
+
+                g.maxCapacityPath(source, sink);
+
+                stop = high_resolution_clock::now();
+                duration = duration_cast<microseconds>(stop - start);
+                cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
+                break;
+            }
+            case 2: {
+                // 1.2
+                list<list<int>> paretoSolutions = g.optimalSolutions(source, sink);
+                for(auto path : paretoSolutions)
+                {
+                    cout << "(" << path.front() << "," << path.back() << "," << path.size() - 1 << ")\n";
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+void Application::secondScenario() {
+    while (true) {
+        unsigned int choice;
+        while (true) {
+            cout << "\n 2.1   [1]"
+                    "\n 2.2   [2]"
+                    "\n 2.3   [3]"
+                    "\n 2.4   [4]"
+                    "\n 2.5   [5]"
+                    "\n Back  [0]\n";
+
+            cout << "\nChoose an option: ";
+            cin >> choice;
+
+            if (!isBadCin() && choice >= 0 && choice <= 5) break;
+            cout << "\nINVALID OPTION!\n";
+        }
+
+        switch (choice) {
+            case 0:
+                return;
+            case 1:
+                fixedFlow();
+                break;
+            case 2:
+                if (!pathsUsed.empty()) changedFlow();
+                else cout << "\nPlease execute 2.1 first.\n";
+                break;
+            case 3:
+                maxFlow();
+                break;
+            case 4:
+                if (!pathsUsed.empty()) minDuration();
+                else cout << "\nPlease execute 2.1 first.\n";
+                break;
+            case 5:
+                if (!pathsUsed.empty()) maxWaiting();
+                else cout << "\nPlease execute 2.1 first.\n";
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+// 2.1
+void Application::fixedFlow() {
+
+    Graph residualGraph = graph;
+
+    auto temp = graph.FordFulkerson(source, sink, groupDim);
+    pathsUsed = temp.first;
+    capacityUsed = temp.second;
+
+    if (capacityUsed < groupDim)
+    {
         cout << "\nUnable to pass the entirety of the group."
-                "\nThe remaining capacity is: " << groupDim;
-    else cout << "\nSUCCESS!\n";
+                "\nThe remaining capacity is: " << groupDim-capacityUsed;
+        return;
+    }
 
-    return {pathsUsed,remainingDim};
+    for (auto &path: pathsUsed) {
+        for (int et: path.first) {
+            cout << " -> " << et;
+        }
+        cout << "\nPath Flow: " << path.second<< '\n';
+    }
+    cout << "\nSUCCESS!\n";
 }
 
 //2.2
-list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
-    int addedDimension = getGroupDimension();
+void Application::changedFlow() {
+    if (capacityUsed < groupDim)
+    {
+        cout << "\nUnable to pass the entirety of the group."
+                "\nThe remaining capacity is: " << groupDim-capacityUsed;
+        return;
+    }
 
-    pair<list<list<int>>,int> fixedFl = fixedFlow(paths);
-    list<list<int>> pathsUsed = fixedFl.first;
-    int remainingDim = fixedFl.second;
+    int addedDimension = askGroupDim();
 
-    int groupDim = addedDimension;
+    groupDim = addedDimension;
+
+    // TODO 2.2
+
+    /*
     int n;
-    if(remainingDim > 0) {
+    if(capacityUsed > 0) {
         n = 1;
     } else {
         n = 0;
@@ -112,10 +258,10 @@ list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
     bool firstIter = true;
     int edgeDim;
 
-    for (auto path = next(paths.begin(),pathsUsed.size() - n); path != paths.end(); path++) {
+    for (auto path = next(pathsUsed.begin(),pathsUsed.size() - n); path != pathsUsed.end(); path++) {
         //pathsUsed.push_back(path->first);
         if(firstIter) {
-            edgeDim = remainingDim;
+            edgeDim = capacityUsed;
             firstIter = false;
         } else{
             edgeDim = path->second;
@@ -127,7 +273,7 @@ list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
                 cout << " -> " << et;
             cout << "\nPath Flow: " << edgeDim << '\n';
         } else {
-            remainingDim = abs(groupDim - path->second);
+            capacityUsed = abs(groupDim - path->second);
             cout << '\n';
             for (int et: path->first)
                 cout << " -> " << et;
@@ -136,36 +282,31 @@ list<list<int>> Application::changedFlow(map<list<int>, int> &paths) {
             break;
         }
     }
-
-    return pathsUsed;
+     */
 }
 
 // 2.3
-void Application::maxFlow(const map<list<int>, int> &paths) {
-    int maxFlow = 0;
-    for(auto & path : paths) {
-        maxFlow += path.second;
-        cout << '\n';
-        for (int et: path.first)
-            cout << " -> " << et;
-        cout << "\nPath Flow: " << path.second << '\n';
-    }
-    cout << "\nMax Flow is: " << maxFlow;
+void Application::maxFlow() {
+    Graph residualGraph = graph;
+    int maxFlow = graph.FordFulkerson(source, sink, INT_MAX).second;
+    cout << "\nThe max flow is: " << maxFlow;
 }
 
 // 2.4
-void Application::minDuration(map<list<int>, int> &paths) {
-    list<list<int>> usedPaths = fixedFlow(paths).first;
-    auto reducedGraph = graph.createGraphByPath(usedPaths);
+void Application::minDuration() {
+    Graph residualGraph = graph;
+
+    auto reducedGraph = graph.createGraphByPath(pathsUsed);
     int result = reducedGraph.minDuration();
     cout << "\nThe minimum duration of travel for the given "
             "group is: " << result << '\n';
 }
 
 // 2.5
-void Application::maxWaiting(map<list<int>, int> &paths) {
-    list<list<int>> usedPaths = fixedFlow(paths).first;
-    auto reducedGraph = graph.createGraphByPath(usedPaths);
+void Application::maxWaiting() {
+    Graph residualGraph = graph;
+
+    auto reducedGraph = graph.createGraphByPath(pathsUsed);
 
     reducedGraph.minDuration();
     reducedGraph.latestFinish(1);
@@ -175,105 +316,4 @@ void Application::maxWaiting(map<list<int>, int> &paths) {
         cout << "\nNode: " << s.first << " - Total spare time: " << s.second;
     }
     cout << '\n';
-}
-
-void Application::run(){
-    FileReader file;
-    if(!file.readFile("07")) exit(1);
-    graph = file.getGraph();
-    map<list<int>, int> paths;
-    list<list<int>> paretoSolutions;
-    auto start = high_resolution_clock::now();
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    while (true) {
-        auto scenario = showMenu();
-        unsigned subProblem;
-
-        switch (scenario) {
-            case 0:
-                return;
-            case 1:
-                subProblem = firstScenario();
-                switch (subProblem) {
-                    case 1:
-                        // 1.1
-                        start = high_resolution_clock::now();
-                        graph.maxCapacityPath(1,4);
-                        stop = high_resolution_clock::now();
-                        duration = duration_cast<microseconds>(stop - start);
-                        cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
-                        break;
-                    case 2:
-                        // 1.2
-                        paretoSolutions = graph.optimalSolutions(1,4);
-                        for(auto path : paretoSolutions){
-                            cout << "(" << path.front() << "," << path.back() << "," << path.size() - 1 << ")\n";
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
-                subProblem = secondScenario();
-                paths = graph.FordFulkerson(1, 4, 4);
-                switch (subProblem) {
-                    case 1:
-                        fixedFlow(paths);
-                        break;
-                    case 2:
-                        changedFlow(paths);
-                        break;
-                    case 3:
-                        maxFlow(paths);
-                        break;
-                    case 4:
-                        minDuration(paths);
-                        break;
-                    case 5:
-                        maxWaiting(paths);
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-unsigned Application::firstScenario() {
-    unsigned int choice;
-
-    while (true) {
-        cout << "\n 1.1   [1]"
-                "\n 1.2   [2]"
-                "\n Back  [0]\n";
-
-        cout << "\nChoose an option: ";
-        cin >> choice;
-
-        if (!isBadCin() && choice >= 0 && choice <= 2) return choice;
-        cout << "\nINVALID OPTION!\n";
-    }
-}
-
-unsigned Application::secondScenario() {
-    unsigned int choice;
-    while (true) {
-        cout << "\n 2.1   [1]"
-                "\n 2.2   [2]"
-                "\n 2.3   [3]"
-                "\n 2.4   [4]"
-                "\n 2.5   [5]"
-                "\n Back  [0]\n";
-
-        cout << "\nChoose an option: ";
-        cin >> choice;
-
-        if (!isBadCin() && choice >= 0 && choice <= 5) return choice;
-        cout << "\nINVALID OPTION!\n";
-    }
 }

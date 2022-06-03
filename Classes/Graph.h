@@ -62,6 +62,10 @@ class Graph {
      * Graph size (vertices are numbered from 1 to n)
      */
     int graphSize;
+public:
+    int getGraphSize() const;
+
+private:
     /**
      * false: undirected; true: directed
      */
@@ -139,7 +143,7 @@ public:
      * @param dimension - dimension passed as an input
      * @return returns a map that contains the paths and the capacity used.
      */
-    map<list<int>,int> FordFulkerson(int source, int sink, int dimension);
+    pair<map<list<int>, int>, int> FordFulkerson(int source, int sink, int dimension);
 
     /**
      *
@@ -161,10 +165,10 @@ public:
 
     /**
      * Creates a graph that only has the edges of the specified path
-     * @param paths list<list<int>> - paths that are going to used to create the graph
+     * @param paths map<list<int>, int> - paths that are going to used to create the graph
      * @return Graph with only the edges of the specified path
      */
-    Graph createGraphByPath(const list<list<int>>& paths);
+    Graph createGraphByPath(const map<list<int>, int>& paths);
 
     /**
      * Finds the Total Slack of each node

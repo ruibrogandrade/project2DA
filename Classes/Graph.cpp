@@ -38,11 +38,14 @@ void Graph::dfs(int v) {
 }
 
 void Graph::bfs(int v) {
-    for (int v = 1; v <= graphSize; v++) nodes[v].visited = false;
+    for (int v = 1; v <= graphSize; v++)
+        nodes[v].visited = false;
+
     queue<int> q; // queue of unvisited nodes
     q.push(v);
     nodes[v].visited = true;
     nodes[v].pred = - 1;
+
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
         for (auto &e : nodes[u].adjEdges){
@@ -191,12 +194,14 @@ list<int> Graph::MinDistanceList(int a, int b) {
 }
 
 
-map<list<int>,int> Graph::FordFulkerson(int source, int sink, int dimension) {
+pair<map<list<int>, int>, int> Graph::FordFulkerson(int source, int sink, int dimension) {
     map<list<int>,int> paths;
-    Graph residualGraph = *this;
+
+    Graph rGraph = *this;
+
     int capacityUsed = 0;
 
-    while (residualGraph.existPath(source, sink) || capacityUsed >= dimension){
+    while (rGraph.existPath(source, sink) || capacityUsed >= dimension){
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
@@ -204,42 +209,43 @@ map<list<int>,int> Graph::FordFulkerson(int source, int sink, int dimension) {
 
         // This while calculates the pathflow for a path found
         while (v != source) {
-            u = residualGraph.nodes[v].pred;
-            for (auto &e: residualGraph.nodes[u].adjEdges){
+            u = rGraph.nodes[v].pred;
+            for (auto &e: rGraph.nodes[u].adjEdges){
                 if (e.dest == v){
                     pathFlow = min(pathFlow, e.capacity);
                 }
             }
-            v = residualGraph.nodes[v].pred;
+            v = rGraph.nodes[v].pred;
             path.push_front(v);
         }
 
         v = sink;
+
         // This while updates the path found in the residual graph
         // reducing all edges by pathflow encountered in the while above
         while (v != source){
-            u = residualGraph.nodes[v].pred;
-            for (auto &e: residualGraph.nodes[u].adjEdges){
+            u = rGraph.nodes[v].pred;
+            for (auto &e: rGraph.nodes[u].adjEdges){
                 if (e.dest == v) {
                     e.capacity -= pathFlow;
                 }
             }
 
-            for (auto edge = residualGraph.nodes[v].adjEdges.begin();
-                 edge != residualGraph.nodes[v].adjEdges.end(); edge++)
+            for (auto edge = rGraph.nodes[v].adjEdges.begin();
+                 edge != rGraph.nodes[v].adjEdges.end(); edge++)
             {
                 if (edge->dest == u){
                     edge->capacity += pathFlow;
-                } else if (edge == --residualGraph.nodes[v].adjEdges.end()) {
-                    residualGraph.addEdge(v, u, pathFlow, edge->duration);
+                } else if (edge == --rGraph.nodes[v].adjEdges.end()) {
+                    rGraph.addEdge(v, u, pathFlow, edge->duration);
                 }
             }
-            v = residualGraph.nodes[v].pred;
+            v = rGraph.nodes[v].pred;
         }
         capacityUsed += pathFlow;
         paths.insert({path,pathFlow});
     }
-    return paths;
+    return {paths, capacityUsed};
 }
 
 bool Graph::existPath(int a, int b) {
@@ -344,11 +350,13 @@ int Graph::minDuration(){
     return minDuration;
 }
 
-Graph Graph::createGraphByPath(const list<list<int>>& paths){
-    int v;
-    int w;
+Graph Graph::createGraphByPath(const map<list<int>, int>& paths){
+    int v, w;
+
     Graph semiGraph(graphSize, true);
-    for(auto path: paths){
+
+    for(const auto& pair: paths){
+        auto path = pair.first;
         while(path.size() != 1){
             v = path.back();
             path.pop_back();
@@ -373,6 +381,10 @@ map<int, int> Graph::totalSpare() {
         }
     }
     return totalSpares;
+}
+
+int Graph::getGraphSize() const {
+    return graphSize;
 }
 
 
