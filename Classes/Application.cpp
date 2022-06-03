@@ -91,7 +91,6 @@ void Application::run(){
 
     while (true) {
         auto scenario = showMenu();
-        unsigned subProblem;
 
         askSource();
         askSink();
@@ -207,9 +206,6 @@ void Application::secondScenario() {
 
 // 2.1
 void Application::fixedFlow() {
-
-    Graph residualGraph = graph;
-
     auto temp = graph.FordFulkerson(source, sink, groupDim);
     pathsUsed = temp.first;
     capacityUsed = temp.second;
@@ -287,15 +283,12 @@ void Application::changedFlow() {
 
 // 2.3
 void Application::maxFlow() {
-    Graph residualGraph = graph;
     int maxFlow = graph.FordFulkerson(source, sink, INT_MAX).second;
     cout << "\nThe max flow is: " << maxFlow;
 }
 
 // 2.4
 void Application::minDuration() {
-    Graph residualGraph = graph;
-
     auto reducedGraph = graph.createGraphByPath(pathsUsed);
     int result = reducedGraph.minDuration();
     cout << "\nThe minimum duration of travel for the given "
@@ -304,8 +297,6 @@ void Application::minDuration() {
 
 // 2.5
 void Application::maxWaiting() {
-    Graph residualGraph = graph;
-
     auto reducedGraph = graph.createGraphByPath(pathsUsed);
 
     reducedGraph.minDuration();
