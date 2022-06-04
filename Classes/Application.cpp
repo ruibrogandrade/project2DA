@@ -184,19 +184,16 @@ void Application::secondScenario() {
                 fixedFlow();
                 break;
             case 2:
-                if (!pathsUsed.empty()) changedFlow();
-                else cout << "\nPlease execute 2.1 first.\n";
+                changedFlow();
                 break;
             case 3:
                 maxFlow();
                 break;
             case 4:
-                if (!pathsUsed.empty()) minDuration();
-                else cout << "\nPlease execute 2.1 first.\n";
+                minDuration();
                 break;
             case 5:
-                if (!pathsUsed.empty()) maxWaiting();
-                else cout << "\nPlease execute 2.1 first.\n";
+                maxWaiting();
                 break;
             default:
                 break;
@@ -207,8 +204,8 @@ void Application::secondScenario() {
 // 2.1
 void Application::fixedFlow() {
     auto temp = graph.FordFulkerson(source, sink, groupDim);
-    pathsUsed = temp.first;
-    capacityUsed = temp.second;
+    auto pathsUsed = temp.first;
+    auto capacityUsed = temp.second;
 
     if (capacityUsed < groupDim)
     {
@@ -228,6 +225,11 @@ void Application::fixedFlow() {
 
 //2.2
 void Application::changedFlow() {
+
+    auto temp = graph.FordFulkerson(source, sink, groupDim);
+    auto pathsUsed = temp.first;
+    auto capacityUsed = temp.second;
+
     if (capacityUsed < groupDim)
     {
         cout << "\nUnable to pass the entirety of the group."
@@ -289,6 +291,8 @@ void Application::maxFlow() {
 
 // 2.4
 void Application::minDuration() {
+    auto pathsUsed  = graph.FordFulkerson(source, sink, groupDim).first;
+
     auto reducedGraph = graph.createGraphByPath(pathsUsed);
     int result = reducedGraph.minDuration();
     cout << "\nThe minimum duration of travel for the given "
@@ -297,6 +301,8 @@ void Application::minDuration() {
 
 // 2.5
 void Application::maxWaiting() {
+    auto pathsUsed  = graph.FordFulkerson(source, sink, groupDim).first;
+
     auto reducedGraph = graph.createGraphByPath(pathsUsed);
 
     reducedGraph.minDuration();

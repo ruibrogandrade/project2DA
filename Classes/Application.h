@@ -11,8 +11,6 @@ private:
     FileReader reader;
     Graph graph;
     int source{}, sink{}, groupDim{};
-    map<list<int>, int> pathsUsed{};
-    int capacityUsed{};
 
 private:
     /**
