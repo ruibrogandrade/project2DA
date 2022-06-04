@@ -3,7 +3,6 @@
 //
 
 #include "Application.h"
-#include <string>
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -29,16 +28,16 @@ unsigned Application::showMenu() {
     unsigned int choice;
 
     while (true) {
-        cout << "\n\n - MENU - "
-                "\n First Scenario        [1]"
-                "\n Second Scenario       [2]"
-                "\n Exit                  [0]\n";
+        cout << "\n\n- MENU - "
+                "\nFirst Scenario        [1]"
+                "\nSecond Scenario       [2]"
+                "\nExit                  [0]\n";
 
         cout << "\nChoose an option:";
         cin >> choice;
 
         if (isBadCin() || choice < 0 || choice > 2) {
-            cout << "\nINVALID OPTION!\n";
+            cerr << "\nINVALID OPTION!\n";
             continue;
         }
         return choice;
@@ -48,39 +47,39 @@ unsigned Application::showMenu() {
 void Application::askSource() {
     int input;
     while (true) {
-        cout << "\n Source: ";
+        cout << "\nSource: ";
         cin >> input;
 
         if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
             this->source = input;
             return;
         }
-        cout << "\nINVALID NUMBER!\n";
+        cerr << "\nINVALID NUMBER!\n";
     }
 }
 
 void Application::askSink() {
     int input;
     while (true) {
-        cout << "\n Sink: ";
+        cout << "\nSink: ";
         cin >> input;
 
         if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
             this->sink = input;
             return;
         }
-        cout << "\nINVALID NUMBER!\n";
+        cerr << "\nINVALID NUMBER!\n";
     }
 }
 
 int Application::askGroupDim() {
     int input;
     while (true) {
-        cout << "\n Group dimension: ";
+        cout << "\nGroup dimension: ";
         cin >> input;
 
         if (!isBadCin() && input >= 0) return input;
-        cout << "\nINVALID NUMBER!\n";
+        cerr << "\nINVALID NUMBER!\n";
     }
 }
 
@@ -99,7 +98,7 @@ void Application::run(){
             case 0:
                 return;
             case 1:
-                firstScenario(Graph());
+                firstScenario(graph);
                 break;
             case 2:
                 groupDim = askGroupDim();
@@ -116,15 +115,15 @@ void Application::firstScenario(Graph g) const {
         unsigned int choice;
 
         while (true) {
-            cout << "\n 1.1   [1]"
-                    "\n 1.2   [2]"
-                    "\n Back  [0]\n";
+            cout << "\n1.1   [1]"
+                    "\n1.2   [2]"
+                    "\nBack  [0]\n";
 
             cout << "\nChoose an option: ";
             cin >> choice;
 
             if (!isBadCin() && choice >= 0 && choice <= 2) break;
-            cout << "\nINVALID OPTION!\n";
+            cerr << "\nINVALID OPTION!\n";
         }
 
         switch (choice) {
@@ -163,18 +162,18 @@ void Application::secondScenario() {
     while (true) {
         unsigned int choice;
         while (true) {
-            cout << "\n 2.1   [1]"
-                    "\n 2.2   [2]"
-                    "\n 2.3   [3]"
-                    "\n 2.4   [4]"
-                    "\n 2.5   [5]"
-                    "\n Back  [0]\n";
+            cout << "\n2.1   [1]"
+                    "\n2.2   [2]"
+                    "\n2.3   [3]"
+                    "\n2.4   [4]"
+                    "\n2.5   [5]"
+                    "\nBack  [0]\n";
 
             cout << "\nChoose an option: ";
             cin >> choice;
 
             if (!isBadCin() && choice >= 0 && choice <= 5) break;
-            cout << "\nINVALID OPTION!\n";
+            cerr << "\nINVALID OPTION!\n";
         }
 
         switch (choice) {
@@ -237,9 +236,8 @@ void Application::changedFlow() {
         return;
     }
 
+    cout << "\nAdded group.";
     int addedDimension = askGroupDim();
-
-    groupDim = addedDimension;
 
     // TODO 2.2
 

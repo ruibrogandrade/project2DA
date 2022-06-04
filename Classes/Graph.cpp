@@ -201,7 +201,7 @@ pair<map<list<int>, int>, int> Graph::FordFulkerson(int source, int sink, int di
 
     int capacityUsed = 0;
 
-    while (rGraph.existPath(source, sink) || capacityUsed >= dimension){
+    while (rGraph.existPath(source, sink) && capacityUsed < dimension){
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
@@ -376,8 +376,10 @@ map<int, int> Graph::totalSpare() {
     map<int, int> totalSpares;
     for(int v = 1; v <= graphSize; v++){
         for (auto e : nodes[v].adjEdges) {
-            int spare = nodes[e.dest].LF - e.duration - nodes[v].ES;
-            totalSpares.insert(pair<int, int> (e.dest, spare));
+            int spare;
+            if ((spare = nodes[e.dest].LF - e.duration - nodes[v].ES) > 0 ) {
+                totalSpares.insert(pair<int, int> (e.dest, spare));
+            }
         }
     }
     return totalSpares;
