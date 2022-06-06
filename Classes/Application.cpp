@@ -50,7 +50,7 @@ void Application::askSource() {
         cout << "\nSource: ";
         cin >> input;
 
-        if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
+        if (!isBadCin() && input >= 1 && input <= graph.getGraphSize()) {
             this->source = input;
             return;
         }
@@ -64,7 +64,7 @@ void Application::askSink() {
         cout << "\nSink: ";
         cin >> input;
 
-        if (!isBadCin() && input >= 1 && input < graph.getGraphSize()) {
+        if (!isBadCin() && input >= 1 && input <= graph.getGraphSize()) {
             this->sink = input;
             return;
         }
@@ -85,7 +85,7 @@ int Application::askGroupDim() {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("07")) exit(1);
+    if(!file.readFile("12")) exit(1);
     graph = file.getGraph();
 
     while (true) {
@@ -250,7 +250,7 @@ void Application::changedFlow() {
         for (auto &p : additionalPaths) {
             pathsUsed.insert(p);
         }
-        capacityUsed+=additionalCapacity;
+        capacityUsed += additionalCapacity;
     }
 
     if (capacityUsed < groupDim + addedDimension)
@@ -290,11 +290,11 @@ void Application::minDuration() {
 
 // 2.5
 void Application::maxWaiting() {
-    Graph rGraph = graph;
+    Graph residualGraph = graph;
 
-    auto pathsUsed  = rGraph.FordFulkerson(source, sink, groupDim).first;
+    auto pathsUsed  = residualGraph.FordFulkerson(source, sink, groupDim).first;
 
-    auto reducedGraph = rGraph.createGraphByPath(pathsUsed);
+    auto reducedGraph = residualGraph.createGraphByPath(pathsUsed);
 
     reducedGraph.minDuration();
     reducedGraph.latestFinish(1);

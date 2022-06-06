@@ -200,6 +200,13 @@ public:
      * @return list<int> - path with the least amount of transbords to a certain node
      */
     list<int> MinDistanceList(int a, int b);
+
+    void printAllPaths(int s, int d);
+
+    void printAllPathsUtil(int u, int d, bool *visited, int *path, int &path_index);
+
+    void checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],
+                   int path[], int& path_index);
 };
 
 #endif

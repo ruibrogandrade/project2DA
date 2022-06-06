@@ -65,6 +65,7 @@ void Graph::setMaxCapacity(int s) {
     for (int v = 1; v <= graphSize; v++) {
         if (v == s) continue;
         nodes[v].maxCapacity = 0;
+        nodes[v].distance = INT_MAX;
         nodes[v].pred = 0;
         maxHeap.insert(v,0);
     }
@@ -76,9 +77,10 @@ void Graph::setMaxCapacity(int s) {
         for(auto e : nodes[v].adjEdges) {
             int w = e.dest;
 
-            if(min(nodes[v].maxCapacity,e.capacity) > nodes[w].maxCapacity) {
+            if(min(nodes[v].maxCapacity,e.capacity) > nodes[w].maxCapacity ||  (min(nodes[v].maxCapacity,e.capacity) == nodes[w].maxCapacity && (nodes[v].distance + 1) < nodes[w].distance)) {
                 nodes[w].maxCapacity = min(nodes[v].maxCapacity,e.capacity);
                 nodes[w].pred = v;
+                nodes[w].distance = nodes[v].distance + 1;
                 maxHeap.increaseKey(w,-nodes[w].maxCapacity);
             }
         }
@@ -97,40 +99,66 @@ list<int> Graph::MaxCapacityList(int a, int b) {
     return path;
 }
 
-list<list<int>> Graph::optimalSolutions(int a, int b) {
-    Graph paretoGraph = *this;
-    list<list<int>> maxCapacityPaths;
-    list<list<int>> minDistancePaths;
-    list<int> path;
+list<list<int>> Graph::optimalSolutions(int source, int sink) {
+    map<list<int>, int> paths;
+    list<int> ActualMinDistanceList = MinDistanceList(source, sink);
+    int minCapacity = nodes[ActualMinDistanceList.back()].maxCapacity;
+    list<int> ActualMaxTransbordList = MaxCapacityList(source, sink);
+    int maxDistance = ActualMaxTransbordList.size() - 1;
+    bool end = false;
+    list<list<int>> possibleSolutions;
 
-    list<int> maxCapacitySolution = paretoGraph.MaxCapacityList(a,b);
-    maxCapacityPaths.push_back(maxCapacitySolution);
-    list<int> minDistanceSolution = paretoGraph.MinDistanceList(a,b);
-    ///minDistancepaths.push_back(minDistanceSolution);
-    list<list<int>> solutions;
-    solutions.push_back(maxCapacitySolution);
-    solutions.push_back(minDistanceSolution);
-    int aux;
-    int v = b;
-    while(v != a) {
-        int w = paretoGraph.nodes[v].pred;
-        for(auto &e: paretoGraph.nodes[w].adjEdges) {
-            if(e.dest == v) {
-                aux = e.capacity;
-                e.capacity = INT_MIN;
-                list<int> newPathMaxCapacityList = paretoGraph.MaxCapacityList(a,b);
-                if(newPathMaxCapacityList.size() < maxCapacitySolution.size() &&
-                    nodes[newPathMaxCapacityList.back()].maxCapacity > nodes[minDistanceSolution.back()].maxCapacity){
-                    solutions.push_back(newPathMaxCapacityList);
+    bool visited[graphSize];
+    int path[graphSize];
+    int pathIndex = 0;
+
+    for(auto it = ActualMinDistanceList.begin(); it != ActualMinDistanceList.end(); it++) {
+        cout << *it << " ";
+    }
+    cout << endl;
+    for(auto it = ActualMaxTransbordList.begin(); it != ActualMaxTransbordList.end(); it++) {
+        cout << *it << " ";
+    }
+    cout << endl;
+    checkPath(source, sink, minCapacity, maxDistance,visited,path, pathIndex);
+    list<list<int>> lol;
+    return lol;
+}
+
+
+void Graph::checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],
+                      int path[], int& path_index) {
+    visited[u] = true;
+    path[path_index] = u;
+    path_index++;
+
+    // If current vertex is same as destination, then print
+    // current path[]
+    if (u == d) {
+        for (int i = 0; i < path_index; i++) {
+            cout << path[i] << " ";
+        }
+        cout << endl;
+    }
+    else // If current vertex is not destination
+    {
+        // Recur for all the vertices adjacent to current vertex
+        list<Edge>::iterator i;
+        for (i = nodes[u].adjEdges.begin(); i != nodes[u].adjEdges.end(); ++i) {
+            if (!visited[i->dest]) {
+                if (nodes[i->dest].maxCapacity > minCapacity) {
+                    if (nodes[i->dest].distance < maxDistance)
+                        checkPath(i->dest, d, minCapacity, maxDistance, visited, path, path_index);
                 }
-                e.capacity = aux;
-                break;
             }
         }
-        v = w;
     }
-    return solutions;
+
+    // Remove current vertex from path[] and mark it as unvisited
+    path_index--;
+    visited[u] = false;
 }
+
 
 void Graph::maxCapacityPath(int a, int b) {
     if(!existPath(a,b)){
@@ -162,9 +190,11 @@ void Graph::setDistance(int s) {
             continue;
         }
         nodes[v].distance = INT_MAX;
+        nodes[v].maxCapacity = 0;
         nodes[v].pred = 0;
         minHeap.insert(v,INT_MAX);
     }
+    nodes[s].maxCapacity = INT_MAX;
     nodes[s].distance = 0;
     minHeap.insert(s,nodes[s].distance);
     int v;
@@ -172,8 +202,9 @@ void Graph::setDistance(int s) {
         v = minHeap.removeMin();
         for(auto e : nodes[v].adjEdges) {
             int w = e.dest;
-            if((nodes[v].distance + 1) < nodes[w].distance) {
+            if((nodes[v].distance + 1) < nodes[w].distance || ((nodes[v].distance + 1) == nodes[w].distance && min(nodes[v].maxCapacity,e.capacity) > nodes[w].maxCapacity)) {
                 nodes[w].distance = nodes[v].distance + 1;
+                nodes[w].maxCapacity = min(nodes[v].maxCapacity,e.capacity);
                 nodes[w].pred = v;
                 minHeap.decreaseKey(w, nodes[w].distance);
             }
@@ -385,5 +416,59 @@ map<int, int> Graph::totalSpare() {
 int Graph::getGraphSize() const {
     return graphSize;
 }
+
+
+//PARA O EU (IGOR) VER
+void Graph::printAllPaths(int s, int d)
+{
+    // Mark all the vertices as not visited
+    bool* visited = new bool[graphSize];
+
+    // Create an array to store paths
+    int* path = new int[graphSize];
+    int path_index = 0; // Initialize path[] as empty
+
+    // Initialize all vertices as not visited
+    for (int i = 0; i < graphSize; i++)
+        visited[i] = false;
+
+    // Call the recursive helper function to print all paths
+    printAllPathsUtil(s, d, visited, path, path_index);
+}
+
+// A recursive function to print all paths from 'u' to 'd'.
+// visited[] keeps track of vertices in current path.
+// path[] stores actual vertices and path_index is current
+// index in path[]
+void Graph::printAllPathsUtil(int u, int d, bool visited[],
+                              int path[], int& path_index)
+{
+    // Mark the current node and store it in path[]
+    visited[u] = true;
+    path[path_index] = u;
+    path_index++;
+
+    // If current vertex is same as destination, then print
+    // current path[]
+    if (u == d) {
+        for (int i = 0; i < path_index; i++)
+            cout << path[i] << " ";
+        cout << endl;
+    }
+    else // If current vertex is not destination
+    {
+        // Recur for all the vertices adjacent to current vertex
+        list<Edge>::iterator i;
+        for (i = nodes[u].adjEdges.begin(); i != nodes[u].adjEdges.end(); ++i)
+            if (!visited[i->dest])
+                printAllPathsUtil(i->dest, d, visited, path, path_index);
+    }
+
+    // Remove current vertex from path[] and mark it as unvisited
+    path_index--;
+    visited[u] = false;
+}
+
+
 
 
