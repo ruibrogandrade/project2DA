@@ -18,10 +18,10 @@ private:
      * Number of nodes.
      * Number of edges.
      */
-    int numNodes, numEdges;
+    int numNodes{}, numEdges{};
 
 public:
-    FileReader(){};
+    FileReader()= default;;
     /**
      * Reads a file associated with the number 'inputNum'
      * @param inputNum - used to build a file's path ( "path" + "inputNum" + ".txt")

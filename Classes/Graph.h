@@ -61,7 +61,7 @@ class Graph {
     /**
      * Graph size (vertices are numbered from 1 to n)
      */
-    int graphSize;
+    int graphSize{};
 public:
     int getGraphSize() const;
 
@@ -69,7 +69,7 @@ private:
     /**
      * false: undirected; true: directed
      */
-    bool hasDir;
+    bool hasDir{};
     /**
      * The list of nodes being represented
      */
@@ -85,7 +85,7 @@ public:
      * @param numNodes - number of graph's nodes
      * @param dir - graph directed or not
      */
-    Graph(int numNodes, bool dir = false);
+    explicit Graph(int numNodes, bool dir = false);
 
     /**
      * Used for creating the edges of a graph
@@ -200,10 +200,6 @@ public:
      * @return list<int> - path with the least amount of transbords to a certain node
      */
     list<int> MinDistanceList(int a, int b);
-
-    void printAllPaths(int s, int d);
-
-    void printAllPathsUtil(int u, int d, bool *visited, int *path, int &path_index,int maxDistance, int minCapacity);
 
     void checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],
                    int path[], int& path_index);
