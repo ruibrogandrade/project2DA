@@ -99,14 +99,13 @@ list<int> Graph::MaxCapacityList(int a, int b) {
     return path;
 }
 
-list<list<int>> Graph::optimalSolutions(int source, int sink) {
+void Graph::optimalSolutions(int source, int sink) {
     map<list<int>, int> paths;
     list<int> ActualMinDistanceList = MinDistanceList(source, sink);
     int minCapacity = nodes[ActualMinDistanceList.back()].maxCapacity;
     list<int> ActualMaxTransbordList = MaxCapacityList(source, sink);
     int maxDistance = ActualMaxTransbordList.size() - 1;
     bool end = false;
-    list<list<int>> possibleSolutions;
 
     // Mark all the vertices as not visited
     bool* visited = new bool[graphSize];
@@ -127,9 +126,7 @@ list<list<int>> Graph::optimalSolutions(int source, int sink) {
         cout << it << " ";
     }
     cout << endl;
-    checkPath(source, sink, minCapacity, maxDistance,visited,path, pathIndex);
-    list<list<int>> lol;
-    return lol;
+    //checkPath(source, sink, minCapacity, maxDistance,visited,path, pathIndex);
 }
 
 void Graph::checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],

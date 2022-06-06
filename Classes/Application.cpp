@@ -134,11 +134,7 @@ void Application::firstScenario(Graph g) const {
             }
             case 2: {
                 // 1.2
-                list<list<int>> paretoSolutions = g.optimalSolutions(source, sink);
-                for(auto path : paretoSolutions)
-                {
-                    cout << "(" << path.front() << "," << path.back() << "," << path.size() - 1 << ")\n";
-                }
+                g.optimalSolutions(source, sink);
                 break;
             }
             default:

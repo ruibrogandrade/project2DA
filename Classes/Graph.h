@@ -183,7 +183,7 @@ public:
      * @param b int - sink path
      * @return list<list<int>> - pareto-optimal paths
      */
-    list<list<int>> optimalSolutions(int a, int b);
+    void optimalSolutions(int a, int b);
 
 
     /**
