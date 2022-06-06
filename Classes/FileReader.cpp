@@ -2,7 +2,7 @@
 #include "fstream"
 
 bool FileReader::readFile(const string& inputNum) {
-    string txt = ".txt";
+    string txt = "_b.txt";
 
     string dataPath = path + inputNum + txt;
     //cout << dataPath;
@@ -15,7 +15,7 @@ bool FileReader::readFile(const string& inputNum) {
 
     if(!file.is_open())
     {
-        cerr << "Cannot open in" << inputNum << ".txt file!\n";
+        cerr << "Cannot open in" << inputNum << "_b.txt file!\n";
         return false;
     }
 

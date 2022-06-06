@@ -85,22 +85,23 @@ int Application::askGroupDim() {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("06_b")) exit(1);
+    if(!file.readFile("07")) exit(1);
     graph = file.getGraph();
 
     while (true) {
         auto scenario = showMenu();
 
-        askSource();
-        askSink();
-
         switch (scenario) {
             case 0:
                 return;
             case 1:
+                askSource();
+                askSink();
                 firstScenario(graph);
                 break;
             case 2:
+                askSource();
+                askSink();
                 groupDim = askGroupDim();
                 secondScenario();
                 break;
