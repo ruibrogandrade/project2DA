@@ -6,10 +6,6 @@
 #include <iostream>
 #include <algorithm>
 #include <climits>
-#include <chrono>
-
-using namespace std;
-using namespace std::chrono;
 
 Application::Application() = default;
 
@@ -85,7 +81,9 @@ int Application::askGroupDim() {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("07")) exit(1);
+
+    if(!file.readFile("10")) exit(1);
+
     graph = file.getGraph();
 
     while (true) {
@@ -182,14 +180,7 @@ void Application::secondScenario() {
                 break;
             }
             case 4: {
-                auto start = high_resolution_clock::now();
-                auto stop = high_resolution_clock::now();
-                auto duration = duration_cast<microseconds>(stop - start);
-                start = high_resolution_clock::now();
                 minDuration();
-                stop = high_resolution_clock::now();
-                duration = duration_cast<microseconds>(stop - start);
-                cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
                 break;
             }
             case 5:
