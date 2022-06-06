@@ -85,7 +85,7 @@ int Application::askGroupDim() {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("12")) exit(1);
+    if(!file.readFile("13")) exit(1);
     graph = file.getGraph();
 
     while (true) {

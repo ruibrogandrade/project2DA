@@ -203,7 +203,7 @@ public:
 
     void printAllPaths(int s, int d);
 
-    void printAllPathsUtil(int u, int d, bool *visited, int *path, int &path_index);
+    void printAllPathsUtil(int u, int d, bool *visited, int *path, int &path_index,int maxDistance, int minCapacity);
 
     void checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],
                    int path[], int& path_index);
