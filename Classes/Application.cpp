@@ -85,7 +85,7 @@ int Application::askGroupDim() {
 
 void Application::run(){
     FileReader file;
-    if(!file.readFile("13")) exit(1);
+    if(!file.readFile("06_b")) exit(1);
     graph = file.getGraph();
 
     while (true) {
@@ -130,17 +130,7 @@ void Application::firstScenario(Graph g) const {
             case 0:
                 return;
             case 1: {
-                // 1.1
-                auto start = high_resolution_clock::now();
-                auto stop = high_resolution_clock::now();
-                auto duration = duration_cast<microseconds>(stop - start);
-                start = high_resolution_clock::now();
-
                 g.maxCapacityPath(source, sink);
-
-                stop = high_resolution_clock::now();
-                duration = duration_cast<microseconds>(stop - start);
-                cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
                 break;
             }
             case 2: {
@@ -179,18 +169,28 @@ void Application::secondScenario() {
         switch (choice) {
             case 0:
                 return;
-            case 1:
+            case 1: {
                 fixedFlow();
                 break;
+            }
             case 2:
                 changedFlow();
                 break;
-            case 3:
+            case 3: {
                 maxFlow();
                 break;
-            case 4:
+            }
+            case 4: {
+                auto start = high_resolution_clock::now();
+                auto stop = high_resolution_clock::now();
+                auto duration = duration_cast<microseconds>(stop - start);
+                start = high_resolution_clock::now();
                 minDuration();
+                stop = high_resolution_clock::now();
+                duration = duration_cast<microseconds>(stop - start);
+                cout << endl << "Duration of Algorithm is: " << duration.count() << endl;
                 break;
+            }
             case 5:
                 maxWaiting();
                 break;

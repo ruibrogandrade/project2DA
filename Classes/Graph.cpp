@@ -127,43 +127,9 @@ list<list<int>> Graph::optimalSolutions(int source, int sink) {
         cout << it << " ";
     }
     cout << endl;
-    //checkPath(source, sink, minCapacity, maxDistance,visited,path, pathIndex);
-    printAllPathsUtil(source,sink,visited,path,pathIndex,maxDistance,minCapacity);
+    checkPath(source, sink, minCapacity, maxDistance,visited,path, pathIndex);
     list<list<int>> lol;
     return lol;
-}
-
-
-
-void Graph::printAllPathsUtil(int u, int d, bool visited[],
-                              int path[], int& path_index, int maxDistance, int minCapacity) {
-    // Mark the current node and store it in path[]
-    visited[u] = true;
-    path[path_index] = u;
-    path_index++;
-
-    // If current vertex is same as destination, then print
-    // current path[]
-    if (u == d) {
-        for (int i = 0; i < path_index; i++) {
-            cout << path[i] << " ";
-        }
-        cout << endl;
-    } else // If current vertex is not destination
-    {
-        // Recur for all the vertices adjacent to current vertex
-        list<Edge>::iterator i;
-        for (i = nodes[u].adjEdges.begin(); i != nodes[u].adjEdges.end(); ++i) {
-            int lol = i->dest;
-            if (!visited[i->dest] && (nodes[i->dest].maxCapacity > minCapacity) && (nodes[i->dest].distance < maxDistance)) {
-                printAllPathsUtil(i->dest, d, visited, path, path_index,maxDistance,minCapacity);
-            }
-        }
-    }
-
-    // Remove current vertex from path[] and mark it as unvisited
-    path_index--;
-    visited[u] = false;
 }
 
 void Graph::checkPath(int u,int d, int minCapacity, int maxDistance, bool visited[],
@@ -175,7 +141,6 @@ void Graph::checkPath(int u,int d, int minCapacity, int maxDistance, bool visite
     // If current vertex is same as destination, then print
     // current path[]
     if (u == d) {
-        cout << "XD";
         for (int i = 0; i < path_index; i++) {
             cout << path[i] << " ";
         }
@@ -185,13 +150,9 @@ void Graph::checkPath(int u,int d, int minCapacity, int maxDistance, bool visite
         // Recur for all the vertices adjacent to current vertex
         list<Edge>::iterator i;
         for (i = nodes[u].adjEdges.begin(); i != nodes[u].adjEdges.end(); ++i) {
-            if (!visited[i->dest]) {
-                if (nodes[i->dest].maxCapacity > minCapacity) {
-                    if (nodes[i->dest].distance < maxDistance) {
-                        cout << "XD";
-                        checkPath(i->dest, d, minCapacity, maxDistance, visited, path, path_index);
-                    }
-                }
+            if (!visited[i->dest] && nodes[i->dest].maxCapacity > minCapacity &&
+                    path_index < maxDistance) {
+                checkPath(i->dest, d, minCapacity, maxDistance, visited, path, path_index);
             }
         }
     }
@@ -458,28 +419,6 @@ map<int, int> Graph::totalSpare() {
 int Graph::getGraphSize() const {
     return graphSize;
 }
-
-
-//PARA O EU (IGOR) VER
-/*
-void Graph::printAllPaths(int s, int d)
-{
-    // Mark all the vertices as not visited
-    bool* visited = new bool[graphSize];
-
-    // Create an array to store paths
-    int* path = new int[graphSize];
-    int path_index = 0; // Initialize path[] as empty
-
-    // Initialize all vertices as not visited
-    for (int i = 0; i < graphSize; i++)
-        visited[i] = false;
-
-    // Call the recursive helper function to print all paths
-    printAllPathsUtil(s, d, visited, path, path_index);
-}
-*/
-
 
 
 
