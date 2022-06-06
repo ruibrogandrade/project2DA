@@ -202,7 +202,9 @@ void Application::secondScenario() {
 
 // 2.1
 void Application::fixedFlow() {
-    auto temp = graph.FordFulkerson(source, sink, groupDim);
+    Graph rGraph = graph;
+
+    auto temp = rGraph.FordFulkerson(source, sink, groupDim);
     auto pathsUsed = temp.first;
     auto capacityUsed = temp.second;
 
@@ -224,8 +226,9 @@ void Application::fixedFlow() {
 
 //2.2
 void Application::changedFlow() {
+    Graph rGraph = graph;
 
-    auto temp = graph.FordFulkerson(source, sink, groupDim);
+    auto temp = rGraph.FordFulkerson(source, sink, groupDim);
     auto pathsUsed = temp.first;
     auto capacityUsed = temp.second;
 
@@ -239,59 +242,47 @@ void Application::changedFlow() {
     cout << "\nAdded group.";
     int addedDimension = askGroupDim();
 
-    // TODO 2.2
+    if (capacityUsed < groupDim + addedDimension) {
+        auto t = rGraph.FordFulkerson(source, sink, groupDim + addedDimension - capacityUsed);
+        auto additionalPaths = t.first;
+        auto additionalCapacity = t.second;
 
-    /*
-    int n;
-    if(capacityUsed > 0) {
-        n = 1;
-    } else {
-        n = 0;
+        for (auto &p : additionalPaths) {
+            pathsUsed.insert(p);
+        }
+        capacityUsed+=additionalCapacity;
     }
 
-    cout << "Added path:" << endl;
-
-    bool firstIter = true;
-    int edgeDim;
-
-    for (auto path = next(pathsUsed.begin(),pathsUsed.size() - n); path != pathsUsed.end(); path++) {
-        //pathsUsed.push_back(path->first);
-        if(firstIter) {
-            edgeDim = capacityUsed;
-            firstIter = false;
-        } else{
-            edgeDim = path->second;
-        }
-        if (groupDim - edgeDim > 0) {
-            groupDim -= edgeDim;
-            cout << '\n';
-            for (int et: path->first)
-                cout << " -> " << et;
-            cout << "\nPath Flow: " << edgeDim << '\n';
-        } else {
-            capacityUsed = abs(groupDim - path->second);
-            cout << '\n';
-            for (int et: path->first)
-                cout << " -> " << et;
-            cout << "\nPath Flow: " << groupDim << '\n';
-            groupDim -= edgeDim;
-            break;
-        }
+    if (capacityUsed < groupDim + addedDimension)
+    {
+        cout << "\nUnable to pass the entirety of the group."
+                "\nThe remaining capacity is: " << groupDim + addedDimension -capacityUsed;
+        return;
     }
-     */
+
+    for (auto &path: pathsUsed) {
+        for (int et: path.first) {
+            cout << " -> " << et;
+        }
+        cout << "\nPath Flow: " << path.second<< '\n';
+    }
+    cout << "\nSUCCESS!\n";
 }
 
 // 2.3
 void Application::maxFlow() {
-    int maxFlow = graph.FordFulkerson(source, sink, INT_MAX).second;
+    Graph rGraph = graph;
+    int maxFlow = rGraph.FordFulkerson(source, sink, INT_MAX).second;
     cout << "\nThe max flow is: " << maxFlow;
 }
 
 // 2.4
 void Application::minDuration() {
-    auto pathsUsed  = graph.FordFulkerson(source, sink, groupDim).first;
+    Graph rGraph = graph;
 
-    auto reducedGraph = graph.createGraphByPath(pathsUsed);
+    auto pathsUsed  = rGraph.FordFulkerson(source, sink, groupDim).first;
+
+    auto reducedGraph = rGraph.createGraphByPath(pathsUsed);
     int result = reducedGraph.minDuration();
     cout << "\nThe minimum duration of travel for the given "
             "group is: " << result << '\n';
@@ -299,9 +290,11 @@ void Application::minDuration() {
 
 // 2.5
 void Application::maxWaiting() {
-    auto pathsUsed  = graph.FordFulkerson(source, sink, groupDim).first;
+    Graph rGraph = graph;
 
-    auto reducedGraph = graph.createGraphByPath(pathsUsed);
+    auto pathsUsed  = rGraph.FordFulkerson(source, sink, groupDim).first;
+
+    auto reducedGraph = rGraph.createGraphByPath(pathsUsed);
 
     reducedGraph.minDuration();
     reducedGraph.latestFinish(1);

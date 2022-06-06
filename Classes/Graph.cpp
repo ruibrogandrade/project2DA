@@ -196,12 +196,9 @@ list<int> Graph::MinDistanceList(int a, int b) {
 
 pair<map<list<int>, int>, int> Graph::FordFulkerson(int source, int sink, int dimension) {
     map<list<int>,int> paths;
-
-    Graph rGraph = *this;
-
     int capacityUsed = 0;
 
-    while (rGraph.existPath(source, sink) && capacityUsed < dimension){
+    while (existPath(source, sink) && capacityUsed < dimension){
         list<int> path;
         int pathFlow = INT_MAX;
         int v = sink, u;
@@ -209,13 +206,13 @@ pair<map<list<int>, int>, int> Graph::FordFulkerson(int source, int sink, int di
 
         // This while calculates the pathflow for a path found
         while (v != source) {
-            u = rGraph.nodes[v].pred;
-            for (auto &e: rGraph.nodes[u].adjEdges){
+            u = nodes[v].pred;
+            for (auto &e: nodes[u].adjEdges){
                 if (e.dest == v){
                     pathFlow = min(pathFlow, e.capacity);
                 }
             }
-            v = rGraph.nodes[v].pred;
+            v = nodes[v].pred;
             path.push_front(v);
         }
 
@@ -224,23 +221,23 @@ pair<map<list<int>, int>, int> Graph::FordFulkerson(int source, int sink, int di
         // This while updates the path found in the residual graph
         // reducing all edges by pathflow encountered in the while above
         while (v != source){
-            u = rGraph.nodes[v].pred;
-            for (auto &e: rGraph.nodes[u].adjEdges){
+            u = nodes[v].pred;
+            for (auto &e: nodes[u].adjEdges){
                 if (e.dest == v) {
                     e.capacity -= pathFlow;
                 }
             }
 
-            for (auto edge = rGraph.nodes[v].adjEdges.begin();
-                 edge != rGraph.nodes[v].adjEdges.end(); edge++)
+            for (auto edge = nodes[v].adjEdges.begin();
+                 edge != nodes[v].adjEdges.end(); edge++)
             {
                 if (edge->dest == u){
                     edge->capacity += pathFlow;
-                } else if (edge == --rGraph.nodes[v].adjEdges.end()) {
-                    rGraph.addEdge(v, u, pathFlow, edge->duration);
+                } else if (edge == --nodes[v].adjEdges.end()) {
+                    addEdge(v, u, pathFlow, edge->duration);
                 }
             }
-            v = rGraph.nodes[v].pred;
+            v = nodes[v].pred;
         }
         capacityUsed += pathFlow;
         paths.insert({path,pathFlow});
